@@ -34,7 +34,7 @@ export const siteConfig = {
   location: "Atendimento online para todo o Brasil",
 
   // Endereco final do site quando publicado (usado em SEO). Troque ao publicar.
-  url: "https://elevonstudio.vercel.app",
+  url: "https://elevon-studio.vercel.app",
 };
 
 /* --------------------------------------------------------------------------
