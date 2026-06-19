@@ -2,7 +2,7 @@ import { Container, Eyebrow } from "./ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 import { S_BLUE } from "./Logo";
-import { aboutParagraphs, aboutCards, siteConfig } from "@/lib/site";
+import { aboutParagraphs, aboutClosing, aboutCards, siteConfig } from "@/lib/site";
 
 export default function About() {
   return (
@@ -48,7 +48,7 @@ export default function About() {
                 <p className="mt-5 text-xl font-bold text-white">{siteConfig.brand}</p>
                 <span className="mt-3 h-px w-12 bg-white/25" />
                 <p className="mt-3 max-w-[15rem] px-4 text-sm text-white/70">
-                  Criacao de sites profissionais para pequenos negocios
+                  Criação de sites profissionais para pequenos negócios
                 </p>
               </div>
             </div>
@@ -61,7 +61,7 @@ export default function About() {
                 </span>
                 <div>
                   <p className="text-sm font-bold text-deep-950">{siteConfig.personName}</p>
-                  <p className="text-xs text-slate-500">Criador de sites para pequenos negocios</p>
+                  <p className="text-xs text-slate-500">Criador da Elevon Studio</p>
                 </div>
               </div>
             </div>
@@ -73,7 +73,7 @@ export default function About() {
           <Reveal>
             <Eyebrow>Quem sou eu</Eyebrow>
             <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-deep-950 sm:text-4xl">
-              Um trabalho jovem, com postura profissional
+              Quem está por trás da Elevon Studio
             </h2>
           </Reveal>
 
@@ -84,6 +84,13 @@ export default function About() {
               </Reveal>
             ))}
           </div>
+
+          {/* Frase de fechamento (tom mais humano), em destaque */}
+          <Reveal delay={100}>
+            <p className="mt-6 border-l-2 border-accent pl-4 text-pretty font-medium leading-relaxed text-deep-900">
+              {aboutClosing}
+            </p>
+          </Reveal>
 
           {/* Cards pequenos */}
           <Reveal delay={120}>

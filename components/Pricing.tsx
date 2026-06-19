@@ -8,9 +8,9 @@ export default function Pricing() {
     <section id="planos" className="scroll-mt-24 py-20 md:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Planos e precos"
+          eyebrow="Planos e preços"
           title="Investimento claro, sem surpresa"
-          subtitle="Um plano direto para tirar seu negocio do papel, com manutencao mensal para manter tudo funcionando."
+          subtitle="Um plano direto para tirar seu negócio do papel, com manutenção mensal para manter tudo funcionando."
         />
 
         <div className="mx-auto mt-14 max-w-3xl">
@@ -30,7 +30,7 @@ export default function Pricing() {
               {/* Corpo do plano */}
               <div className="px-8 py-8">
                 <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                  O que esta incluso
+                  O que está incluso
                 </p>
                 <ul className="mt-4 grid gap-3 sm:grid-cols-2">
                   {pricing.includes.map((item) => (
@@ -62,7 +62,7 @@ export default function Pricing() {
                 <div className="mt-7">
                   <Button
                     href={waLink(
-                      "Ola! Quero um orcamento para criar meu site. Pode me passar os valores e o que esta incluso?"
+                      "Olá! Quero um orçamento para criar meu site. Pode me passar os valores e o que está incluso?"
                     )}
                     external
                     variant="primary"
@@ -70,7 +70,7 @@ export default function Pricing() {
                     className="w-full"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
-                    Pedir orcamento no WhatsApp
+                    Pedir orçamento no WhatsApp
                   </Button>
                 </div>
               </div>

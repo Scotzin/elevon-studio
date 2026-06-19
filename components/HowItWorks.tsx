@@ -13,7 +13,7 @@ export default function HowItWorks() {
         <SectionHeading
           eyebrow="Como funciona"
           title="Do primeiro contato ao site no ar"
-          subtitle="Um processo simples e transparente. Voce acompanha cada etapa e aprova antes da publicacao."
+          subtitle="Um processo simples e transparente. Você acompanha cada etapa e aprova antes da publicação."
         />
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -39,13 +39,13 @@ export default function HowItWorks() {
         <Reveal>
           <div className="mt-12 flex justify-center">
             <Button
-              href={waLink("Ola! Quero entender como funciona para criar meu site. Pode me explicar?")}
+              href={waLink("Olá! Quero entender como funciona para criar meu site. Pode me explicar?")}
               external
               variant="primary"
               size="lg"
             >
               <WhatsAppIcon className="h-5 w-5" />
-              Comecar agora pelo WhatsApp
+              Começar agora pelo WhatsApp
             </Button>
           </div>
         </Reveal>

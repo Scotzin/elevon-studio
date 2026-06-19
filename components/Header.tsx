@@ -55,13 +55,13 @@ export default function Header() {
         {/* CTA DESKTOP */}
         <div className="hidden items-center gap-3 lg:flex">
           <Button
-            href={waLink("Ola, gostaria de pedir um orcamento para um site profissional.")}
+            href={waLink("Olá, gostaria de pedir um orçamento para um site profissional.")}
             external
             variant="primary"
             size="md"
           >
             <WhatsAppIcon className="h-4 w-4" />
-            Pedir orcamento
+            Pedir orçamento
           </Button>
         </div>
 
@@ -100,14 +100,14 @@ export default function Header() {
               </Link>
             ))}
             <Button
-              href={waLink("Ola, gostaria de pedir um orcamento para um site profissional.")}
+              href={waLink("Olá, gostaria de pedir um orçamento para um site profissional.")}
               external
               variant="primary"
               size="lg"
               className="mt-3 w-full"
             >
               <WhatsAppIcon className="h-5 w-5" />
-              Pedir orcamento
+              Pedir orçamento
             </Button>
           </nav>
         </div>

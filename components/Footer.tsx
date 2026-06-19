@@ -27,7 +27,7 @@ export default function Footer() {
 
           {/* Navegacao */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-deep-950">Navegacao</h4>
+            <h4 className="text-sm font-semibold uppercase tracking-wide text-deep-950">Navegação</h4>
             <ul className="mt-4 space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -48,7 +48,7 @@ export default function Footer() {
             <ul className="mt-4 space-y-3">
               <li>
                 <a
-                  href={waLink("Ola! Vim pelo site e gostaria de mais informacoes.")}
+                  href={waLink("Olá! Vim pelo site e gostaria de mais informações.")}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-sm text-slate-600 transition-colors hover:text-accent"

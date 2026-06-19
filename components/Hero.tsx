@@ -34,29 +34,29 @@ export default function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
               </span>
-              Disponivel para novos projetos
+              Disponível para novos projetos
             </span>
           </Reveal>
 
           <Reveal delay={80}>
             <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.1] tracking-tight text-deep-950 sm:text-5xl lg:text-[3.4rem]">
-              Sites profissionais para pequenos negocios{" "}
+              Sites profissionais para pequenos negócios{" "}
               <span className="text-accent">venderem mais pelo WhatsApp.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={160}>
             <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-600 sm:text-lg">
-              Crio sites modernos, rapidos e personalizados para barbearias,
-              lojas, restaurantes, prestadores de servico e negocios locais que
-              querem passar mais confianca e atrair mais clientes.
+              Crio sites modernos, rápidos e personalizados para barbearias,
+              lojas, restaurantes, prestadores de serviço e negócios locais que
+              querem passar mais confiança e atrair mais clientes.
             </p>
           </Reveal>
 
           <Reveal delay={240}>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button
-                href={waLink("Ola, quero criar meu site profissional. Pode me ajudar?")}
+                href={waLink("Olá, quero criar meu site profissional. Pode me ajudar?")}
                 external
                 variant="primary"
                 size="lg"
@@ -65,7 +65,7 @@ export default function Hero() {
                 Quero meu site
               </Button>
               <Button href="#modelos" variant="outline" size="lg">
-                Ver modelos disponiveis
+                Ver modelos disponíveis
                 <Icon name="ArrowRight" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Button>
             </div>

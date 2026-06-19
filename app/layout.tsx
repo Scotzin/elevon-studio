@@ -16,14 +16,14 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.brand} | Sites profissionais para pequenos negocios`,
+    default: `${siteConfig.brand} | Sites profissionais para pequenos negócios`,
     template: `%s | ${siteConfig.brand}`,
   },
   description:
-    "Criacao de sites modernos, rapidos e personalizados para barbearias, lojas, restaurantes, hamburguerias, estetica e lojas virtuais. Mais confianca e mais clientes pelo WhatsApp.",
+    "Criação de sites modernos, rápidos e personalizados para barbearias, lojas, restaurantes, hamburguerias, estética e lojas virtuais. Mais confiança e mais clientes pelo WhatsApp.",
   keywords: [
-    "criacao de sites",
-    "site para pequenos negocios",
+    "criação de sites",
+    "site para pequenos negócios",
     "site para barbearia",
     "site para restaurante",
     "site para loja",
@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     locale: "pt_BR",
     url: siteConfig.url,
     siteName: siteConfig.brand,
-    title: `${siteConfig.brand} | Sites profissionais para pequenos negocios`,
+    title: `${siteConfig.brand} | Sites profissionais para pequenos negócios`,
     description:
-      "Sites modernos e personalizados que ajudam pequenos negocios a passar mais confianca e vender mais pelo WhatsApp.",
+      "Sites modernos e personalizados que ajudam pequenos negócios a passar mais confiança e vender mais pelo WhatsApp.",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.brand} | Sites profissionais para pequenos negocios`,
+    title: `${siteConfig.brand} | Sites profissionais para pequenos negócios`,
     description:
       "Sites modernos e personalizados para barbearias, lojas, restaurantes e mais.",
   },
@@ -71,7 +71,7 @@ export default function RootLayout({
     "@type": "ProfessionalService",
     name: siteConfig.brand,
     description:
-      "Criacao de sites profissionais e personalizados para pequenos negocios.",
+      "Criação de sites profissionais e personalizados para pequenos negócios.",
     founder: {
       "@type": "Person",
       name: siteConfig.personName,

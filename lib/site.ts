@@ -1,39 +1,38 @@
 /* ==========================================================================
-   ARQUIVO CENTRAL DE CONTEUDO E CONFIGURACAO
+   ARQUIVO CENTRAL DE CONTEÚDO E CONFIGURAÇÃO
    --------------------------------------------------------------------------
-   Quase tudo que voce vai querer editar no site esta AQUI.
-   Troque os textos, numeros e links abaixo e o site inteiro se atualiza.
+   Quase tudo que você vai querer editar no site está AQUI.
+   Troque os textos, números e links abaixo e o site inteiro se atualiza.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1) DADOS PRINCIPAIS DA MARCA  ->  TROQUE AQUI
    -------------------------------------------------------------------------- */
 export const siteConfig = {
-  // Nome da marca exibido no header, rodape e titulo da pagina.
+  // Nome da marca exibido no header, rodapé e título da página.
   brand: "Elevon Studio",
 
-  // Nome e idade usados na secao "Quem sou eu".
+  // Nome usado na seção "Quem sou eu".
   personName: "Enzo Tofani Ramos",
-  personAge: 18,
 
-  // Frase curta usada em SEO e no rodape (slogan da marca).
-  tagline: "Sites profissionais para negocios que querem crescer no digital.",
+  // Frase curta usada em SEO e no rodapé (slogan da marca).
+  tagline: "Sites profissionais para negócios que querem crescer no digital.",
 
-  // >>> NUMERO DO WHATSAPP <<<
-  // Formato internacional, SO numeros: 55 (Brasil) + DDD + numero.
-  // Ex.: "5511999999999". Troque "55SEUNUMERO" pelo seu numero real.
+  // >>> NÚMERO DO WHATSAPP <<<
+  // Formato internacional, SÓ números: 55 (Brasil) + DDD + número.
+  // Ex.: "5511999999999".
   whatsappNumber: "5511973200958",
 
   // >>> LINK DO INSTAGRAM <<<  (troque pelo seu @)
   instagram: "https://www.instagram.com/enzotofani/?hl=pt-br",
 
-  // E-mail de contato (opcional, aparece no rodape). Deixe "" para esconder.
+  // E-mail de contato (opcional, aparece no rodapé). Deixe "" para esconder.
   email: "enzotofani30@gmail.com",
 
-  // Cidade/regiao de atendimento (opcional, aparece no rodape).
+  // Cidade/região de atendimento (opcional, aparece no rodapé).
   location: "Atendimento online para todo o Brasil",
 
-  // Endereco final do site quando publicado (usado em SEO). Troque ao publicar.
+  // Endereço final do site quando publicado (usado em SEO).
   url: "https://elevon-studio.vercel.app",
 };
 
@@ -41,9 +40,9 @@ export const siteConfig = {
    2) GERADOR DE LINK DO WHATSAPP
    -------------------------------------------------------------------------- */
 // Monta automaticamente o link do WhatsApp com uma mensagem pronta.
-// Nao precisa editar esta funcao - so o numero la em cima.
+// Não precisa editar esta função - só o número lá em cima.
 export function waLink(
-  message = "Ola, tenho interesse em criar um site profissional."
+  message = "Olá, tenho interesse em criar um site profissional."
 ) {
   return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(
     message
@@ -51,13 +50,13 @@ export function waLink(
 }
 
 /* --------------------------------------------------------------------------
-   3) MENU DE NAVEGACAO (links ancora do header)
+   3) MENU DE NAVEGAÇÃO (links âncora do header)
    -------------------------------------------------------------------------- */
 export const navLinks = [
-  { label: "Inicio", href: "#inicio" },
+  { label: "Início", href: "#inicio" },
   { label: "Modelos", href: "#modelos" },
   { label: "Quem sou eu", href: "#sobre" },
-  { label: "Feedbacks", href: "#feedbacks" },
+  { label: "Depoimentos", href: "#depoimentos" },
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Planos", href: "#planos" },
 ];
@@ -67,54 +66,57 @@ export const navLinks = [
    -------------------------------------------------------------------------- */
 export const heroHighlights = [
   { icon: "Sparkles", label: "Site moderno" },
-  { icon: "MessageCircle", label: "Botao para WhatsApp" },
+  { icon: "MessageCircle", label: "Botão para WhatsApp" },
   { icon: "Smartphone", label: "100% responsivo" },
   { icon: "ShieldCheck", label: "Hospedagem e suporte" },
-  { icon: "LayoutGrid", label: "Personalizacao por nicho" },
+  { icon: "LayoutGrid", label: "Personalização por nicho" },
 ];
 
 /* --------------------------------------------------------------------------
-   5) SECAO DE AUTORIDADE / CONFIANCA
+   5) SEÇÃO DE AUTORIDADE / CONFIANÇA
    -------------------------------------------------------------------------- */
-// Frases curtas que aparecem como faixa de confianca.
+// Frases curtas que aparecem como faixa de confiança.
 export const trustPhrases = [
-  "Sites criados com foco em clareza, aparencia profissional e conversao.",
-  "Modelos adaptaveis para diferentes tipos de negocio.",
+  "Sites criados com foco em clareza, aparência profissional e conversão.",
+  "Modelos adaptáveis para diferentes tipos de negócio.",
   "Atendimento direto, simples e transparente pelo WhatsApp.",
-  "Voce acompanha o processo e aprova antes da publicacao.",
+  "Você acompanha o processo e aprova antes da publicação.",
 ];
 
-// Cards com icone da secao de confianca.
+// Cards com ícone da seção de confiança.
 export const trustCards = [
   {
     icon: "Palette",
     title: "Visual profissional",
-    text: "Design limpo e premium que passa seriedade e valoriza o seu negocio.",
+    text: "Design limpo e premium que passa seriedade e valoriza o seu negócio.",
   },
   {
     icon: "Briefcase",
-    title: "Adaptado ao seu negocio",
-    text: "Cada site e ajustado ao seu nicho, com as secoes que fazem sentido para voce.",
+    title: "Adaptado ao seu negócio",
+    text: "Cada site é ajustado ao seu nicho, com as seções que fazem sentido para você.",
   },
   {
     icon: "MessageCircle",
-    title: "Integracao com WhatsApp",
-    text: "Botoes diretos para o cliente falar com voce e fechar pelo WhatsApp.",
+    title: "Integração com WhatsApp",
+    text: "Botões diretos para o cliente falar com você e fechar pelo WhatsApp.",
   },
   {
     icon: "Wrench",
-    title: "Suporte e manutencao",
-    text: "Hospedagem, correcoes simples e pequenas alteracoes combinadas.",
+    title: "Suporte e manutenção",
+    text: "Hospedagem, correções simples e pequenas alterações combinadas.",
   },
 ];
 
 /* --------------------------------------------------------------------------
-   6) MODELOS DISPONIVEIS  (vitrine principal)  ->  EDITE OS MODELOS AQUI
+   6) MODELOS DISPONÍVEIS  (vitrine principal)  ->  EDITE OS MODELOS AQUI
    --------------------------------------------------------------------------
    Para adicionar um modelo novo, copie um bloco { ... } e mude os campos.
-   - icon: nome de um icone (ver lista em components/Icon.tsx)
-   - preview: cole o LINK da previa online do modelo quando tiver.
-              Deixe "" (vazio) para esconder o botao "Ver previa".
+   - icon:    nome de um ícone (ver lista em components/Icon.tsx)
+   - image:   caminho de um PRINT real do modelo (ex.: "/modelos/barbearia.png"
+              dentro da pasta /public). Se ficar "", aparece um mockup
+              desenhado em CSS no lugar (já fica bonito).
+   - preview: cole o LINK da prévia online quando tiver. Se ficar "", o botão
+              "Ver prévia" abre o WhatsApp pedindo uma demonstração.
    -------------------------------------------------------------------------- */
 export const models = [
   {
@@ -122,15 +124,16 @@ export const models = [
     icon: "Scissors",
     name: "Barbearia",
     description:
-      "Site moderno para barbearias mostrarem servicos, barbeiros, fotos, localizacao e receberem agendamentos pelo WhatsApp.",
+      "Site moderno para barbearias mostrarem serviços, barbeiros, fotos, localização e receberem agendamentos pelo WhatsApp.",
     features: [
-      "Servicos e precos",
+      "Serviços e preços",
       "Galeria de cortes",
-      "Botao de agendamento",
-      "Localizacao no mapa",
+      "Botão de agendamento",
+      "Localização no mapa",
       "Instagram e WhatsApp",
     ],
-    preview: "", // <-- cole aqui o link da previa, ex.: "https://demo-barbearia.vercel.app"
+    image: "", // <-- print real do modelo (opcional)
+    preview: "", // <-- link da prévia online (opcional)
     popular: true, // marca este card com um selo de destaque
   },
   {
@@ -138,14 +141,15 @@ export const models = [
     icon: "UtensilsCrossed",
     name: "Pizzaria ou restaurante",
     description:
-      "Pagina profissional para apresentar cardapio, promocoes, fotos dos produtos e receber pedidos pelo WhatsApp.",
+      "Página profissional para apresentar cardápio, promoções, fotos dos produtos e receber pedidos pelo WhatsApp.",
     features: [
-      "Cardapio digital",
-      "Promocoes em destaque",
+      "Cardápio digital",
+      "Promoções em destaque",
       "Fotos dos pratos",
-      "Botao de pedido",
-      "Localizacao",
+      "Botão de pedido",
+      "Localização",
     ],
+    image: "",
     preview: "",
     popular: false,
   },
@@ -154,14 +158,15 @@ export const models = [
     icon: "ShoppingBag",
     name: "Loja de roupa",
     description:
-      "Vitrine online para lojas mostrarem produtos, colecoes e direcionarem clientes para a compra pelo WhatsApp.",
+      "Vitrine online para lojas mostrarem produtos, coleções e direcionarem clientes para a compra pelo WhatsApp.",
     features: [
       "Galeria de produtos",
       "Destaques da loja",
-      "Botao de atendimento",
+      "Botão de atendimento",
       "Instagram integrado",
-      "Pagina responsiva",
+      "Página responsiva",
     ],
+    image: "",
     preview: "",
     popular: false,
   },
@@ -170,30 +175,32 @@ export const models = [
     icon: "Beef",
     name: "Hamburgueria",
     description:
-      "Site chamativo e profissional para hamburguerias divulgarem combos, cardapio, promocoes e pedidos.",
+      "Site chamativo e profissional para hamburguerias divulgarem combos, cardápio, promoções e pedidos.",
     features: [
       "Combos em destaque",
-      "Cardapio visual",
-      "Botao de pedido",
+      "Cardápio visual",
+      "Botão de pedido",
       "Fotos dos produtos",
-      "Localizacao",
+      "Localização",
     ],
+    image: "",
     preview: "",
     popular: false,
   },
   {
     id: "estetica",
     icon: "Sparkles",
-    name: "Estetica e beleza",
+    name: "Estética e beleza",
     description:
-      "Site elegante para profissionais de estetica, manicure, cilios, sobrancelha, cabelo e beleza em geral.",
+      "Site elegante para profissionais de estética, manicure, cílios, sobrancelha, cabelo e beleza em geral.",
     features: [
-      "Lista de servicos",
+      "Lista de serviços",
       "Antes e depois",
       "Agendamento",
       "Depoimentos",
       "WhatsApp direto",
     ],
+    image: "",
     preview: "",
     popular: false,
   },
@@ -202,52 +209,60 @@ export const models = [
     icon: "Store",
     name: "Loja virtual / dropshipping",
     description:
-      "Estrutura profissional para quem deseja apresentar produtos online com visual confiavel e organizado.",
+      "Estrutura profissional para quem deseja apresentar produtos online com visual confiável e organizado.",
     features: [
-      "Pagina de produtos",
+      "Página de produtos",
       "Categorias",
       "Produtos em destaque",
-      "Pagina institucional",
-      "Botao de compra ou atendimento",
+      "Página institucional",
+      "Botão de compra ou atendimento",
     ],
+    image: "",
     preview: "",
     popular: false,
   },
 ];
 
 /* --------------------------------------------------------------------------
-   7) SECAO "QUEM SOU EU"
+   7) SEÇÃO "QUEM SOU EU"
    -------------------------------------------------------------------------- */
 export const aboutParagraphs = [
-  "Meu nome e Enzo Tofani Ramos, tenho 18 anos e estou construindo minha trajetoria criando sites profissionais para pequenos negocios. Comecei esse projeto com a intencao de crescer na vida fazendo algo util, moderno e que realmente ajude empreendedores a se posicionarem melhor na internet.",
-  "Meu foco e criar sites bonitos, diretos e funcionais, sem enrolacao. A ideia e entregar uma presenca digital mais profissional para quem hoje depende apenas do Instagram, WhatsApp ou indicacoes.",
-  "Mesmo sendo jovem, levo cada projeto com responsabilidade, atencao aos detalhes e compromisso com o resultado. Meu objetivo e que cada cliente tenha um site que passe confianca, facilite o contato e ajude o negocio a ser visto de forma mais profissional.",
+  "Sou Enzo Tofani Ramos, criador da Elevon Studio. Desenvolvo sites profissionais para pequenos negócios que querem melhorar sua presença digital, organizar seus serviços e facilitar o contato com clientes pelo WhatsApp.",
+  "A Elevon Studio nasceu com o objetivo de entregar sites modernos, objetivos e acessíveis para empreendedores que precisam transmitir mais confiança na internet.",
+  "Meu foco é criar páginas bonitas, rápidas e funcionais, com atenção aos detalhes, comunicação clara e uma experiência simples para o cliente. Cada projeto é pensado para valorizar o negócio, facilitar o atendimento e ajudar a marca a se apresentar de forma mais profissional.",
 ];
+
+// Frase de fechamento (tom mais humano), exibida em destaque.
+export const aboutClosing =
+  "Estou construindo minha trajetória com dedicação, responsabilidade e vontade de crescer entregando um trabalho bem-feito para cada cliente.";
 
 export const aboutCards = [
   { icon: "Headphones", title: "Atendimento direto" },
   { icon: "PenTool", title: "Projetos personalizados" },
-  { icon: "Target", title: "Foco em pequenos negocios" },
+  { icon: "Target", title: "Foco em pequenos negócios" },
   { icon: "BadgeCheck", title: "Compromisso com qualidade" },
 ];
 
 /* --------------------------------------------------------------------------
-   8) FEEDBACKS / DEPOIMENTOS  ->  TROQUE OS TEXTOS QUANDO TIVER REAIS
+   8) DEPOIMENTOS  ->  TROQUE OS TEXTOS QUANDO TIVER REAIS
+   --------------------------------------------------------------------------
+   Use identificações genéricas (sem inventar nomes reais) enquanto não
+   tiver depoimentos verdadeiros.
    -------------------------------------------------------------------------- */
 export const testimonials = [
   {
     quote:
-      "O site ficou muito mais profissional do que eu imaginava. Agora consigo mostrar meus servicos de um jeito muito melhor.",
+      "O site deixou meus serviços muito mais organizados e fáceis de apresentar para os clientes.",
     author: "Cliente de barbearia",
   },
   {
     quote:
-      "Atendimento rapido, visual bonito e tudo bem explicado. Ficou facil mandar o link para os clientes.",
+      "Agora consigo enviar um link profissional, com WhatsApp, localização e as informações do meu negócio.",
     author: "Cliente de loja",
   },
   {
     quote:
-      "Antes eu dependia so do Instagram. Agora tenho uma pagina propria com WhatsApp, localizacao e meus servicos organizados.",
+      "A página ficou limpa, rápida e com uma aparência muito mais profissional.",
     author: "Cliente de restaurante",
   },
 ];
@@ -258,46 +273,46 @@ export const testimonials = [
 export const steps = [
   {
     icon: "MessageCircle",
-    title: "Voce me chama no WhatsApp",
-    text: "Voce me fala qual e o seu negocio e que tipo de site precisa.",
+    title: "Você me chama no WhatsApp",
+    text: "Você me conta qual é o seu negócio e que tipo de site precisa.",
   },
   {
     icon: "LayoutGrid",
     title: "Escolhemos o melhor modelo",
-    text: "Voce pode usar um modelo pronto como base ou pedir algo personalizado.",
+    text: "Você pode usar um modelo pronto como base ou pedir algo personalizado.",
   },
   {
     icon: "PenTool",
     title: "Eu personalizo o site",
-    text: "Adapto cores, textos, fotos, servicos, WhatsApp, localizacao e redes sociais.",
+    text: "Adapto cores, textos, fotos, serviços, WhatsApp, localização e redes sociais.",
   },
   {
     icon: "Rocket",
-    title: "Voce aprova e o site vai ao ar",
-    text: "Depois da aprovacao, publico o site e sigo com suporte e manutencao.",
+    title: "Você aprova e o site vai ao ar",
+    text: "Depois da aprovação, publico o site e sigo com suporte e manutenção.",
   },
 ];
 
 /* --------------------------------------------------------------------------
-   10) PLANOS E PRECOS  ->  TROQUE OS VALORES AQUI
+   10) PLANOS E PREÇOS  ->  TROQUE OS VALORES AQUI
    -------------------------------------------------------------------------- */
 export const pricing = {
   planName: "Site Profissional",
-  price: "A partir de R$400", // <-- valor da criacao do site
-  priceNote: "Criacao do site + personalizacao inicial.",
+  price: "A partir de R$400", // <-- valor da criação do site
+  priceNote: "Criação do site + personalização inicial.",
   includes: [
     "Layout moderno",
-    "Pagina 100% responsiva",
-    "Botao para WhatsApp",
-    "Secoes do seu negocio",
-    "Integracao com redes sociais",
-    "Publicacao na web",
+    "Página 100% responsiva",
+    "Botão para WhatsApp",
+    "Seções do seu negócio",
+    "Integração com redes sociais",
+    "Publicação na web",
   ],
-  monthly: "Manutencao a partir de R$100/mes", // <-- valor da mensalidade
+  monthly: "Manutenção a partir de R$100/mês", // <-- valor da mensalidade
   monthlyNote:
-    "Inclui hospedagem, suporte, correcoes simples e pequenas alteracoes combinadas.",
+    "Inclui hospedagem, suporte, correções simples e pequenas alterações combinadas.",
   disclaimer:
-    "O valor final pode variar conforme o tipo de site, quantidade de paginas e funcionalidades desejadas.",
+    "O valor final pode variar conforme o tipo de site, quantidade de páginas e funcionalidades desejadas.",
 };
 
 /* --------------------------------------------------------------------------
@@ -307,26 +322,26 @@ export const faq = [
   {
     question: "Quanto tempo demora para ficar pronto?",
     answer:
-      "Depende do tipo de site, mas modelos simples podem ficar prontos em poucos dias apos o envio das informacoes.",
+      "Depende do tipo de site, mas modelos simples podem ficar prontos em poucos dias após o envio das informações.",
   },
   {
-    question: "Preciso ter dominio?",
+    question: "Preciso ter domínio?",
     answer:
-      "Nao obrigatoriamente. Posso te orientar sobre dominio, publicacao e hospedagem.",
+      "Não obrigatoriamente. Posso te orientar sobre domínio, publicação e hospedagem.",
   },
   {
-    question: "Voce faz site para qualquer nicho?",
+    question: "Você faz site para qualquer nicho?",
     answer:
-      "Sim. Tenho modelos para alguns nichos, mas tambem posso criar algo personalizado para o seu tipo de negocio.",
+      "Sim. Tenho modelos para alguns nichos, mas também posso criar algo personalizado para o seu tipo de negócio.",
   },
   {
-    question: "A mensalidade e obrigatoria?",
+    question: "A mensalidade é obrigatória?",
     answer:
-      "Sim, a mensalidade mantem o site no ar com suporte, hospedagem, correcoes simples e pequenas alteracoes.",
+      "Sim, a mensalidade mantém o site no ar com suporte, hospedagem, correções simples e pequenas alterações.",
   },
   {
-    question: "Posso pedir alteracoes depois?",
+    question: "Posso pedir alterações depois?",
     answer:
-      "Sim. Pequenas alteracoes fazem parte da manutencao mensal, conforme combinado.",
+      "Sim. Pequenas alterações fazem parte da manutenção mensal, conforme combinado.",
   },
 ];

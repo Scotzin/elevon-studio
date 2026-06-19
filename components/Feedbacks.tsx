@@ -5,12 +5,12 @@ import { testimonials } from "@/lib/site";
 
 export default function Feedbacks() {
   return (
-    <section id="feedbacks" className="scroll-mt-24 py-20 md:py-28">
+    <section id="depoimentos" className="scroll-mt-24 py-20 md:py-28">
       <Container>
         <SectionHeading
-          eyebrow="Feedbacks"
-          title="O que os clientes sentem com um site profissional"
-          subtitle="Depoimentos de quem deixou de depender so do Instagram e passou a ter uma presenca digital de verdade."
+          eyebrow="Depoimentos"
+          title="O valor de uma presença digital profissional"
+          subtitle="Veja como uma presença digital mais profissional pode transmitir confiança e valor para pequenos negócios."
         />
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">

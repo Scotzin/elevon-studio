@@ -27,15 +27,15 @@ export default function FinalCTA() {
 
             <div className="relative">
               <h2 className="mx-auto max-w-2xl text-balance text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                Pronto para deixar seu negocio com uma presenca digital mais profissional?
+                Pronto para deixar seu negócio com uma presença digital mais profissional?
               </h2>
               <p className="mx-auto mt-5 max-w-xl text-pretty leading-relaxed text-white/80">
-                Me chame no WhatsApp, conte qual e o seu negocio e eu te mostro o
+                Me chame no WhatsApp, conte qual é o seu negócio e eu te mostro o
                 melhor caminho para criar seu site.
               </p>
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Button
-                  href={waLink("Ola! Quero deixar meu negocio mais profissional. Vamos criar meu site?")}
+                  href={waLink("Olá! Quero deixar meu negócio mais profissional. Vamos criar meu site?")}
                   external
                   variant="whatsapp"
                   size="lg"

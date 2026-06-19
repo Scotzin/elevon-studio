@@ -20,7 +20,7 @@ export default function WhatsappFloat() {
 
   return (
     <a
-      href={waLink("Ola! Vim pelo site e quero saber mais sobre criar meu site profissional.")}
+      href={waLink("Olá! Vim pelo site e quero saber mais sobre criar meu site profissional.")}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar no WhatsApp"
