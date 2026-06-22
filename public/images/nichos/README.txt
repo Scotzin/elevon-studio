@@ -5,7 +5,7 @@ Imagens usadas na seção "Modelos por nicho" da página inicial.
 Os nomes precisam ser EXATAMENTE estes (tudo minúsculo, extensão .png):
 
   barbearia.png       -> Barbearias
-  restaurante.png     -> Restaurantes e Pizzarias
+  restaurante.png     -> Restaurantes
   loja-roupas.png     -> Lojas de roupas
   estetica.png        -> Clínicas e Estéticas
   imobiliaria.png     -> Imobiliárias

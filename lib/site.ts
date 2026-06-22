@@ -134,7 +134,7 @@ export const models = [
   {
     id: "restaurante",
     icon: "UtensilsCrossed",
-    name: "Restaurantes e Pizzarias",
+    name: "Restaurantes",
     tagline:
       "Cardápio digital, fotos dos pratos, promoções e pedidos pelo WhatsApp.",
     image: "/images/nichos/restaurante.png",
