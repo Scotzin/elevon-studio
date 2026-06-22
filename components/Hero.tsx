@@ -40,16 +40,17 @@ export default function Hero() {
 
           <Reveal delay={80}>
             <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.1] tracking-tight text-deep-950 sm:text-5xl lg:text-[3.4rem]">
-              Sites profissionais para pequenos negócios{" "}
-              <span className="text-accent">venderem mais pelo WhatsApp.</span>
+              Sites profissionais para o seu negócio{" "}
+              <span className="text-accent">vender mais pelo WhatsApp.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={160}>
             <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-600 sm:text-lg">
-              Crio sites modernos, rápidos e personalizados para barbearias,
-              lojas, restaurantes, prestadores de serviço e negócios locais que
-              querem passar mais confiança e atrair mais clientes.
+              Criamos sites modernos, rápidos e personalizados para diversos
+              nichos, ajudando empresas, profissionais e negócios locais a
+              transmitirem mais confiança, atraírem mais clientes e venderem
+              melhor pelo WhatsApp.
             </p>
           </Reveal>
 

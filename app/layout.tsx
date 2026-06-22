@@ -16,37 +16,39 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.brand} | Sites profissionais para pequenos negócios`,
+    default: `${siteConfig.brand} | Sites profissionais para o seu negócio`,
     template: `%s | ${siteConfig.brand}`,
   },
   description:
-    "Criação de sites modernos, rápidos e personalizados para barbearias, lojas, restaurantes, hamburguerias, estética e lojas virtuais. Mais confiança e mais clientes pelo WhatsApp.",
+    "Criamos sites modernos, rápidos e personalizados para diversos nichos: barbearias, restaurantes, lojas, clínicas e estéticas, imobiliárias e prestadores de serviço. Mais confiança e mais clientes pelo WhatsApp.",
   keywords: [
     "criação de sites",
-    "site para pequenos negócios",
+    "site profissional para empresas",
     "site para barbearia",
     "site para restaurante",
     "site para loja",
+    "site para clínica e estética",
+    "site para imobiliária",
+    "site para prestador de serviço",
     "landing page",
-    "site profissional",
-    "desenvolvedor de sites",
+    "agência de criação de sites",
   ],
-  authors: [{ name: siteConfig.personName }],
-  creator: siteConfig.personName,
+  authors: [{ name: siteConfig.brand }],
+  creator: siteConfig.brand,
   openGraph: {
     type: "website",
     locale: "pt_BR",
     url: siteConfig.url,
     siteName: siteConfig.brand,
-    title: `${siteConfig.brand} | Sites profissionais para pequenos negócios`,
+    title: `${siteConfig.brand} | Sites profissionais para o seu negócio`,
     description:
-      "Sites modernos e personalizados que ajudam pequenos negócios a passar mais confiança e vender mais pelo WhatsApp.",
+      "Sites modernos e personalizados que ajudam empresas, profissionais e negócios locais a passar mais confiança e vender mais pelo WhatsApp.",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.brand} | Sites profissionais para pequenos negócios`,
+    title: `${siteConfig.brand} | Sites profissionais para o seu negócio`,
     description:
-      "Sites modernos e personalizados para barbearias, lojas, restaurantes e mais.",
+      "Sites modernos e personalizados para diversos nichos: barbearias, restaurantes, lojas, clínicas, imobiliárias e mais.",
   },
   robots: {
     index: true,
@@ -71,7 +73,7 @@ export default function RootLayout({
     "@type": "ProfessionalService",
     name: siteConfig.brand,
     description:
-      "Criação de sites profissionais e personalizados para pequenos negócios.",
+      "Equipe de criação de sites profissionais e personalizados para diversos nichos de negócio.",
     founder: {
       "@type": "Person",
       name: siteConfig.personName,

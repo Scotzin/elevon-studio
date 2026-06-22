@@ -55,7 +55,7 @@ export function waLink(
 export const navLinks = [
   { label: "Início", href: "#inicio" },
   { label: "Modelos", href: "#modelos" },
-  { label: "Quem sou eu", href: "#sobre" },
+  { label: "Quem somos", href: "#sobre" },
   { label: "Depoimentos", href: "#depoimentos" },
   { label: "Como funciona", href: "#como-funciona" },
   { label: "Planos", href: "#planos" },
@@ -108,13 +108,15 @@ export const trustCards = [
 ];
 
 /* --------------------------------------------------------------------------
-   6) MODELOS DISPONÍVEIS  (vitrine principal)  ->  EDITE OS MODELOS AQUI
+   6) MODELOS / NICHOS  (vitrine principal)  ->  EDITE OS NICHOS AQUI
    --------------------------------------------------------------------------
-   Para adicionar um modelo novo, copie um bloco { ... } e mude os campos.
+   Para adicionar um nicho novo, copie um bloco { ... } e mude os campos.
    - icon:    nome de um ícone (ver lista em components/Icon.tsx)
-   - image:   caminho de um PRINT real do modelo (ex.: "/modelos/barbearia.png"
-              dentro da pasta /public). Se ficar "", aparece um mockup
-              desenhado em CSS no lugar (já fica bonito).
+   - tagline: frase curta de apoio exibida abaixo do nome do nicho.
+   - image:   caminho da imagem do nicho dentro da pasta /public
+              (ex.: "/images/nichos/barbearia.jpg"). Enquanto o arquivo não
+              existir, o card mostra automaticamente um fundo em gradiente com
+              o ícone do nicho (fallback), sem quebrar o layout.
    - preview: cole o LINK da prévia online quando tiver. Se ficar "", o botão
               "Ver prévia" abre o WhatsApp pedindo uma demonstração.
    -------------------------------------------------------------------------- */
@@ -122,125 +124,111 @@ export const models = [
   {
     id: "barbearia",
     icon: "Scissors",
-    name: "Barbearia",
-    description:
-      "Site moderno para barbearias mostrarem serviços, barbeiros, fotos, localização e receberem agendamentos pelo WhatsApp.",
-    features: [
-      "Serviços e preços",
-      "Galeria de cortes",
-      "Botão de agendamento",
-      "Localização no mapa",
-      "Instagram e WhatsApp",
-    ],
-    image: "", // <-- print real do modelo (opcional)
-    preview: "", // <-- link da prévia online (opcional)
+    name: "Barbearias",
+    tagline:
+      "Serviços, galeria de cortes, localização e agendamento direto pelo WhatsApp.",
+    image: "/images/nichos/barbearia.jpg",
+    preview: "",
     popular: true, // marca este card com um selo de destaque
   },
   {
     id: "restaurante",
     icon: "UtensilsCrossed",
-    name: "Pizzaria ou restaurante",
-    description:
-      "Página profissional para apresentar cardápio, promoções, fotos dos produtos e receber pedidos pelo WhatsApp.",
-    features: [
-      "Cardápio digital",
-      "Promoções em destaque",
-      "Fotos dos pratos",
-      "Botão de pedido",
-      "Localização",
-    ],
-    image: "",
+    name: "Restaurantes e Pizzarias",
+    tagline:
+      "Cardápio digital, fotos dos pratos, promoções e pedidos pelo WhatsApp.",
+    image: "/images/nichos/restaurante.jpg",
     preview: "",
     popular: false,
   },
   {
-    id: "loja-roupa",
+    id: "loja-roupas",
     icon: "ShoppingBag",
-    name: "Loja de roupa",
-    description:
-      "Vitrine online para lojas mostrarem produtos, coleções e direcionarem clientes para a compra pelo WhatsApp.",
-    features: [
-      "Galeria de produtos",
-      "Destaques da loja",
-      "Botão de atendimento",
-      "Instagram integrado",
-      "Página responsiva",
-    ],
-    image: "",
-    preview: "",
-    popular: false,
-  },
-  {
-    id: "hamburgueria",
-    icon: "Beef",
-    name: "Hamburgueria",
-    description:
-      "Site chamativo e profissional para hamburguerias divulgarem combos, cardápio, promoções e pedidos.",
-    features: [
-      "Combos em destaque",
-      "Cardápio visual",
-      "Botão de pedido",
-      "Fotos dos produtos",
-      "Localização",
-    ],
-    image: "",
+    name: "Lojas de roupas",
+    tagline:
+      "Vitrine de produtos e coleções com atendimento direto pelo WhatsApp.",
+    image: "/images/nichos/loja-roupas.jpg",
     preview: "",
     popular: false,
   },
   {
     id: "estetica",
     icon: "Sparkles",
-    name: "Estética e beleza",
-    description:
-      "Site elegante para profissionais de estética, manicure, cílios, sobrancelha, cabelo e beleza em geral.",
-    features: [
-      "Lista de serviços",
-      "Antes e depois",
-      "Agendamento",
-      "Depoimentos",
-      "WhatsApp direto",
-    ],
-    image: "",
+    name: "Clínicas e Estéticas",
+    tagline:
+      "Serviços, antes e depois, depoimentos e agendamento em poucos cliques.",
+    image: "/images/nichos/estetica.jpg",
     preview: "",
     popular: false,
   },
   {
-    id: "loja-virtual",
-    icon: "Store",
-    name: "Loja virtual / dropshipping",
-    description:
-      "Estrutura profissional para quem deseja apresentar produtos online com visual confiável e organizado.",
-    features: [
-      "Página de produtos",
-      "Categorias",
-      "Produtos em destaque",
-      "Página institucional",
-      "Botão de compra ou atendimento",
-    ],
-    image: "",
+    id: "imobiliaria",
+    icon: "Building2",
+    name: "Imobiliárias",
+    tagline:
+      "Imóveis em destaque, fotos organizadas e contato rápido com o corretor.",
+    image: "/images/nichos/imobiliaria.jpg",
+    preview: "",
+    popular: false,
+  },
+  {
+    id: "servicos",
+    icon: "Wrench",
+    name: "Prestadores de serviço",
+    tagline:
+      "Serviços organizados, orçamentos e contato direto pelo WhatsApp.",
+    image: "/images/nichos/servicos.jpg",
     preview: "",
     popular: false,
   },
 ];
 
 /* --------------------------------------------------------------------------
-   7) SEÇÃO "QUEM SOU EU"
+   7) SEÇÃO "QUEM ESTÁ POR TRÁS DA ELEVON STUDIO"  (equipe)
    -------------------------------------------------------------------------- */
+// Texto principal da seção (apresenta a equipe e o que ela faz).
 export const aboutParagraphs = [
-  "Sou Enzo Tofani Ramos, criador da Elevon Studio. Desenvolvo sites profissionais para pequenos negócios que querem melhorar sua presença digital, organizar seus serviços e facilitar o contato com clientes pelo WhatsApp.",
-  "A Elevon Studio nasceu com o objetivo de entregar sites modernos, objetivos e acessíveis para empreendedores que precisam transmitir mais confiança na internet.",
-  "Meu foco é criar páginas bonitas, rápidas e funcionais, com atenção aos detalhes, comunicação clara e uma experiência simples para o cliente. Cada projeto é pensado para valorizar o negócio, facilitar o atendimento e ajudar a marca a se apresentar de forma mais profissional.",
+  "A Elevon Studio é formada por uma equipe focada em ajudar negócios a se posicionarem melhor no digital. Unimos desenvolvimento, estratégia comercial, organização e criatividade para entregar sites modernos, acessíveis e pensados para gerar mais confiança, mais contatos e mais oportunidades para cada cliente.",
 ];
 
 // Frase de fechamento (tom mais humano), exibida em destaque.
 export const aboutClosing =
-  "Estou construindo minha trajetória com dedicação, responsabilidade e vontade de crescer entregando um trabalho bem-feito para cada cliente.";
+  "Trabalhamos com dedicação, responsabilidade e proximidade, entregando um trabalho bem-feito e pensado para o crescimento de cada cliente.";
 
+// Pequenos selos de valor (chips) exibidos ao lado do texto.
 export const aboutCards = [
   { icon: "Headphones", title: "Atendimento direto" },
   { icon: "PenTool", title: "Projetos personalizados" },
-  { icon: "Target", title: "Foco em pequenos negócios" },
+  { icon: "Target", title: "Foco em cada cliente" },
   { icon: "BadgeCheck", title: "Compromisso com qualidade" },
+];
+
+/* INTEGRANTES DA EQUIPE  ->  EDITE NOMES, FUNÇÕES E DESCRIÇÕES AQUI */
+export const team = [
+  {
+    name: "Enzo Tofani Ramos",
+    role: "Desenvolvimento e Produto Digital",
+    text: "Responsável pela criação dos sites, estrutura técnica, publicação, manutenção e melhoria dos modelos por nicho.",
+    icon: "Code2",
+  },
+  {
+    name: "Wiliam",
+    role: "Comercial e Relacionamento",
+    text: "Responsável pela prospecção de clientes, parcerias, reuniões comerciais e identificação de novas oportunidades.",
+    icon: "Briefcase",
+  },
+  {
+    name: "André",
+    role: "Operação e Atendimento",
+    text: "Responsável por organizar informações dos clientes, acompanhar demandas e prazos e manter o fluxo dos projetos mais profissional.",
+    icon: "Headphones",
+  },
+  {
+    name: "César",
+    role: "Design e Marketing",
+    text: "Responsável pelo apoio visual, conteúdo, materiais comerciais, identidade e fortalecimento da comunicação da Elevon Studio.",
+    icon: "Palette",
+  },
 ];
 
 /* --------------------------------------------------------------------------
@@ -273,8 +261,8 @@ export const testimonials = [
 export const steps = [
   {
     icon: "MessageCircle",
-    title: "Você me chama no WhatsApp",
-    text: "Você me conta qual é o seu negócio e que tipo de site precisa.",
+    title: "Você chama no WhatsApp",
+    text: "Você nos conta qual é o seu negócio e que tipo de site precisa.",
   },
   {
     icon: "LayoutGrid",
@@ -283,37 +271,93 @@ export const steps = [
   },
   {
     icon: "PenTool",
-    title: "Eu personalizo o site",
-    text: "Adapto cores, textos, fotos, serviços, WhatsApp, localização e redes sociais.",
+    title: "Personalizamos o seu site",
+    text: "Adaptamos cores, textos, fotos, serviços, WhatsApp, localização e redes sociais.",
   },
   {
     icon: "Rocket",
     title: "Você aprova e o site vai ao ar",
-    text: "Depois da aprovação, publico o site e sigo com suporte e manutenção.",
+    text: "Depois da aprovação, publicamos o site e seguimos com suporte e manutenção.",
   },
 ];
 
 /* --------------------------------------------------------------------------
    10) PLANOS E PREÇOS  ->  TROQUE OS VALORES AQUI
+   --------------------------------------------------------------------------
+   3 planos exibidos lado a lado. Campos de cada plano:
+   - name:        nome do plano
+   - setup:       valor da criação do site (mostrado com "A partir de")
+   - monthly:     valor da mensalidade (manutenção)
+   - description: frase curta explicando para quem é o plano
+   - features:    itens inclusos
+   - highlighted: true marca o plano como "Mais escolhido" (destaque visual)
+   - badge:       texto do selo de destaque (só usado quando highlighted: true)
    -------------------------------------------------------------------------- */
-export const pricing = {
-  planName: "Site Profissional",
-  price: "A partir de R$400", // <-- valor da criação do site
-  priceNote: "Criação do site + personalização inicial.",
-  includes: [
-    "Layout moderno",
-    "Página 100% responsiva",
-    "Botão para WhatsApp",
-    "Seções do seu negócio",
-    "Integração com redes sociais",
-    "Publicação na web",
-  ],
-  monthly: "Manutenção a partir de R$100/mês", // <-- valor da mensalidade
-  monthlyNote:
-    "Inclui hospedagem, suporte, correções simples e pequenas alterações combinadas.",
-  disclaimer:
-    "O valor final pode variar conforme o tipo de site, quantidade de páginas e funcionalidades desejadas.",
-};
+export const plans = [
+  {
+    name: "Básico",
+    setup: "R$ 400",
+    monthly: "R$ 100/mês",
+    description:
+      "Para negócios que querem começar com uma presença digital simples, bonita e funcional.",
+    features: [
+      "Landing page ou site simples",
+      "Layout moderno e responsivo",
+      "Botão direto para WhatsApp",
+      "Integração com redes sociais",
+      "Informações principais do negócio",
+      "Publicação na web",
+      "Suporte básico",
+      "Pequenas alterações mensais combinadas",
+    ],
+    highlighted: false,
+  },
+  {
+    name: "Médio",
+    setup: "R$ 600",
+    monthly: "R$ 150/mês",
+    description:
+      "Para negócios que querem uma apresentação mais completa, profissional e preparada para converter visitantes em contatos.",
+    features: [
+      "Site com mais seções",
+      "Layout mais personalizado",
+      "Organização dos serviços",
+      "Galeria de imagens",
+      "Integração com WhatsApp",
+      "Integração com Instagram",
+      "Localização com Google Maps",
+      "Publicação na web",
+      "Suporte mensal",
+      "Alterações mensais com maior flexibilidade",
+    ],
+    highlighted: true,
+    badge: "Mais escolhido",
+  },
+  {
+    name: "Premium",
+    setup: "R$ 950",
+    monthly: "R$ 250/mês",
+    description:
+      "Para negócios que querem uma presença digital mais forte, estratégica e com acabamento premium.",
+    features: [
+      "Site completo e mais personalizado",
+      "Mais páginas ou seções",
+      "Copy mais estratégica",
+      "Estrutura visual premium",
+      "Formulário de contato ou captação de leads",
+      "Galeria avançada ou vitrine de serviços/produtos",
+      "Integração com WhatsApp, redes sociais e localização",
+      "Suporte prioritário",
+      "Melhorias contínuas combinadas",
+      "Mais alterações mensais",
+    ],
+    highlighted: false,
+  },
+];
+
+// Observação exibida abaixo dos planos.
+export const pricingDisclaimer =
+  "Os valores podem variar conforme o tipo de site, quantidade de páginas, nível de personalização e funcionalidades desejadas.";
 
 /* --------------------------------------------------------------------------
    11) FAQ (perguntas frequentes)
@@ -327,12 +371,12 @@ export const faq = [
   {
     question: "Preciso ter domínio?",
     answer:
-      "Não obrigatoriamente. Posso te orientar sobre domínio, publicação e hospedagem.",
+      "Não obrigatoriamente. Podemos te orientar sobre domínio, publicação e hospedagem.",
   },
   {
-    question: "Você faz site para qualquer nicho?",
+    question: "Vocês fazem site para qualquer nicho?",
     answer:
-      "Sim. Tenho modelos para alguns nichos, mas também posso criar algo personalizado para o seu tipo de negócio.",
+      "Sim. Temos modelos para vários nichos e também criamos algo personalizado para o seu tipo de negócio.",
   },
   {
     question: "A mensalidade é obrigatória?",

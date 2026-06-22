@@ -87,7 +87,7 @@ export default function Footer() {
         {/* Direitos */}
         <div className="mt-12 border-t border-slate-200 pt-6">
           <p className="text-center text-sm text-slate-500">
-            &copy; {year} {siteConfig.personName}. Todos os direitos reservados.
+            &copy; {year} {siteConfig.brand}. Todos os direitos reservados.
           </p>
         </div>
       </Container>

@@ -10,7 +10,7 @@ export default function Feedbacks() {
         <SectionHeading
           eyebrow="Depoimentos"
           title="O valor de uma presença digital profissional"
-          subtitle="Veja como uma presença digital mais profissional pode transmitir confiança e valor para pequenos negócios."
+          subtitle="Veja como uma presença digital mais profissional pode transmitir confiança e valor para o seu negócio."
         />
 
         <div className="mt-14 grid gap-6 md:grid-cols-3">

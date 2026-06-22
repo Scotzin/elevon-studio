@@ -16,7 +16,7 @@ export default function FAQ() {
         <SectionHeading
           eyebrow="Perguntas frequentes"
           title="Ficou com alguma dúvida?"
-          subtitle="Reuni as perguntas mais comuns. Se a sua não estiver aqui, é só me chamar no WhatsApp."
+          subtitle="Reunimos as perguntas mais comuns. Se a sua não estiver aqui, é só chamar a nossa equipe no WhatsApp."
         />
 
         <div className="mx-auto mt-12 max-w-3xl">

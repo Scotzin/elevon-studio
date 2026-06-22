@@ -30,8 +30,8 @@ export default function FinalCTA() {
                 Pronto para deixar seu negócio com uma presença digital mais profissional?
               </h2>
               <p className="mx-auto mt-5 max-w-xl text-pretty leading-relaxed text-white/80">
-                Me chame no WhatsApp, conte qual é o seu negócio e eu te mostro o
-                melhor caminho para criar seu site.
+                Chame a nossa equipe no WhatsApp, conte qual é o seu negócio e
+                mostramos o melhor caminho para criar o seu site.
               </p>
               <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Button

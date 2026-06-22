@@ -1,7 +1,7 @@
 import { Container, SectionHeading, Button, WhatsAppIcon } from "./ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
-import { pricing, waLink } from "@/lib/site";
+import { plans, pricingDisclaimer, waLink } from "@/lib/site";
 
 export default function Pricing() {
   return (
@@ -9,33 +9,54 @@ export default function Pricing() {
       <Container>
         <SectionHeading
           eyebrow="Planos e preços"
-          title="Investimento claro, sem surpresa"
-          subtitle="Um plano direto para tirar seu negócio do papel, com manutenção mensal para manter tudo funcionando."
+          title="Escolha o plano ideal para o seu negócio"
+          subtitle="Três opções para começar com o pé direito no digital. Todos incluem publicação e manutenção mensal para manter o seu site sempre no ar."
         />
 
-        <div className="mx-auto mt-14 max-w-3xl">
-          <Reveal>
-            <div className="overflow-hidden rounded-3xl border border-deep-200 bg-white shadow-soft-lg">
-              {/* Cabecalho escuro do plano */}
-              <div className="relative bg-gradient-to-br from-deep-900 to-deep-700 px-8 py-10 text-center text-white">
-                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider ring-1 ring-white/20">
-                  <Icon name="Zap" className="h-3.5 w-3.5" />
-                  Plano principal
-                </span>
-                <h3 className="mt-4 text-2xl font-bold">{pricing.planName}</h3>
-                <p className="mt-3 text-4xl font-bold sm:text-5xl">{pricing.price}</p>
-                <p className="mt-2 text-sm text-white/70">{pricing.priceNote}</p>
-              </div>
+        {/* GRID DE PLANOS */}
+        <div className="mt-16 grid items-stretch gap-6 lg:grid-cols-3 lg:gap-7">
+          {plans.map((plan, i) => (
+            <Reveal key={plan.name} delay={(i % 3) * 100} className="h-full">
+              <div
+                className={`relative flex h-full flex-col rounded-3xl border bg-white p-8 transition-all duration-300 ${
+                  plan.highlighted
+                    ? "border-accent shadow-soft-lg ring-1 ring-accent lg:-translate-y-4"
+                    : "border-slate-200 shadow-soft hover:-translate-y-1 hover:border-deep-200 hover:shadow-soft-lg"
+                }`}
+              >
+                {/* Selo "Mais escolhido" (só no plano destacado) */}
+                {plan.highlighted ? (
+                  <span className="absolute -top-3.5 left-1/2 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full bg-accent px-4 py-1.5 text-xs font-semibold text-white shadow-glow">
+                    <Icon name="Star" className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
+                    {plan.badge}
+                  </span>
+                ) : null}
 
-              {/* Corpo do plano */}
-              <div className="px-8 py-8">
-                <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-                  O que está incluso
+                {/* Nome + descrição */}
+                <h3 className="text-xl font-bold text-deep-950">{plan.name}</h3>
+                <p className="mt-2 min-h-[4rem] text-sm leading-relaxed text-slate-600">
+                  {plan.description}
                 </p>
-                <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {pricing.includes.map((item) => (
-                    <li key={item} className="flex items-center gap-2.5 text-slate-700">
-                      <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-accent/10 text-accent">
+
+                {/* Valores */}
+                <div className="mt-5 rounded-2xl border border-slate-100 bg-slate-50 p-5">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    Criação · a partir de
+                  </p>
+                  <p className="mt-1 text-4xl font-bold tracking-tight text-deep-950">
+                    {plan.setup}
+                  </p>
+                  <div className="mt-4 flex items-baseline gap-1.5 border-t border-slate-200 pt-4">
+                    <span className="text-lg font-bold text-accent">+ {plan.monthly}</span>
+                    <span className="text-xs text-slate-500">manutenção</span>
+                  </div>
+                </div>
+
+                {/* Itens inclusos */}
+                <ul className="mt-6 flex-1 space-y-2.5">
+                  {plan.features.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-slate-700">
+                      <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-accent/10 text-accent">
                         <Icon name="Check" className="h-3.5 w-3.5" strokeWidth={3} />
                       </span>
                       {item}
@@ -43,40 +64,32 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                {/* Mensalidade */}
-                <div className="mt-7 flex items-start gap-3 rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-deep-900 text-white">
-                    <Icon name="Wrench" className="h-5 w-5" />
-                  </span>
-                  <div>
-                    <p className="font-bold text-deep-950">{pricing.monthly}</p>
-                    <p className="mt-1 text-sm text-slate-600">{pricing.monthlyNote}</p>
-                  </div>
-                </div>
-
-                {/* Observacao */}
-                <p className="mt-5 text-center text-xs leading-relaxed text-slate-500">
-                  {pricing.disclaimer}
-                </p>
-
-                <div className="mt-7">
+                {/* CTA */}
+                <div className="mt-8">
                   <Button
                     href={waLink(
-                      "Olá! Quero um orçamento para criar meu site. Pode me passar os valores e o que está incluso?"
+                      `Olá! Tenho interesse no plano ${plan.name}. Podem me passar mais detalhes e o que está incluso?`
                     )}
                     external
-                    variant="primary"
+                    variant={plan.highlighted ? "whatsapp" : "primary"}
                     size="lg"
                     className="w-full"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
-                    Pedir orçamento no WhatsApp
+                    Quero o plano {plan.name}
                   </Button>
                 </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          ))}
         </div>
+
+        {/* Observação sobre variação de valores */}
+        <Reveal>
+          <p className="mx-auto mt-12 max-w-2xl text-center text-sm leading-relaxed text-slate-500">
+            {pricingDisclaimer}
+          </p>
+        </Reveal>
       </Container>
     </section>
   );
