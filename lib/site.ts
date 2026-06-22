@@ -219,15 +219,15 @@ export const team = [
   },
   {
     name: "André",
-    role: "Operação e Atendimento",
-    text: "Responsável por organizar informações dos clientes, acompanhar demandas e prazos e manter o fluxo dos projetos mais profissional.",
-    icon: "Headphones",
-  },
-  {
-    name: "César",
     role: "Design e Marketing",
     text: "Responsável pelo apoio visual, conteúdo, materiais comerciais, identidade e fortalecimento da comunicação da Elevon Studio.",
     icon: "Palette",
+  },
+  {
+    name: "César",
+    role: "Operação e Atendimento",
+    text: "Responsável por organizar informações dos clientes, acompanhar demandas e prazos e manter o fluxo dos projetos mais profissional.",
+    icon: "Headphones",
   },
 ];
 
