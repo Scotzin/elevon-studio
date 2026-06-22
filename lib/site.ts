@@ -301,34 +301,34 @@ export const plans = [
     description:
       "Para negócios que querem começar com uma presença digital simples, bonita e funcional.",
     features: [
-      "Landing page ou site simples",
-      "Layout moderno e responsivo",
-      "Botão direto para WhatsApp",
+      "Site simples e responsivo",
+      "Layout moderno",
+      "Botão para WhatsApp",
       "Integração com redes sociais",
       "Informações principais do negócio",
       "Publicação na web",
-      "Suporte básico",
-      "Pequenas alterações mensais combinadas",
+      "Manutenção mensal",
+      "Alterações simples inclusas",
     ],
     highlighted: false,
   },
   {
-    name: "Médio",
+    name: "Profissional",
     setup: "R$ 600",
     monthly: "R$ 150/mês",
     description:
-      "Para negócios que querem uma apresentação mais completa, profissional e preparada para converter visitantes em contatos.",
+      "Para negócios que querem uma apresentação mais completa, organizada e preparada para converter visitantes em clientes.",
     features: [
       "Site com mais seções",
       "Layout mais personalizado",
-      "Organização dos serviços",
+      "Textos mais comerciais",
       "Galeria de imagens",
-      "Integração com WhatsApp",
-      "Integração com Instagram",
+      "Depoimentos de clientes",
       "Localização com Google Maps",
-      "Publicação na web",
-      "Suporte mensal",
-      "Alterações mensais com maior flexibilidade",
+      "Botões estratégicos para WhatsApp",
+      "SEO básico",
+      "Manutenção mensal",
+      "Alterações simples inclusas",
     ],
     highlighted: true,
     badge: "Mais escolhido",
@@ -338,18 +338,19 @@ export const plans = [
     setup: "R$ 950",
     monthly: "R$ 250/mês",
     description:
-      "Para negócios que querem uma presença digital mais forte, estratégica e com acabamento premium.",
+      "Para empresas que querem um site mais forte, completo e com aparência de alto nível.",
     features: [
       "Site completo e mais personalizado",
-      "Mais páginas ou seções",
-      "Copy mais estratégica",
-      "Estrutura visual premium",
-      "Formulário de contato ou captação de leads",
-      "Galeria avançada ou vitrine de serviços/produtos",
-      "Integração com WhatsApp, redes sociais e localização",
+      "Visual premium",
+      "Copy estratégica",
+      "Galeria ou vitrine premium",
+      "Formulário de contato",
+      "Funil para WhatsApp",
+      "SEO mais completo",
+      "Google Analytics",
       "Suporte prioritário",
       "Melhorias contínuas combinadas",
-      "Mais alterações mensais",
+      "Alterações simples inclusas com prioridade",
     ],
     highlighted: false,
   },
@@ -357,7 +358,7 @@ export const plans = [
 
 // Observação exibida abaixo dos planos.
 export const pricingDisclaimer =
-  "Os valores podem variar conforme o tipo de site, quantidade de páginas, nível de personalização e funcionalidades desejadas.";
+  "Alterações simples estão inclusas na mensalidade. Novas páginas, novas funcionalidades ou mudanças grandes podem ser orçadas à parte.";
 
 /* --------------------------------------------------------------------------
    11) FAQ (perguntas frequentes)
