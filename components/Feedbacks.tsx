@@ -16,8 +16,8 @@ export default function Feedbacks() {
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {testimonials.map((item, i) => (
             <Reveal key={i} delay={i * 100}>
-              <figure className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg">
-                <Icon name="Quote" className="h-8 w-8 text-deep-200" />
+              <figure className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-7 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-soft-lg dark:border-white/10 dark:bg-white/5">
+                <Icon name="Quote" className="h-8 w-8 text-deep-200 dark:text-white/15" />
 
                 {/* Estrelas */}
                 <div className="mt-4 flex gap-0.5 text-accent">
@@ -26,15 +26,15 @@ export default function Feedbacks() {
                   ))}
                 </div>
 
-                <blockquote className="mt-4 flex-1 text-pretty leading-relaxed text-slate-700">
+                <blockquote className="mt-4 flex-1 text-pretty leading-relaxed text-slate-700 dark:text-slate-200">
                   &ldquo;{item.quote}&rdquo;
                 </blockquote>
 
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5">
-                  <span className="grid h-10 w-10 place-items-center rounded-full bg-deep-900 text-sm font-bold text-white">
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5 dark:border-white/10">
+                  <span className="grid h-10 w-10 place-items-center rounded-full bg-deep-900 text-sm font-bold text-white dark:bg-white/10">
                     {item.author.split(" ").slice(-1)[0].charAt(0)}
                   </span>
-                  <span className="text-sm font-semibold text-deep-950">{item.author}</span>
+                  <span className="text-sm font-semibold text-deep-950 dark:text-white">{item.author}</span>
                 </figcaption>
               </figure>
             </Reveal>

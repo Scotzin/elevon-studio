@@ -24,7 +24,7 @@ export function Container({
 /* --- Eyebrow: pequeno rotulo em maiusculas acima dos titulos ------------ */
 export function Eyebrow({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center gap-2 rounded-full border border-deep-100 bg-deep-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-deep-700">
+    <span className="inline-flex items-center gap-2 rounded-full border border-deep-100 bg-deep-50 px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wider text-deep-700 dark:border-white/10 dark:bg-white/10 dark:text-deep-100">
       {children}
     </span>
   );
@@ -49,11 +49,11 @@ export function SectionHeading({
   return (
     <div className={`flex max-w-2xl flex-col gap-4 ${alignment} ${className}`}>
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className="text-balance text-3xl font-bold tracking-tight text-deep-950 sm:text-4xl">
+      <h2 className="text-balance text-3xl font-bold tracking-tight text-deep-950 dark:text-white sm:text-4xl">
         {title}
       </h2>
       {subtitle ? (
-        <p className="text-pretty text-base leading-relaxed text-slate-600 sm:text-lg">
+        <p className="text-pretty text-base leading-relaxed text-slate-600 dark:text-slate-300 sm:text-lg">
           {subtitle}
         </p>
       ) : null}
@@ -92,12 +92,12 @@ export function Button({
 
   const variants = {
     primary:
-      "bg-deep-900 text-white shadow-soft hover:-translate-y-0.5 hover:bg-deep-800 hover:shadow-soft-lg",
+      "bg-deep-900 text-white shadow-soft hover:-translate-y-0.5 hover:bg-deep-800 hover:shadow-soft-lg dark:bg-white dark:text-deep-950 dark:hover:bg-slate-200",
     whatsapp:
       "bg-accent text-white shadow-glow hover:-translate-y-0.5 hover:bg-accent-dark",
     outline:
-      "border border-slate-300 bg-white text-deep-900 hover:-translate-y-0.5 hover:border-deep-300 hover:bg-slate-50",
-    ghost: "text-deep-900 hover:bg-slate-100",
+      "border border-slate-300 bg-white text-deep-900 hover:-translate-y-0.5 hover:border-deep-300 hover:bg-slate-50 dark:border-white/20 dark:bg-white/5 dark:text-white dark:hover:border-white/40 dark:hover:bg-white/10",
+    ghost: "text-deep-900 hover:bg-slate-100 dark:text-white dark:hover:bg-white/10",
   };
 
   const classes = `${base} ${sizes[size]} ${variants[variant]} ${className}`;

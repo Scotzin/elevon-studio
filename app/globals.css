@@ -6,15 +6,22 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
-    @apply bg-white font-sans text-slate-700 antialiased;
+    @apply bg-white font-sans text-slate-700 antialiased transition-colors duration-300 dark:bg-deep-950 dark:text-slate-300;
   }
 
   /* Realce de selecao de texto na cor da marca */
   ::selection {
     @apply bg-accent/15 text-deep-950;
+  }
+  .dark ::selection {
+    @apply bg-accent/30 text-white;
   }
 }
 
@@ -43,5 +50,17 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #94a3b8;
+  }
+
+  /* Barra de rolagem no tema escuro */
+  .dark ::-webkit-scrollbar-track {
+    background: #06182b;
+  }
+  .dark ::-webkit-scrollbar-thumb {
+    background: #1f3c63;
+    border: 2px solid #06182b;
+  }
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #284d7d;
   }
 }

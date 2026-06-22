@@ -8,7 +8,7 @@ export default function SiteMockup() {
   return (
     <div className="relative mx-auto w-full max-w-xl">
       {/* Brilho de fundo */}
-      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-tr from-deep-100 via-white to-accent/10 blur-2xl" />
+      <div className="absolute -inset-6 -z-10 rounded-[2.5rem] bg-gradient-to-tr from-deep-100 via-white to-accent/10 blur-2xl dark:from-deep-800 dark:via-deep-900 dark:to-accent/20" />
 
       {/* JANELA DO NAVEGADOR */}
       <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft-lg">

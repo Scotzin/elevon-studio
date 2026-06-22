@@ -29,7 +29,7 @@ export default function Hero() {
         {/* COLUNA DE TEXTO */}
         <div className="flex flex-col items-start">
           <Reveal>
-            <span className="inline-flex items-center gap-2 rounded-full border border-deep-100 bg-deep-50 px-4 py-1.5 text-xs font-semibold text-deep-700">
+            <span className="inline-flex items-center gap-2 rounded-full border border-deep-100 bg-deep-50 px-4 py-1.5 text-xs font-semibold text-deep-700 dark:border-white/10 dark:bg-white/10 dark:text-deep-100">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-75" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
@@ -39,14 +39,14 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={80}>
-            <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.1] tracking-tight text-deep-950 sm:text-5xl lg:text-[3.4rem]">
+            <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.1] tracking-tight text-deep-950 dark:text-white sm:text-5xl lg:text-[3.4rem]">
               Sites profissionais para o seu negócio{" "}
               <span className="text-accent">vender mais pelo WhatsApp.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={160}>
-            <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-600 sm:text-lg">
+            <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-600 dark:text-slate-300 sm:text-lg">
               Criamos sites modernos, rápidos e personalizados para diversos
               nichos, ajudando empresas, profissionais e negócios locais a
               transmitirem mais confiança, atraírem mais clientes e venderem
@@ -78,7 +78,7 @@ export default function Hero() {
               {heroHighlights.map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3.5 py-2 text-sm font-medium text-slate-700 shadow-soft backdrop-blur"
+                  className="flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3.5 py-2 text-sm font-medium text-slate-700 shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
                 >
                   <Icon name={item.icon} className="h-4 w-4 text-accent" />
                   {item.label}

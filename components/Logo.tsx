@@ -45,7 +45,7 @@ export function Wordmark({ className = "" }: { className?: string }) {
   const second = rest.join(" ");
   return (
     <span className={`flex flex-col leading-none ${className}`}>
-      <span className="text-[1.05rem] font-bold tracking-tight text-deep-950">
+      <span className="text-[1.05rem] font-bold tracking-tight text-deep-950 dark:text-white">
         {first}
       </span>
       {second ? (

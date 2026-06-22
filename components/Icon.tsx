@@ -29,6 +29,8 @@ import {
   Mail,
   Star,
   Zap,
+  Sun,
+  Moon,
   type LucideIcon,
 } from "lucide-react";
 
@@ -68,6 +70,8 @@ const icons: Record<string, LucideIcon> = {
   Mail,
   Star,
   Zap,
+  Sun,
+  Moon,
 };
 
 type IconProps = {

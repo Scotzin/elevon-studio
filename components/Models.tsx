@@ -18,7 +18,7 @@ export default function Models() {
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {models.map((model, i) => (
             <Reveal key={model.id} delay={(i % 3) * 100}>
-              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-deep-200 hover:shadow-soft-lg">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1.5 hover:border-deep-200 hover:shadow-soft-lg dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20">
                 {/* Imagem do nicho (topo) com overlay + nome por cima */}
                 <div className="relative">
                   <NichoImage
@@ -48,7 +48,7 @@ export default function Models() {
 
                 <div className="flex flex-1 flex-col p-6">
                   {/* Frase curta de apoio */}
-                  <p className="text-sm leading-relaxed text-slate-600">
+                  <p className="text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                     {model.tagline}
                   </p>
 
@@ -93,9 +93,9 @@ export default function Models() {
 
         {/* CHAMADA: NÃO ENCONTROU SEU NICHO? */}
         <Reveal>
-          <div className="mt-14 overflow-hidden rounded-3xl border border-deep-100 bg-deep-50/70 p-8 text-center md:p-12">
-            <h3 className="text-2xl font-bold text-deep-950">Não encontrou o seu nicho?</h3>
-            <p className="mx-auto mt-3 max-w-xl text-pretty text-slate-600">
+          <div className="mt-14 overflow-hidden rounded-3xl border border-deep-100 bg-deep-50/70 p-8 text-center md:p-12 dark:border-white/10 dark:bg-deep-900/40">
+            <h3 className="text-2xl font-bold text-deep-950 dark:text-white">Não encontrou o seu nicho?</h3>
+            <p className="mx-auto mt-3 max-w-xl text-pretty text-slate-600 dark:text-slate-300">
               Sem problema. Chame a nossa equipe no WhatsApp e diga qual tipo de
               site você precisa. Criamos uma opção personalizada para o seu negócio.
             </p>

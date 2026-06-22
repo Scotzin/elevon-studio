@@ -11,7 +11,7 @@ export default function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="scroll-mt-24 border-t border-slate-100 bg-slate-50/60 py-20 md:py-28">
+    <section id="faq" className="scroll-mt-24 border-t border-slate-100 bg-slate-50/60 py-20 md:py-28 dark:border-white/10 dark:bg-deep-900/30">
       <Container>
         <SectionHeading
           eyebrow="Perguntas frequentes"
@@ -20,7 +20,7 @@ export default function FAQ() {
         />
 
         <div className="mx-auto mt-12 max-w-3xl">
-          <div className="divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft">
+          <div className="divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft dark:divide-white/10 dark:border-white/10 dark:bg-white/5">
             {faq.map((item, i) => {
               const isOpen = open === i;
               return (
@@ -29,14 +29,14 @@ export default function FAQ() {
                     <button
                       type="button"
                       onClick={() => setOpen(isOpen ? null : i)}
-                      className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-slate-50"
+                      className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition-colors hover:bg-slate-50 dark:hover:bg-white/5"
                       aria-expanded={isOpen}
                     >
-                      <span className="text-base font-semibold text-deep-950">
+                      <span className="text-base font-semibold text-deep-950 dark:text-white">
                         {item.question}
                       </span>
                       <span
-                        className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-slate-200 text-deep-900 transition-all duration-300 ${
+                        className={`grid h-8 w-8 shrink-0 place-items-center rounded-full border border-slate-200 text-deep-900 transition-all duration-300 dark:border-white/15 dark:text-white ${
                           isOpen ? "rotate-180 border-accent bg-accent text-white" : ""
                         }`}
                       >
@@ -51,7 +51,7 @@ export default function FAQ() {
                       }`}
                     >
                       <div className="overflow-hidden">
-                        <p className="px-6 pb-5 text-sm leading-relaxed text-slate-600">
+                        <p className="px-6 pb-5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                           {item.answer}
                         </p>
                       </div>

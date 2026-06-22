@@ -83,9 +83,14 @@ export default function RootLayout({
     priceRange: "$$",
   };
 
+  // Aplica o tema (claro/escuro) ANTES do paint, evitando "flash" ao carregar.
+  const themeScript =
+    "(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark');}}catch(e){}})();";
+
   return (
-    <html lang="pt-BR" className={inter.variable}>
+    <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
       <body>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {children}
         <script
           type="application/ld+json"

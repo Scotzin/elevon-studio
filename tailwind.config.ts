@@ -8,6 +8,7 @@ import type { Config } from "tailwindcss";
  * Os tons de cinza usam a escala "slate" padrao do Tailwind.
  */
 const config: Config = {
+  darkMode: "class",
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",

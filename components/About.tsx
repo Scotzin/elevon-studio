@@ -6,7 +6,7 @@ import { aboutParagraphs, aboutClosing, aboutCards, team, siteConfig } from "@/l
 
 export default function About() {
   return (
-    <section id="sobre" className="scroll-mt-24 border-y border-slate-100 bg-slate-50/60 py-20 md:py-28">
+    <section id="sobre" className="scroll-mt-24 border-y border-slate-100 bg-slate-50/60 py-20 md:py-28 dark:border-white/10 dark:bg-deep-900/30">
       <Container>
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           {/* COLUNA DA IDENTIDADE VISUAL */}
@@ -55,14 +55,14 @@ export default function About() {
               </div>
 
               {/* Cartão flutuante de identificação da equipe */}
-              <div className="absolute -bottom-5 left-1/2 w-[88%] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-4 shadow-soft-lg">
+              <div className="absolute -bottom-5 left-1/2 w-[88%] -translate-x-1/2 rounded-2xl border border-slate-200 bg-white p-4 shadow-soft-lg dark:border-white/10 dark:bg-deep-900">
                 <div className="flex items-center gap-3">
-                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-deep-900 text-white">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-deep-900 text-white dark:bg-white/10">
                     <Icon name="BadgeCheck" className="h-6 w-6" />
                   </span>
                   <div>
-                    <p className="text-sm font-bold text-deep-950">Equipe {siteConfig.brand}</p>
-                    <p className="text-xs text-slate-500">Desenvolvimento • Comercial • Design</p>
+                    <p className="text-sm font-bold text-deep-950 dark:text-white">Equipe {siteConfig.brand}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Desenvolvimento • Comercial • Design</p>
                   </div>
                 </div>
               </div>
@@ -73,7 +73,7 @@ export default function About() {
           <div className="order-2">
             <Reveal>
               <Eyebrow>Nossa equipe</Eyebrow>
-              <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-deep-950 sm:text-4xl">
+              <h2 className="mt-5 text-balance text-3xl font-bold tracking-tight text-deep-950 dark:text-white sm:text-4xl">
                 Quem está por trás da Elevon Studio
               </h2>
             </Reveal>
@@ -81,14 +81,14 @@ export default function About() {
             <div className="mt-6 space-y-4">
               {aboutParagraphs.map((paragraph, i) => (
                 <Reveal key={i} delay={i * 80}>
-                  <p className="text-pretty leading-relaxed text-slate-600">{paragraph}</p>
+                  <p className="text-pretty leading-relaxed text-slate-600 dark:text-slate-300">{paragraph}</p>
                 </Reveal>
               ))}
             </div>
 
             {/* Frase de fechamento (tom mais humano), em destaque */}
             <Reveal delay={100}>
-              <p className="mt-6 border-l-2 border-accent pl-4 text-pretty font-medium leading-relaxed text-deep-900">
+              <p className="mt-6 border-l-2 border-accent pl-4 text-pretty font-medium leading-relaxed text-deep-900 dark:text-slate-100">
                 {aboutClosing}
               </p>
             </Reveal>
@@ -99,12 +99,12 @@ export default function About() {
                 {aboutCards.map((card) => (
                   <div
                     key={card.title}
-                    className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-soft"
+                    className="flex items-center gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-soft dark:border-white/10 dark:bg-white/5"
                   >
                     <span className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-accent/10 text-accent">
                       <Icon name={card.icon} className="h-5 w-5" />
                     </span>
-                    <span className="text-sm font-semibold text-deep-950">{card.title}</span>
+                    <span className="text-sm font-semibold text-deep-950 dark:text-white">{card.title}</span>
                   </div>
                 ))}
               </div>
@@ -115,10 +115,10 @@ export default function About() {
         {/* GRID DA EQUIPE (integrantes) */}
         <div className="mt-20 md:mt-24">
           <Reveal>
-            <h3 className="text-center text-2xl font-bold tracking-tight text-deep-950">
+            <h3 className="text-center text-2xl font-bold tracking-tight text-deep-950 dark:text-white">
               A equipe por trás dos seus projetos
             </h3>
-            <p className="mx-auto mt-3 max-w-xl text-center text-pretty text-slate-600">
+            <p className="mx-auto mt-3 max-w-xl text-center text-pretty text-slate-600 dark:text-slate-300">
               Cada pessoa tem um papel claro para que o seu site seja entregue com
               organização, qualidade e atenção do começo ao fim.
             </p>
@@ -127,17 +127,17 @@ export default function About() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {team.map((member, i) => (
               <Reveal key={member.name} delay={(i % 4) * 90}>
-                <div className="group h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-deep-200 hover:shadow-soft-lg">
+                <div className="group h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-deep-200 hover:shadow-soft-lg dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20">
                   <div className="flex items-center gap-3">
-                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-deep-900 text-white transition-colors group-hover:bg-accent">
+                    <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-deep-900 text-white transition-colors group-hover:bg-accent dark:bg-white/10">
                       <Icon name={member.icon} className="h-6 w-6" />
                     </span>
                     <div>
-                      <p className="font-bold leading-tight text-deep-950">{member.name}</p>
+                      <p className="font-bold leading-tight text-deep-950 dark:text-white">{member.name}</p>
                       <p className="mt-0.5 text-xs font-semibold text-accent">{member.role}</p>
                     </div>
                   </div>
-                  <p className="mt-4 text-sm leading-relaxed text-slate-600">{member.text}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300">{member.text}</p>
                 </div>
               </Reveal>
             ))}

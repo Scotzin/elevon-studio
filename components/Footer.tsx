@@ -8,17 +8,17 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-200 bg-white">
+    <footer className="border-t border-slate-200 bg-white dark:border-white/10 dark:bg-deep-950">
       <Container className="py-14">
         <div className="grid gap-10 md:grid-cols-[1.4fr_1fr_1fr]">
           {/* Marca + frase */}
           <div>
             <Logo />
-            <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-600">
+            <p className="mt-4 max-w-xs text-sm leading-relaxed text-slate-600 dark:text-slate-300">
               {siteConfig.tagline}
             </p>
             {siteConfig.location ? (
-              <p className="mt-4 flex items-center gap-2 text-sm text-slate-500">
+              <p className="mt-4 flex items-center gap-2 text-sm text-slate-500 dark:text-slate-400">
                 <Icon name="MapPin" className="h-4 w-4 text-accent" />
                 {siteConfig.location}
               </p>
@@ -27,13 +27,13 @@ export default function Footer() {
 
           {/* Navegacao */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-deep-950">Navegação</h4>
+            <h4 className="text-sm font-semibold uppercase tracking-wide text-deep-950 dark:text-white">Navegação</h4>
             <ul className="mt-4 space-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-slate-600 transition-colors hover:text-accent"
+                    className="text-sm text-slate-600 transition-colors hover:text-accent dark:text-slate-300"
                   >
                     {link.label}
                   </Link>
@@ -44,14 +44,14 @@ export default function Footer() {
 
           {/* Contato */}
           <div>
-            <h4 className="text-sm font-semibold uppercase tracking-wide text-deep-950">Contato</h4>
+            <h4 className="text-sm font-semibold uppercase tracking-wide text-deep-950 dark:text-white">Contato</h4>
             <ul className="mt-4 space-y-3">
               <li>
                 <a
                   href={waLink("Olá! Vim pelo site e gostaria de mais informações.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-slate-600 transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-2 text-sm text-slate-600 transition-colors hover:text-accent dark:text-slate-300"
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   WhatsApp
@@ -63,7 +63,7 @@ export default function Footer() {
                   href={siteConfig.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-slate-600 transition-colors hover:text-accent"
+                  className="inline-flex items-center gap-2 text-sm text-slate-600 transition-colors hover:text-accent dark:text-slate-300"
                 >
                   <Icon name="Instagram" className="h-4 w-4" />
                   Instagram
@@ -73,7 +73,7 @@ export default function Footer() {
                 <li>
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="inline-flex items-center gap-2 text-sm text-slate-600 transition-colors hover:text-accent"
+                    className="inline-flex items-center gap-2 text-sm text-slate-600 transition-colors hover:text-accent dark:text-slate-300"
                   >
                     <Icon name="Mail" className="h-4 w-4" />
                     {siteConfig.email}
@@ -85,8 +85,8 @@ export default function Footer() {
         </div>
 
         {/* Direitos */}
-        <div className="mt-12 border-t border-slate-200 pt-6">
-          <p className="text-center text-sm text-slate-500">
+        <div className="mt-12 border-t border-slate-200 pt-6 dark:border-white/10">
+          <p className="text-center text-sm text-slate-500 dark:text-slate-400">
             &copy; {year} {siteConfig.brand}. Todos os direitos reservados.
           </p>
         </div>
