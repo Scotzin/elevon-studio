@@ -114,7 +114,7 @@ export const trustCards = [
    - icon:    nome de um ícone (ver lista em components/Icon.tsx)
    - tagline: frase curta de apoio exibida abaixo do nome do nicho.
    - image:   caminho da imagem do nicho dentro da pasta /public
-              (ex.: "/images/nichos/barbearia.jpg"). Enquanto o arquivo não
+              (ex.: "/images/nichos/barbearia.png"). Enquanto o arquivo não
               existir, o card mostra automaticamente um fundo em gradiente com
               o ícone do nicho (fallback), sem quebrar o layout.
    - preview: cole o LINK da prévia online quando tiver. Se ficar "", o botão
@@ -127,7 +127,7 @@ export const models = [
     name: "Barbearias",
     tagline:
       "Serviços, galeria de cortes, localização e agendamento direto pelo WhatsApp.",
-    image: "/images/nichos/barbearia.jpg",
+    image: "/images/nichos/barbearia.png",
     preview: "",
     popular: true, // marca este card com um selo de destaque
   },
@@ -137,7 +137,7 @@ export const models = [
     name: "Restaurantes e Pizzarias",
     tagline:
       "Cardápio digital, fotos dos pratos, promoções e pedidos pelo WhatsApp.",
-    image: "/images/nichos/restaurante.jpg",
+    image: "/images/nichos/restaurante.png",
     preview: "",
     popular: false,
   },
@@ -147,7 +147,7 @@ export const models = [
     name: "Lojas de roupas",
     tagline:
       "Vitrine de produtos e coleções com atendimento direto pelo WhatsApp.",
-    image: "/images/nichos/loja-roupas.jpg",
+    image: "/images/nichos/loja-roupas.png",
     preview: "",
     popular: false,
   },
@@ -157,7 +157,7 @@ export const models = [
     name: "Clínicas e Estéticas",
     tagline:
       "Serviços, antes e depois, depoimentos e agendamento em poucos cliques.",
-    image: "/images/nichos/estetica.jpg",
+    image: "/images/nichos/estetica.png",
     preview: "",
     popular: false,
   },
@@ -167,7 +167,7 @@ export const models = [
     name: "Imobiliárias",
     tagline:
       "Imóveis em destaque, fotos organizadas e contato rápido com o corretor.",
-    image: "/images/nichos/imobiliaria.jpg",
+    image: "/images/nichos/imobiliaria.png",
     preview: "",
     popular: false,
   },
@@ -177,7 +177,7 @@ export const models = [
     name: "Prestadores de serviço",
     tagline:
       "Serviços organizados, orçamentos e contato direto pelo WhatsApp.",
-    image: "/images/nichos/servicos.jpg",
+    image: "/images/nichos/servicos.png",
     preview: "",
     popular: false,
   },
