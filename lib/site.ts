@@ -24,10 +24,10 @@ export const siteConfig = {
   whatsappNumber: "5511973200958",
 
   // >>> LINK DO INSTAGRAM <<<  (troque pelo seu @)
-  instagram: "https://www.instagram.com/enzotofani/?hl=pt-br",
+  instagram: "https://www.instagram.com/elevonstudio.digital/",
 
   // E-mail de contato (opcional, aparece no rodapé). Deixe "" para esconder.
-  email: "enzotofani30@gmail.com",
+  email: "elevonstudio.digital@gmail.com",
 
   // Cidade/região de atendimento (opcional, aparece no rodapé).
   location: "Atendimento online para todo o Brasil",
