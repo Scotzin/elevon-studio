@@ -85,10 +85,17 @@ export default function Footer() {
         </div>
 
         {/* Direitos */}
-        <div className="mt-12 border-t border-slate-200 pt-6 dark:border-white/10">
-          <p className="text-center text-sm text-slate-500 dark:text-slate-400">
+        <div className="mt-12 flex flex-col items-center justify-center gap-3 border-t border-slate-200 pt-6 sm:flex-row sm:gap-5 dark:border-white/10">
+          <p className="text-sm text-slate-500 dark:text-slate-400">
             &copy; {year} {siteConfig.brand}. Todos os direitos reservados.
           </p>
+          <Link
+            href="/login"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 transition-colors hover:text-accent dark:text-slate-500 dark:hover:text-accent"
+          >
+            <Icon name="Lock" className="h-3.5 w-3.5" />
+            Área da equipe
+          </Link>
         </div>
       </Container>
     </footer>

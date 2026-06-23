@@ -36,6 +36,7 @@ import {
   Eye,
   TrendingUp,
   BarChart3,
+  Lock,
   type LucideIcon,
 } from "lucide-react";
 
@@ -82,6 +83,7 @@ const icons: Record<string, LucideIcon> = {
   Eye,
   TrendingUp,
   BarChart3,
+  Lock,
 };
 
 type IconProps = {
