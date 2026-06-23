@@ -128,7 +128,7 @@ export const models = [
     tagline:
       "Serviços, galeria de cortes, localização e agendamento direto pelo WhatsApp.",
     image: "/images/nichos/barbearia.png",
-    preview: "",
+    preview: "/previa/barbearia",
     popular: true, // marca este card com um selo de destaque
   },
   {
@@ -138,7 +138,7 @@ export const models = [
     tagline:
       "Cardápio digital, fotos dos pratos, promoções e pedidos pelo WhatsApp.",
     image: "/images/nichos/restaurante.png",
-    preview: "",
+    preview: "/previa/restaurante",
     popular: false,
   },
   {
@@ -158,7 +158,7 @@ export const models = [
     tagline:
       "Serviços, antes e depois, depoimentos e agendamento em poucos cliques.",
     image: "/images/nichos/estetica.png",
-    preview: "",
+    preview: "/previa/estetica",
     popular: false,
   },
   {
@@ -168,7 +168,7 @@ export const models = [
     tagline:
       "Imóveis em destaque, fotos organizadas e contato rápido com o corretor.",
     image: "/images/nichos/imobiliaria.png",
-    preview: "",
+    preview: "/previa/imobiliaria",
     popular: false,
   },
   {
@@ -178,7 +178,7 @@ export const models = [
     tagline:
       "Serviços organizados, orçamentos e contato direto pelo WhatsApp.",
     image: "/images/nichos/servicos.png",
-    preview: "",
+    preview: "/previa/servicos",
     popular: false,
   },
 ];

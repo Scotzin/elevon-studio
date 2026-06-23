@@ -42,6 +42,7 @@ import {
   PlusCircle,
   type LucideIcon,
 } from "lucide-react";
+import type { CSSProperties } from "react";
 
 /**
  * Mapa de icones: permite chamar um icone pelo nome (string) a partir
@@ -96,9 +97,10 @@ type IconProps = {
   name: string;
   className?: string;
   strokeWidth?: number;
+  style?: CSSProperties;
 };
 
-export default function Icon({ name, className, strokeWidth = 2 }: IconProps) {
+export default function Icon({ name, className, strokeWidth = 2, style }: IconProps) {
   const LucideComp = icons[name] ?? Sparkles;
-  return <LucideComp className={className} strokeWidth={strokeWidth} />;
+  return <LucideComp className={className} strokeWidth={strokeWidth} style={style} />;
 }
