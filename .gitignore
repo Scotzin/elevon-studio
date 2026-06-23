@@ -30,3 +30,8 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# banco de dados local (SQLite) e Prisma
+*.db
+*.db-journal
+/prisma/dev.db*

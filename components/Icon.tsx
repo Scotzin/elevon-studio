@@ -31,6 +31,11 @@ import {
   Zap,
   Sun,
   Moon,
+  LogOut,
+  Users,
+  Eye,
+  TrendingUp,
+  BarChart3,
   type LucideIcon,
 } from "lucide-react";
 
@@ -72,6 +77,11 @@ const icons: Record<string, LucideIcon> = {
   Zap,
   Sun,
   Moon,
+  LogOut,
+  Users,
+  Eye,
+  TrendingUp,
+  BarChart3,
 };
 
 type IconProps = {

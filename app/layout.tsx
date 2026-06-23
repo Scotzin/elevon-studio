@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
+import Tracker from "@/components/Tracker";
 
 // Fonte Inter (carregada de forma otimizada pelo Next.js)
 const inter = Inter({
@@ -91,6 +92,7 @@ export default function RootLayout({
     <html lang="pt-BR" className={inter.variable} suppressHydrationWarning>
       <body>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        <Tracker />
         {children}
         <script
           type="application/ld+json"

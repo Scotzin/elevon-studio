@@ -1,0 +1,33 @@
+// Banco de dados do TESTE da área da equipe (SQLite local).
+// Para regenerar o client: npx prisma generate
+// Para criar/atualizar o banco:   npx prisma db push
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Membros da equipe que podem fazer login (contas fixas, criadas no seed).
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  role         String
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+// Cada visita a uma página do site (tráfego real) vira uma linha aqui.
+model PageView {
+  id        String   @id @default(cuid())
+  path      String
+  visitorId String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@index([path])
+}
