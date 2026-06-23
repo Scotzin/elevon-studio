@@ -5,8 +5,9 @@ import bcrypt from "bcryptjs";
 const { PrismaClient } = pkg;
 const prisma = new PrismaClient();
 
-// Senha padrão para o teste (todos os membros). Troque depois.
-const PASSWORD = "elevon@2026";
+// Senha inicial dos membros. Em produção, defina SEED_PASSWORD com um valor
+// forte antes de rodar o seed; localmente cai no padrão de teste.
+const PASSWORD = process.env.SEED_PASSWORD || "elevon@2026";
 
 const members = [
   {

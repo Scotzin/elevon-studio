@@ -1,13 +1,14 @@
-// Banco de dados do TESTE da área da equipe (SQLite local).
+// Banco de dados da área da equipe (PostgreSQL — produção e dev).
+// Defina DATABASE_URL no .env (local) e nas variáveis da Vercel (produção).
 // Para regenerar o client: npx prisma generate
-// Para criar/atualizar o banco:   npx prisma db push
+// Para criar/atualizar as tabelas: npx prisma db push
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
