@@ -2,7 +2,8 @@ import { PrismaClient } from "@prisma/client";
 
 /**
  * Cliente único do Prisma (evita abrir várias conexões durante o hot-reload
- * do `next dev`). Use `import { prisma } from "@/lib/prisma"`.
+ * do `next dev` e em ambiente serverless). Usa a conexão direta do Postgres
+ * (DATABASE_URL). Use `import { prisma } from "@/lib/prisma"`.
  */
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient };
 
