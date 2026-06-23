@@ -20,6 +20,18 @@ const members = [
   { name: "César", email: "cesar@elevon.studio", role: "Operação e Atendimento" },
 ];
 
+// Gastos iniciais (valores em R$ — edite depois pelo painel). Só são criados
+// se a tabela de gastos estiver vazia.
+const initialExpenses = [
+  { name: "ChatGPT", category: "IA", amount: 0, recurrence: "mensal" },
+  { name: "Claude", category: "IA", amount: 0, recurrence: "mensal" },
+  { name: "Google Ads", category: "Anúncios", amount: 0, recurrence: "mensal" },
+  { name: "Facebook Ads", category: "Anúncios", amount: 0, recurrence: "mensal" },
+  { name: "Instagram Ads", category: "Anúncios", amount: 0, recurrence: "mensal" },
+  { name: "Domínio", category: "Domínio", amount: 0, recurrence: "anual" },
+  { name: "MEI (DAS)", category: "Impostos", amount: 150, recurrence: "mensal" },
+];
+
 async function main() {
   const passwordHash = await bcrypt.hash(PASSWORD, 10);
   for (const m of members) {
@@ -30,8 +42,17 @@ async function main() {
     });
     console.log("conta ok:", m.email);
   }
-  const total = await prisma.user.count();
-  console.log(`\n${total} contas no banco. Senha de todas: ${PASSWORD}`);
+  const totalUsers = await prisma.user.count();
+  console.log(`\n${totalUsers} contas no banco. Senha de todas: ${PASSWORD}`);
+
+  // Gastos: só cria os iniciais se a tabela ainda estiver vazia.
+  const expenseCount = await prisma.expense.count();
+  if (expenseCount === 0) {
+    await prisma.expense.createMany({ data: initialExpenses });
+    console.log(`${initialExpenses.length} gastos iniciais criados.`);
+  } else {
+    console.log(`${expenseCount} gastos já existem (não recriados).`);
+  }
 }
 
 main()

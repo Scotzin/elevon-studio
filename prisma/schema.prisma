@@ -32,3 +32,13 @@ model PageView {
   @@index([createdAt])
   @@index([path])
 }
+
+// Gastos/custos da empresa (mostrados na aba Gastos do painel).
+model Expense {
+  id         String   @id @default(cuid())
+  name       String
+  category   String   @default("Outros") // IA, Anúncios, Domínio, Impostos, Outros
+  amount     Float    @default(0) // valor em R$
+  recurrence String   @default("mensal") // mensal, anual, única
+  createdAt  DateTime @default(now())
+}

@@ -37,6 +37,9 @@ import {
   TrendingUp,
   BarChart3,
   Lock,
+  Wallet,
+  Trash2,
+  PlusCircle,
   type LucideIcon,
 } from "lucide-react";
 
@@ -84,6 +87,9 @@ const icons: Record<string, LucideIcon> = {
   TrendingUp,
   BarChart3,
   Lock,
+  Wallet,
+  Trash2,
+  PlusCircle,
 };
 
 type IconProps = {
