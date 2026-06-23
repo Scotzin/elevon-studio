@@ -148,7 +148,7 @@ export const models = [
     tagline:
       "Vitrine de produtos e coleções com atendimento direto pelo WhatsApp.",
     image: "/images/nichos/loja-roupas.png",
-    preview: "",
+    preview: "/previa/loja-roupas",
     popular: false,
   },
   {
