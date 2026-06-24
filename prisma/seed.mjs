@@ -14,10 +14,11 @@ const members = [
     name: "Enzo Tofani Ramos",
     email: "enzo@elevon.studio",
     role: "CEO · Desenvolvimento e Produto Digital",
+    accessLevel: "CEO / Admin",
   },
-  { name: "Wiliam", email: "wiliam@elevon.studio", role: "Comercial e Relacionamento" },
-  { name: "André", email: "andre@elevon.studio", role: "Design e Marketing" },
-  { name: "César", email: "cesar@elevon.studio", role: "Operação e Atendimento" },
+  { name: "Wiliam", email: "wiliam@elevon.studio", role: "Comercial e Relacionamento", accessLevel: "Sócio / Comercial" },
+  { name: "André", email: "andre@elevon.studio", role: "Design e Marketing", accessLevel: "Sócio / Design" },
+  { name: "César", email: "cesar@elevon.studio", role: "Operação e Atendimento", accessLevel: "Sócio / Operação" },
 ];
 
 // Gastos iniciais (valores em R$ — edite depois pelo painel). Só são criados
@@ -37,7 +38,7 @@ async function main() {
   for (const m of members) {
     await prisma.user.upsert({
       where: { email: m.email },
-      update: { name: m.name, role: m.role, passwordHash },
+      update: { name: m.name, role: m.role, accessLevel: m.accessLevel, passwordHash },
       create: { ...m, passwordHash },
     });
     console.log("conta ok:", m.email);

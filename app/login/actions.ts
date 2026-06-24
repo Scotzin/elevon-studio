@@ -25,6 +25,11 @@ export async function login(
     return { error: "E-mail ou senha incorretos." };
   }
 
+  // Registra o último acesso (mostrado na página Equipe).
+  await prisma.user
+    .update({ where: { id: user.id }, data: { lastAccessAt: new Date() } })
+    .catch(() => {});
+
   const token = await createSessionToken({
     id: user.id,
     name: user.name,

@@ -14,12 +14,15 @@ datasource db {
 
 // Membros da equipe que podem fazer login (contas fixas, criadas no seed).
 model User {
-  id           String   @id @default(cuid())
+  id           String    @id @default(cuid())
   name         String
-  email        String   @unique
+  email        String    @unique
   role         String
+  accessLevel  String    @default("Sócio") // CEO / Admin, Sócio / Comercial, etc.
+  status       String    @default("Ativo") // Ativo, Inativo
   passwordHash String
-  createdAt    DateTime @default(now())
+  lastAccessAt DateTime?
+  createdAt    DateTime  @default(now())
 }
 
 // Cada visita a uma página do site (tráfego real) vira uma linha aqui.
@@ -33,12 +36,109 @@ model PageView {
   @@index([path])
 }
 
-// Gastos/custos da empresa (mostrados na aba Gastos do painel).
+// Eventos internos do site público (cliques importantes, prévias, planos…).
+model Event {
+  id        String   @id @default(cuid())
+  type      String // pageview, whatsapp, previa, quero-site, plano
+  path      String?
+  button    String?
+  nicho     String?
+  plan      String?
+  source    String? // utm_source, se houver
+  visitorId String?
+  createdAt DateTime @default(now())
+
+  @@index([type])
+  @@index([createdAt])
+}
+
+// Leads — criados automaticamente no clique do WhatsApp e completados à mão.
+model Lead {
+  id        String   @id @default(cuid())
+  fullName  String?
+  whatsapp  String?
+  email     String?
+  nicho     String?
+  source    String?
+  plan      String?
+  status    String   @default("Novo") // Novo, Em conversa, Orçamento enviado, Indeciso, Fechado, Perdido, Sem resposta
+  page      String?
+  button    String?
+  notes     String?
+  visitorId String?
+  createdAt DateTime @default(now())
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+// Clientes — fechados a partir de leads/orçamentos ou cadastrados à mão.
+model Client {
+  id            String   @id @default(cuid())
+  name          String
+  business      String?
+  nicho         String?
+  whatsapp      String?
+  email         String?
+  plan          String?
+  initialValue  Float    @default(0)
+  monthly       Float    @default(0)
+  closedAt      String?
+  paymentStatus String   @default("Pendente") // Pendente, Entrada paga, Mensalidade paga, Em atraso, Cancelado
+  dueDate       String?
+  paidAt        String?
+  siteUrl       String?
+  siteStatus    String   @default("Aguardando informações")
+  notes         String?
+  createdAt     DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+// Projetos — andamento dos sites.
+model Project {
+  id         String   @id @default(cuid())
+  name       String
+  clientName String?
+  business   String?
+  nicho      String?
+  plan       String?
+  status     String   @default("Aguardando informações") // Aguardando informações, Em desenvolvimento, Em revisão, Publicado, Em manutenção, Pausado, Cancelado
+  previewUrl String?
+  finalUrl   String?
+  notes      String?
+  createdAt  DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+// Orçamentos — em preparação, enviados ou negociação.
+model Budget {
+  id           String   @id @default(cuid())
+  clientName   String?
+  business     String?
+  nicho        String?
+  wants        String?
+  plan         String   @default("Profissional") // Básico, Profissional, Premium, Personalizado
+  initialValue Float    @default(0)
+  monthly      Float    @default(0)
+  status       String   @default("Rascunho") // Rascunho, Enviado, Em negociação, Aprovado, Recusado, Expirado
+  waMessage    String?
+  notes        String?
+  createdAt    DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+// Gastos/custos da empresa (aba Gastos do painel).
 model Expense {
   id         String   @id @default(cuid())
   name       String
-  category   String   @default("Outros") // IA, Anúncios, Domínio, Impostos, Outros
-  amount     Float    @default(0) // valor em R$
-  recurrence String   @default("mensal") // mensal, anual, única
+  category   String   @default("Outros") // Domínio, Hospedagem, Ferramentas, Anúncios, Design, IA, Contador, Impostos, Outros
+  amount     Float    @default(0)
+  recurrence String   @default("mensal") // mensal, anual, único
+  status     String   @default("pendente") // pago, pendente
+  dueDate    String?
+  notes      String?
   createdAt  DateTime @default(now())
 }
