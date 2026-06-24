@@ -432,3 +432,45 @@ export const previaDemos: Record<string, PreviaDemo> = {
 };
 
 export const previaSlugs = Object.keys(previaDemos);
+
+/* Fotos ilustrativas por nicho (IDs de fotos do Unsplash, profissionais e
+   relevantes). São apenas ilustrativas — no site final entram as fotos do
+   cliente. O DemoImage cai num gradiente caso alguma não carregue. */
+export const PHOTOS: Record<string, string[]> = {
+  "loja-roupas": [
+    "photo-1490481651871-ab68de25d43d",
+    "photo-1441984904996-e0b6ba687e04",
+    "photo-1483985988355-763728e1935b",
+    "photo-1445205170230-053b83016050",
+  ],
+  barbearia: [
+    "photo-1503951914875-452162b0f3f1",
+    "photo-1599351431202-1e0f0137899a",
+    "photo-1585747860715-2ba37e788b70",
+    "photo-1521590832167-7bcbfaa6381f",
+  ],
+  restaurante: [
+    "photo-1517248135467-4c7edcad34c4",
+    "photo-1414235077428-338989a2e8c0",
+    "photo-1513104890138-7c749659a591",
+    "photo-1565299624946-b28f40a0ae38",
+  ],
+  estetica: [
+    "photo-1540555700478-4be289fbecef",
+    "photo-1596178065887-1198b6148b2b",
+    "photo-1487412947147-5cebf100ffc2",
+    "photo-1570172619644-dfd03ed5d881",
+  ],
+  imobiliaria: [
+    "photo-1568605114967-8130f3a36994",
+    "photo-1570129477492-45c003edd2be",
+    "photo-1493809842364-78817add7ffb",
+    "photo-1512917774080-9991f1c4c750",
+  ],
+  servicos: [
+    "photo-1504148455328-c376907d081c",
+    "photo-1581244277943-fe4a9c777189",
+    "photo-1572981779307-38b8cabb2407",
+    "photo-1530124566582-a618bc2615dc",
+  ],
+};

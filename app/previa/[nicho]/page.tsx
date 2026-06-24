@@ -2,9 +2,10 @@ import { notFound } from "next/navigation";
 import TierBar from "@/components/previa/TierBar";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
+import DemoImage from "@/components/previa/DemoImage";
 import { WhatsAppIcon } from "@/components/ui";
 import { waLink } from "@/lib/site";
-import { previaDemos } from "@/lib/previaDemos";
+import { previaDemos, PHOTOS } from "@/lib/previaDemos";
 
 const PLANS = { basico: 1, profissional: 2, premium: 3 } as const;
 type Plan = keyof typeof PLANS;
@@ -43,6 +44,13 @@ export default function PreviaNicho({
   const wa = waLink(
     `Olá! Vi a prévia do site para ${demo.nicho} (plano ${planLabel}) e quero um site assim.`
   );
+
+  // Fotos ilustrativas do Unsplash (com fallback em gradiente no DemoImage).
+  const ids = PHOTOS[params.nicho] || [];
+  const photo = (slot: number, w: number, h: number) =>
+    ids.length === 0
+      ? ""
+      : `https://images.unsplash.com/${ids[slot % ids.length]}?auto=format&fit=crop&w=${w}&h=${h}&q=70`;
 
   const heroMesh = {
     background: `radial-gradient(60% 80% at 12% 8%, ${a}26, transparent 60%), radial-gradient(55% 65% at 96% 28%, ${a}1f, transparent 55%), linear-gradient(180deg, #ffffff, #faf8f7)`,
@@ -142,25 +150,14 @@ export default function PreviaNicho({
 
           <Reveal delay={120}>
             <div className="relative">
-              <div
-                className="aspect-[4/5] w-full overflow-hidden rounded-[2rem] shadow-2xl"
-                style={{ background: `linear-gradient(150deg, ${a}, ${a}55)` }}
-              >
-                <div
-                  className="absolute inset-0 opacity-30"
-                  style={{
-                    backgroundImage:
-                      "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.5) 1px, transparent 0)",
-                    backgroundSize: "22px 22px",
-                  }}
-                />
-                <span className="absolute inset-0 grid place-items-center text-white/40">
-                  <Icon name={demo.icon} className="h-24 w-24" strokeWidth={1} />
-                </span>
-                <span className="absolute bottom-3 right-3 rounded-md bg-black/25 px-2 py-0.5 text-[10px] text-white/85 backdrop-blur">
-                  imagem ilustrativa
-                </span>
-              </div>
+              <DemoImage
+                src={photo(1, 820, 1040)}
+                alt={`Demonstração de site para ${demo.nicho}`}
+                icon={demo.icon}
+                accent={a}
+                label="imagem ilustrativa"
+                className="aspect-[4/5] w-full rounded-[2rem] shadow-2xl"
+              />
               <div className="absolute -bottom-5 -left-5 flex items-center gap-2.5 rounded-2xl border border-zinc-100 bg-white px-5 py-3.5 shadow-xl">
                 <span className="grid h-10 w-10 place-items-center rounded-xl" style={{ backgroundColor: `${a}1a`, color: a }}>
                   <WhatsAppIcon className="h-5 w-5" />
@@ -263,14 +260,13 @@ export default function PreviaNicho({
               </div>
             </Reveal>
             <Reveal delay={120}>
-              <div
-                className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem]"
-                style={{ background: `linear-gradient(150deg, ${a}, ${a}33)` }}
-              >
-                <span className="absolute inset-0 grid place-items-center text-white/30">
-                  <Icon name={demo.icon} className="h-20 w-20" strokeWidth={1} />
-                </span>
-              </div>
+              <DemoImage
+                src={photo(2, 820, 620)}
+                alt={`${demo.business} — destaque`}
+                icon={demo.icon}
+                accent={a}
+                className="aspect-[4/3] w-full rounded-[1.75rem]"
+              />
             </Reveal>
           </div>
         </section>
@@ -289,10 +285,14 @@ export default function PreviaNicho({
             {demo.items.map((p, i) => (
               <Reveal key={p.name} delay={(i % 3) * 80}>
                 <div className="group overflow-hidden rounded-2xl border border-zinc-200 bg-white transition hover:-translate-y-1 hover:shadow-xl">
-                  <div
-                    className="relative aspect-[4/3] overflow-hidden"
-                    style={{ background: `linear-gradient(150deg, ${a}1f, ${a}40)` }}
-                  >
+                  <div className="relative">
+                    <DemoImage
+                      src={photo(10 + i, 700, 540)}
+                      alt={p.name}
+                      icon={demo.icon}
+                      accent={a}
+                      className="aspect-[4/3]"
+                    />
                     {p.tag && (
                       <span
                         className="absolute left-3 top-3 z-10 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide text-white"
@@ -301,9 +301,6 @@ export default function PreviaNicho({
                         {p.tag}
                       </span>
                     )}
-                    <span className="absolute inset-0 grid place-items-center text-zinc-400/50 transition-transform duration-500 group-hover:scale-110">
-                      <Icon name={demo.icon} className="h-12 w-12" strokeWidth={1.25} />
-                    </span>
                   </div>
                   <div className="flex items-center justify-between gap-2 p-4">
                     <div className="min-w-0">
@@ -367,12 +364,16 @@ export default function PreviaNicho({
             {demo.vitrine.map((v, i) => (
               <Reveal key={v.name} delay={i * 90}>
                 <div className="overflow-hidden rounded-3xl border border-zinc-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl">
-                  <div className="relative aspect-[16/10]" style={{ background: `linear-gradient(150deg, ${a}, ${a}40)` }}>
-                    <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-zinc-900">
+                  <div className="relative">
+                    <DemoImage
+                      src={photo(20 + i, 760, 470)}
+                      alt={v.name}
+                      icon={demo.icon}
+                      accent={a}
+                      className="aspect-[16/10]"
+                    />
+                    <span className="absolute left-4 top-4 z-10 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-zinc-900">
                       #{i + 1} mais procurado
-                    </span>
-                    <span className="absolute inset-0 grid place-items-center text-white/25">
-                      <Icon name={demo.icon} className="h-14 w-14" strokeWidth={1} />
                     </span>
                   </div>
                   <div className="flex items-center justify-between gap-3 p-5">
@@ -408,19 +409,14 @@ export default function PreviaNicho({
             <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
               {Array.from({ length: 6 }).map((_, i) => (
                 <Reveal key={i} delay={(i % 6) * 50}>
-                  <div
-                    className="relative aspect-square overflow-hidden rounded-xl"
-                    style={{ background: `linear-gradient(${135 + i * 20}deg, ${a}cc, ${a}40)` }}
-                  >
-                    <span className="absolute inset-0 grid place-items-center text-white/30">
-                      <Icon name={demo.icon} className="h-8 w-8" strokeWidth={1.25} />
-                    </span>
-                    {i === 0 && (
-                      <span className="absolute bottom-1.5 right-1.5 rounded bg-black/25 px-1.5 py-0.5 text-[9px] text-white/85 backdrop-blur">
-                        sua foto aqui
-                      </span>
-                    )}
-                  </div>
+                  <DemoImage
+                    src={photo(30 + i, 520, 520)}
+                    alt={`${demo.business} — trabalho ${i + 1}`}
+                    icon={demo.icon}
+                    accent={a}
+                    label={i === 0 ? "sua foto aqui" : undefined}
+                    className="aspect-square rounded-xl"
+                  />
                 </Reveal>
               ))}
             </div>
