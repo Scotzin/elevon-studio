@@ -18,10 +18,12 @@ export default function TierBar({
   current,
   basePath,
   nicho,
+  extra = "",
 }: {
   current: string;
   basePath: string;
   nicho: string;
+  extra?: string;
 }) {
   const currentLabel =
     tiers.find((t) => t.key === current)?.label ?? "Profissional";
@@ -46,7 +48,7 @@ export default function TierBar({
               return (
                 <Link
                   key={t.key}
-                  href={`${basePath}?plano=${t.key}`}
+                  href={`${basePath}?plano=${t.key}${extra}`}
                   scroll={false}
                   className={`rounded-md px-3 py-1.5 text-xs font-semibold transition-colors ${
                     active

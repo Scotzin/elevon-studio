@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { randomUUID } from "crypto";
 import { prisma } from "@/lib/prisma";
+import { notifyNewLead } from "@/lib/notify";
 
 export const runtime = "nodejs";
 
@@ -56,6 +57,13 @@ export async function POST(req: Request) {
       if (!recent) {
         await prisma.lead.create({
           data: { status: "Novo", page: path, button, nicho, plan, source, visitorId: vid },
+        });
+        await notifyNewLead({
+          nicho,
+          plan,
+          source,
+          page: path,
+          notes: "Clique no WhatsApp (lead automático)",
         });
       }
     }

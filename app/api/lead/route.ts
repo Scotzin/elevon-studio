@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { randomUUID } from "crypto";
 import { prisma } from "@/lib/prisma";
+import { notifyNewLead } from "@/lib/notify";
 
 export const runtime = "nodejs";
 
@@ -64,6 +65,7 @@ export async function POST(req: Request) {
           visitorId: vid,
         },
       });
+      await notifyNewLead({ fullName, whatsapp, nicho, notes: message, source: "Formulário do site", page: "/" });
     }
 
     return res;

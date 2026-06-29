@@ -4,8 +4,8 @@ import TierBar from "@/components/previa/TierBar";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
 import { WhatsAppIcon } from "@/components/ui";
-import { waLink } from "@/lib/site";
-import { previaDemos, PHOTOS } from "@/lib/previaDemos";
+import { waLink, siteConfig } from "@/lib/site";
+import { previaDemos, PHOTOS, type PreviaDemo } from "@/lib/previaDemos";
 import type { Plan } from "@/components/previa/types";
 
 import Barbearia from "@/components/previa/layouts/Barbearia";
@@ -27,23 +27,57 @@ import Servicos from "@/components/previa/layouts/Servicos";
 
 const PLANS = { basico: 1, profissional: 2, premium: 3 } as const;
 
+const clean = (v?: string) => (v || "").trim().replace(/\s+/g, " ").slice(0, 60);
+
+/* Personaliza a demo com o nome/cidade do prospect (vindos da URL ?nome=&cidade=),
+   para a prévia mostrar o negócio DELE. Mantém o tipo discriminado (layout). */
+function applyPersona(demo: PreviaDemo, nome: string, cidade: string): PreviaDemo {
+  if (!nome && !cidade) return demo;
+  return {
+    ...demo,
+    business: nome || demo.business,
+    contact: { ...demo.contact, address: cidade || demo.contact.address },
+  } as PreviaDemo;
+}
+
 /* As prévias são demonstrações (negócios fictícios) — não devem ser
    indexadas pelo Google, mas têm título/descrição próprios para quando o
    link é compartilhado. */
-export function generateMetadata({ params }: { params: { nicho: string } }): Metadata {
+export function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: { nicho: string };
+  searchParams: { nome?: string };
+}): Metadata {
   const demo = previaDemos[params.nicho];
   if (!demo) {
     return { title: "Prévia não encontrada", robots: { index: false, follow: false } };
   }
-  const title = `Prévia — modelo de site para ${demo.nicho}`;
+  const nome = clean(searchParams.nome);
+  const business = nome || demo.business;
+  const title = nome
+    ? `${business} — site profissional`
+    : `Prévia — modelo de site para ${demo.nicho}`;
   const description = `Demonstração de um site profissional para ${demo.nicho}, criado pela Elevon Studio. Veja como o seu negócio pode ficar online e vender pelo WhatsApp.`;
-  return {
+
+  const meta: Metadata = {
     title,
     description,
     robots: { index: false, follow: false },
     openGraph: { title, description },
-    twitter: { title, description },
+    twitter: { title, description, card: "summary_large_image" },
   };
+
+  // Link personalizado (?nome=) → o card de preview (OG) também mostra o nome
+  // do prospect, gerado pela rota /api/og.
+  if (nome) {
+    const img = `${siteConfig.url}/api/og?nicho=${encodeURIComponent(params.nicho)}&nome=${encodeURIComponent(nome)}`;
+    meta.openGraph = { ...meta.openGraph, images: [{ url: img, width: 1200, height: 630 }] };
+    meta.twitter = { ...meta.twitter, images: [img] };
+  }
+
+  return meta;
 }
 
 export default function PreviaNicho({
@@ -51,10 +85,14 @@ export default function PreviaNicho({
   searchParams,
 }: {
   params: { nicho: string };
-  searchParams: { plano?: string };
+  searchParams: { plano?: string; nome?: string; cidade?: string };
 }) {
-  const demo = previaDemos[params.nicho];
-  if (!demo) notFound();
+  const demoBase = previaDemos[params.nicho];
+  if (!demoBase) notFound();
+
+  const nome = clean(searchParams.nome);
+  const cidade = clean(searchParams.cidade);
+  const demo = applyPersona(demoBase, nome, cidade);
 
   const raw = (searchParams.plano || "profissional").toLowerCase();
   const plan: Plan = (["basico", "profissional", "premium"].includes(raw)
@@ -77,11 +115,16 @@ export default function PreviaNicho({
   );
   const waBusiness = waLink(`Olá! Vi o site da ${demo.business} e quero falar.`);
 
+  // Preserva ?nome/?cidade ao alternar o plano na barra da Elevon.
+  const extra =
+    (nome ? `&nome=${encodeURIComponent(nome)}` : "") +
+    (cidade ? `&cidade=${encodeURIComponent(cidade)}` : "");
+
   const layoutProps = { has, photo };
 
   return (
     <div className="min-h-screen bg-white">
-      <TierBar current={plan} basePath={`/previa/${params.nicho}`} nicho={demo.nicho} />
+      <TierBar current={plan} basePath={`/previa/${params.nicho}`} nicho={demo.nicho} extra={extra} />
 
       {/* Aviso claro de demonstração */}
       <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-center text-xs text-amber-900">
