@@ -234,26 +234,64 @@ export const team = [
 ];
 
 /* --------------------------------------------------------------------------
-   8) DEPOIMENTOS  ->  TROQUE OS TEXTOS QUANDO TIVER REAIS
+   8) DEPOIMENTOS
    --------------------------------------------------------------------------
-   Use identificações genéricas (sem inventar nomes reais) enquanto não
-   tiver depoimentos verdadeiros.
+   Estrutura pronta para depoimentos REAIS. Enquanto não houver, ficam exemplos
+   ILUSTRATIVOS (placeholder: true) — sem inventar clientes/nomes reais. O site
+   mostra uma nota honesta quando só há exemplos.
+
+   Quando tiver um depoimento de verdade: copie o MODELO comentado abaixo,
+   preencha e remova o `placeholder`. Campos opcionais: business, nicho, city,
+   rating (1–5, padrão 5), photo (foto em /public/images/depoimentos/),
+   link (Instagram/site do cliente) e verified (mostra o selo "verificado").
    -------------------------------------------------------------------------- */
-export const testimonials = [
+export type Testimonial = {
+  quote: string;
+  author: string;
+  business?: string;
+  nicho?: string;
+  city?: string;
+  rating?: number;
+  photo?: string;
+  link?: string;
+  verified?: boolean;
+  placeholder?: boolean;
+};
+
+export const testimonials: Testimonial[] = [
+  // ▼ MODELO DE DEPOIMENTO REAL — copie, preencha e remova o "placeholder":
+  // {
+  //   quote: "O site ficou do jeitinho que eu queria e já chegaram clientes pelo WhatsApp.",
+  //   author: "Nailson Jr.",
+  //   business: "Nailson Store",
+  //   nicho: "Loja de roupas",
+  //   city: "Salvador, BA",
+  //   rating: 5,
+  //   photo: "/images/depoimentos/nailson.jpg", // opcional (veja o README da pasta)
+  //   link: "https://www.instagram.com/...",     // opcional
+  //   verified: true,
+  // },
+
+  // Exemplos ilustrativos (troque pelos reais assim que tiver):
   {
     quote:
       "O site deixou meus serviços muito mais organizados e fáceis de apresentar para os clientes.",
-    author: "Cliente de barbearia",
+    author: "Cliente atendido",
+    nicho: "Barbearia",
+    placeholder: true,
   },
   {
     quote:
-      "Agora consigo enviar um link profissional, com WhatsApp, localização e as informações do meu negócio.",
-    author: "Cliente de loja",
+      "Agora envio um link profissional, com WhatsApp, localização e tudo sobre o meu negócio.",
+    author: "Cliente atendido",
+    nicho: "Loja",
+    placeholder: true,
   },
   {
-    quote:
-      "A página ficou limpa, rápida e com uma aparência muito mais profissional.",
-    author: "Cliente de restaurante",
+    quote: "A página ficou limpa, rápida e com uma cara muito mais profissional.",
+    author: "Cliente atendido",
+    nicho: "Restaurante",
+    placeholder: true,
   },
 ];
 
