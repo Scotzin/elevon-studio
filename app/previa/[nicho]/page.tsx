@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import type { Metadata } from "next";
 import TierBar from "@/components/previa/TierBar";
 import Icon from "@/components/Icon";
 import Reveal from "@/components/Reveal";
@@ -25,6 +26,25 @@ import Servicos from "@/components/previa/layouts/Servicos";
    ========================================================================== */
 
 const PLANS = { basico: 1, profissional: 2, premium: 3 } as const;
+
+/* As prévias são demonstrações (negócios fictícios) — não devem ser
+   indexadas pelo Google, mas têm título/descrição próprios para quando o
+   link é compartilhado. */
+export function generateMetadata({ params }: { params: { nicho: string } }): Metadata {
+  const demo = previaDemos[params.nicho];
+  if (!demo) {
+    return { title: "Prévia não encontrada", robots: { index: false, follow: false } };
+  }
+  const title = `Prévia — modelo de site para ${demo.nicho}`;
+  const description = `Demonstração de um site profissional para ${demo.nicho}, criado pela Elevon Studio. Veja como o seu negócio pode ficar online e vender pelo WhatsApp.`;
+  return {
+    title,
+    description,
+    robots: { index: false, follow: false },
+    openGraph: { title, description },
+    twitter: { title, description },
+  };
+}
 
 export default function PreviaNicho({
   params,

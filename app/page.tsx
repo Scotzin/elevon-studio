@@ -7,6 +7,7 @@ import Feedbacks from "@/components/Feedbacks";
 import HowItWorks from "@/components/HowItWorks";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
+import QuoteForm from "@/components/QuoteForm";
 import FinalCTA from "@/components/FinalCTA";
 import Footer from "@/components/Footer";
 import WhatsappFloat from "@/components/WhatsappFloat";
@@ -28,7 +29,8 @@ export default function Home() {
         <HowItWorks />    {/* 6. Passo a passo */}
         <Pricing />       {/* 7. Planos e precos */}
         <FAQ />           {/* 8. Perguntas frequentes */}
-        <FinalCTA />      {/* 9. Chamada final */}
+        <QuoteForm />     {/* 9. Formulario de orcamento (grava lead no CRM) */}
+        <FinalCTA />      {/* 10. Chamada final */}
       </main>
       <Footer />          {/* 10. Rodape */}
       <WhatsappFloat />   {/* Botao flutuante do WhatsApp */}
