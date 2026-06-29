@@ -239,7 +239,7 @@ export const previaDemos: Record<string, PreviaDemo> = {
     },
     depoimentos: [
       { nome: "Carla F.", texto: "Comida maravilhosa e entrega rápida. Virou nosso restaurante favorito." },
-      { nome: "André L.", texto: "Peço pelo WhatsApp toda semana. Atendimento impecável." },
+      { nome: "Bruno L.", texto: "Peço pelo WhatsApp toda semana. Atendimento impecável." },
       { nome: "Bia S.", texto: "Os pratos são caprichados e chegam quentinhos. Recomendo!" },
     ],
     stats: [

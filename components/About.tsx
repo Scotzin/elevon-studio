@@ -62,7 +62,7 @@ export default function About() {
                   </span>
                   <div>
                     <p className="text-sm font-bold text-deep-950 dark:text-white">Equipe {siteConfig.brand}</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">Desenvolvimento • Comercial • Design</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400">Desenvolvimento • Comercial • Marketing</p>
                   </div>
                 </div>
               </div>
@@ -124,7 +124,7 @@ export default function About() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {team.map((member, i) => (
               <Reveal key={member.name} delay={(i % 4) * 90}>
                 <div className="group h-full rounded-2xl border border-slate-200 bg-white p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-deep-200 hover:shadow-soft-lg dark:border-white/10 dark:bg-white/5 dark:hover:border-white/20">

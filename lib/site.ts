@@ -220,16 +220,10 @@ export const team = [
     icon: "Briefcase",
   },
   {
-    name: "André",
-    role: "Design e Marketing",
-    text: "Responsável pelo apoio visual, conteúdo, materiais comerciais, identidade e fortalecimento da comunicação da Elevon Studio.",
-    icon: "Palette",
-  },
-  {
-    name: "César",
-    role: "Operação e Atendimento",
-    text: "Responsável por organizar informações dos clientes, acompanhar demandas e prazos e manter o fluxo dos projetos mais profissional.",
-    icon: "Headphones",
+    name: "Pedro César",
+    role: "Marketing",
+    text: "Responsável pelo marketing, conteúdo, materiais comerciais e pelo fortalecimento da comunicação e da presença digital da Elevon Studio.",
+    icon: "Target",
   },
 ];
 

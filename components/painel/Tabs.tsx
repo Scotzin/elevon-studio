@@ -14,6 +14,7 @@ const tabs = [
   { href: "/painel/financeiro", label: "Financeiro", icon: "Banknote" },
   { href: "/painel/gastos", label: "Gastos", icon: "Wallet" },
   { href: "/painel/equipe", label: "Equipe", icon: "Briefcase" },
+  { href: "/painel/wallpapers", label: "Wallpapers", icon: "Image" },
   { href: "/painel/conta", label: "Conta", icon: "Lock" },
 ];
 

@@ -77,6 +77,9 @@ import {
   Camera,
   CalendarCheck,
   Timer,
+  Image,
+  Download,
+  Monitor,
   type LucideIcon,
 } from "lucide-react";
 import type { CSSProperties } from "react";
@@ -165,6 +168,9 @@ const icons: Record<string, LucideIcon> = {
   Camera,
   CalendarCheck,
   Timer,
+  Image,
+  Download,
+  Monitor,
 };
 
 type IconProps = {
