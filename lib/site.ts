@@ -35,7 +35,7 @@ export const siteConfig = {
   // Endereço final do site quando publicado (usado em SEO, OG, sitemap).
   // Quando tiver domínio próprio, defina NEXT_PUBLIC_SITE_URL nas env vars da
   // Vercel (ex.: https://elevonstudio.com.br) — não precisa mexer no código.
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://elevon-studio.vercel.app",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://elevonstudio.com.br",
 };
 
 /* --------------------------------------------------------------------------
