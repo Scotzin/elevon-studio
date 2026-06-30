@@ -30,10 +30,12 @@ model PageView {
   id        String   @id @default(cuid())
   path      String
   visitorId String?
+  internal  Boolean  @default(false) // visita da equipe (logada ou "não contar") — excluída das Análises
   createdAt DateTime @default(now())
 
   @@index([createdAt])
   @@index([path])
+  @@index([internal])
 }
 
 // Eventos internos do site público (cliques importantes, prévias, planos…).
@@ -46,6 +48,7 @@ model Event {
   plan      String?
   source    String? // utm_source, se houver
   visitorId String?
+  internal  Boolean  @default(false) // evento da equipe — excluído das Análises
   createdAt DateTime @default(now())
 
   @@index([type])

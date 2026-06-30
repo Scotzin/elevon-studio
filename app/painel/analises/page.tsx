@@ -2,6 +2,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { StatCard, PageHeader, Panel } from "@/components/painel/ui";
 import VisitsChart from "@/components/painel/VisitsChart";
+import IgnoreMeToggle from "@/components/painel/IgnoreMeToggle";
 
 export const dynamic = "force-dynamic";
 
@@ -36,40 +37,43 @@ export default async function AnalisesPage({
   const since = new Date(startToday);
   since.setDate(since.getDate() - (windowDays - 1));
 
-  const [total, todayCount, distinctVisitors, topPaths, recent, whatsappClicks, topPrevia, topNicho] =
+  // Em todas as consultas excluímos os acessos internos (equipe) com internal:false.
+  const [total, todayCount, distinctVisitors, topPaths, recent, whatsappClicks, topPrevia, topNicho, teamCount] =
     await Promise.all([
-      prisma.pageView.count(),
-      prisma.pageView.count({ where: { createdAt: { gte: startToday } } }),
+      prisma.pageView.count({ where: { internal: false } }),
+      prisma.pageView.count({ where: { internal: false, createdAt: { gte: startToday } } }),
       prisma.pageView.findMany({
         distinct: ["visitorId"],
         select: { visitorId: true },
-        where: { visitorId: { not: null } },
+        where: { internal: false, visitorId: { not: null } },
       }),
       prisma.pageView.groupBy({
         by: ["path"],
+        where: { internal: false },
         _count: { path: true },
         orderBy: { _count: { path: "desc" } },
         take: 8,
       }),
       prisma.pageView.findMany({
-        where: { createdAt: { gte: since } },
+        where: { internal: false, createdAt: { gte: since } },
         select: { createdAt: true },
       }),
-      prisma.event.count({ where: { type: "whatsapp" } }),
+      prisma.event.count({ where: { internal: false, type: "whatsapp" } }),
       prisma.pageView.groupBy({
         by: ["path"],
-        where: { path: { startsWith: "/previa/" } },
+        where: { internal: false, path: { startsWith: "/previa/" } },
         _count: { path: true },
         orderBy: { _count: { path: "desc" } },
         take: 1,
       }),
       prisma.event.groupBy({
         by: ["nicho"],
-        where: { nicho: { not: null } },
+        where: { internal: false, nicho: { not: null } },
         _count: { nicho: true },
         orderBy: { _count: { nicho: "desc" } },
         take: 1,
       }),
+      prisma.pageView.count({ where: { internal: true } }),
     ]);
 
   // buckets do gráfico
@@ -98,8 +102,23 @@ export default async function AnalisesPage({
     <div className="space-y-8">
       <PageHeader
         title="Análises de tráfego"
-        subtitle="Visitas e eventos reais registrados no site da Elevon Studio."
+        subtitle="Visitas reais de visitantes — os acessos da equipe não entram na conta."
       />
+
+      {/* Acessos da equipe (descontados) + opt-out por dispositivo */}
+      <Panel>
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <h2 className="text-base font-bold text-deep-950 dark:text-white">Acessos da equipe</h2>
+            <p className="mt-0.5 text-sm text-slate-500 dark:text-slate-400">
+              {teamCount > 0
+                ? `${teamCount} acesso(s) da equipe já foram descontados destes números.`
+                : "Quem está logado no painel já não é contado. Marque também seus outros aparelhos."}
+            </p>
+          </div>
+          <IgnoreMeToggle />
+        </div>
+      </Panel>
 
       {/* Cards principais */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

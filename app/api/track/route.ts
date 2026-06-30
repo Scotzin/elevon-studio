@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { randomUUID } from "crypto";
 import { prisma } from "@/lib/prisma";
 import { notifyNewLead } from "@/lib/notify";
+import { SESSION_COOKIE, verifySessionToken } from "@/lib/auth";
 
 export const runtime = "nodejs";
 
@@ -34,8 +35,14 @@ export async function POST(req: Request) {
       });
     }
 
+    // Acessos da equipe (logada no painel ou que marcou "não contar meus
+    // acessos") são gravados como internos e ficam fora das Análises.
+    const notrack = jar.get("elevon_notrack")?.value === "1";
+    const token = jar.get(SESSION_COOKIE)?.value;
+    const internal = notrack || (token ? !!(await verifySessionToken(token)) : false);
+
     if (type === "pageview") {
-      await prisma.pageView.create({ data: { path, visitorId: vid } });
+      await prisma.pageView.create({ data: { path, visitorId: vid, internal } });
       return res;
     }
 
@@ -45,11 +52,11 @@ export async function POST(req: Request) {
     const source = s(body.source, 80);
 
     await prisma.event.create({
-      data: { type: type.slice(0, 30), path, button, nicho, plan, source, visitorId: vid },
+      data: { type: type.slice(0, 30), path, button, nicho, plan, source, visitorId: vid, internal },
     });
 
     // Clique no WhatsApp → cria lead automático (sem dados pessoais).
-    if (type === "whatsapp") {
+    if (type === "whatsapp" && !internal) {
       const since = new Date(Date.now() - 30 * 60 * 1000);
       const recent = await prisma.lead.findFirst({
         where: { visitorId: vid, createdAt: { gte: since } },
