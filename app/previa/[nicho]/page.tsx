@@ -6,6 +6,7 @@ import Reveal from "@/components/Reveal";
 import { WhatsAppIcon } from "@/components/ui";
 import { waLink, siteConfig } from "@/lib/site";
 import { previaDemos, PHOTOS, type PreviaDemo } from "@/lib/previaDemos";
+import { fontByLayout } from "@/components/previa/fonts";
 import type { Plan } from "@/components/previa/types";
 
 import Barbearia from "@/components/previa/layouts/Barbearia";
@@ -121,9 +122,10 @@ export default function PreviaNicho({
     (cidade ? `&cidade=${encodeURIComponent(cidade)}` : "");
 
   const layoutProps = { has, photo };
+  const nichoFont = fontByLayout[demo.layout] || "";
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className={`min-h-screen bg-white ${nichoFont}`}>
       <TierBar current={plan} basePath={`/previa/${params.nicho}`} nicho={demo.nicho} extra={extra} />
 
       {/* Aviso claro de demonstração */}

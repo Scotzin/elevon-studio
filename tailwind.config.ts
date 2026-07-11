@@ -41,6 +41,13 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        // Fontes de exibição das prévias (uma por nicho) — ver components/previa/fonts.ts
+        barbearia: ["var(--font-barbearia)", "Oswald", "sans-serif"],
+        restaurante: ["var(--font-restaurante)", "Playfair Display", "serif"],
+        loja: ["var(--font-loja)", "DM Serif Display", "serif"],
+        estetica: ["var(--font-estetica)", "Cormorant Garamond", "serif"],
+        imobiliaria: ["var(--font-imobiliaria)", "Sora", "sans-serif"],
+        servicos: ["var(--font-servicos)", "Poppins", "sans-serif"],
       },
       boxShadow: {
         soft: "0 1px 2px rgba(10, 37, 64, 0.04), 0 8px 24px -12px rgba(10, 37, 64, 0.18)",

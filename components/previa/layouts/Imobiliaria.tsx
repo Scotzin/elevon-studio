@@ -2,14 +2,15 @@ import Icon from "../../Icon";
 import Reveal from "../../Reveal";
 import DemoImage from "../DemoImage";
 import { WhatsAppIcon } from "../../ui";
-import { Stars, DepoGrid, FaqList, StatsBand } from "../parts";
+import { DepoGrid, FaqList } from "../parts";
 import { waLink } from "@/lib/site";
 import type { ImobiliariaDemo } from "@/lib/previaDemos";
 import type { HasFn, PhotoFn } from "../types";
 
 /* ==========================================================================
-   LAYOUT: IMOBILIÁRIA  (profissional, azul, confiável)
-   Núcleo: ficha de imóvel (quartos/banh/m²/vaga), filtros, corretores.
+   LAYOUT: IMOBILIÁRIA  — portal de busca
+   Hero com foto de fundo + card de busca flutuante e faixa de números, como
+   um portal de imóveis. Azul, estruturado, tipografia grotesca (Sora).
    ========================================================================== */
 export default function Imobiliaria({
   demo,
@@ -26,96 +27,102 @@ export default function Imobiliaria({
 
   return (
     <div className="bg-white font-sans text-slate-700">
-      {/* HEADER */}
-      <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <span className="flex items-center gap-2 text-2xl font-extrabold tracking-tight text-slate-900">
-            <Icon name="Building2" className="h-6 w-6" style={{ color: a }} />
-            {demo.business}
-          </span>
-          <nav className="hidden items-center gap-7 text-sm text-slate-600 md:flex">
-            <span className="cursor-default transition hover:text-slate-900">Imóveis</span>
-            {has("profissional") && <span className="cursor-default transition hover:text-slate-900">Corretores</span>}
-            <span className="cursor-default transition hover:text-slate-900">Contato</span>
-          </nav>
-          <a
-            href={waTalk}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold text-white transition hover:-translate-y-0.5"
-            style={{ backgroundColor: a }}
-          >
-            <WhatsAppIcon className="h-3.5 w-3.5" />
-            Falar
-          </a>
-        </div>
-      </header>
+      {/* HERO — portal com foto de fundo + busca ---------------------------- */}
+      <section className="relative overflow-hidden">
+        <DemoImage
+          src={photo(1, 1600, 1000)}
+          alt={`Demonstração de site para ${demo.nicho}`}
+          icon={demo.icon}
+          accent={a}
+          className="absolute inset-0 h-full w-full"
+        />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, rgba(6,24,43,0.5), rgba(6,24,43,0.8))` }} />
 
-      {/* HERO */}
-      <section
-        className="relative overflow-hidden"
-        style={{ background: `radial-gradient(60% 80% at 12% 8%, ${a}14, transparent 60%), linear-gradient(180deg, #ffffff, #f8fafc)` }}
-      >
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
+        {/* Header transparente */}
+        <header className="relative z-10">
+          <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
+            <span className="flex items-center gap-2 font-imobiliaria text-2xl font-extrabold tracking-tight text-white">
+              <Icon name="Building2" className="h-6 w-6" style={{ color: "#fff" }} />
+              {demo.business}
+            </span>
+            <nav className="hidden items-center gap-7 text-sm text-white/80 md:flex">
+              <span className="cursor-default transition hover:text-white">Imóveis</span>
+              {has("profissional") && <span className="cursor-default transition hover:text-white">Corretores</span>}
+              <span className="cursor-default transition hover:text-white">Contato</span>
+            </nav>
+            <a
+              href={waTalk}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-white/10 px-4 py-2 text-xs font-bold text-white ring-1 ring-white/25 backdrop-blur transition hover:bg-white/20"
+            >
+              <WhatsAppIcon className="h-3.5 w-3.5" />
+              Falar
+            </a>
+          </div>
+        </header>
+
+        <div className="relative z-10 mx-auto max-w-3xl px-5 pb-8 pt-14 text-center sm:pt-20">
           <Reveal>
-            <div>
-              <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold" style={{ backgroundColor: `${a}1a`, color: a }}>
-                <Icon name="MapPin" className="h-3.5 w-3.5" />
-                {demo.hero.eyebrow}
-              </span>
-              <h1 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
-                {demo.hero.title}
-              </h1>
-              <p className="mt-5 max-w-md text-lg text-slate-600">{demo.hero.subtitle}</p>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20">
+              <Icon name="MapPin" className="h-3.5 w-3.5" />
+              {demo.hero.eyebrow}
+            </span>
+            <h1 className="mx-auto mt-5 max-w-2xl font-imobiliaria text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
+              {demo.hero.title}
+            </h1>
+            <p className="mx-auto mt-4 max-w-lg text-lg text-white/75">{demo.hero.subtitle}</p>
+          </Reveal>
 
-              {/* Barra de busca (mockup) */}
-              <div className="mt-7 rounded-2xl border border-slate-200 bg-white p-3 shadow-lg">
-                <div className="flex flex-wrap gap-1.5">
-                  {demo.filters.map((f, i) => (
-                    <span
-                      key={f}
-                      className="rounded-full px-3 py-1 text-xs font-semibold"
-                      style={i === 0 ? { backgroundColor: a, color: "#fff" } : { backgroundColor: "#f1f5f9", color: "#475569" }}
-                    >
-                      {f}
-                    </span>
-                  ))}
-                </div>
-                <a
-                  href={waTalk}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-2.5 flex items-center justify-between gap-3 rounded-xl border border-slate-200 px-4 py-2.5 text-sm text-slate-400 transition hover:border-slate-300"
-                >
-                  Em qual bairro você procura?
-                  <span className="grid h-8 w-8 place-items-center rounded-lg text-white" style={{ backgroundColor: a }}>
-                    <Icon name="Search" className="h-4 w-4" />
-                  </span>
-                </a>
-              </div>
-            </div>
-          </Reveal>
+          {/* Card de busca */}
           <Reveal delay={120}>
-            <div className="group relative">
-              <DemoImage
-                src={photo(1, 900, 760)}
-                alt={`Demonstração de site para ${demo.nicho}`}
-                icon={demo.icon}
-                accent={a}
-                label="imagem ilustrativa"
-                className="aspect-[6/5] w-full rounded-[2rem] shadow-2xl"
-              />
+            <div className="mx-auto mt-8 max-w-2xl rounded-2xl bg-white p-3 text-left shadow-2xl">
+              <div className="flex flex-wrap gap-1.5">
+                {demo.filters.map((f, i) => (
+                  <span
+                    key={f}
+                    className="rounded-full px-3.5 py-1.5 text-xs font-semibold"
+                    style={i === 0 ? { backgroundColor: a, color: "#fff" } : { backgroundColor: "#f1f5f9", color: "#475569" }}
+                  >
+                    {f}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={waTalk}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2.5 flex items-center justify-between gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-400 transition hover:border-slate-300"
+              >
+                Em qual bairro você procura?
+                <span className="inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold text-white" style={{ backgroundColor: a }}>
+                  <Icon name="Search" className="h-4 w-4" />
+                  Buscar
+                </span>
+              </a>
             </div>
           </Reveal>
+        </div>
+
+        {/* Faixa de números integrada ao hero */}
+        <div className="relative z-10 border-t border-white/10 bg-white/5 backdrop-blur">
+          <div className="mx-auto grid max-w-4xl grid-cols-3 divide-x divide-white/10 px-5 py-5 text-center text-white">
+            {demo.stats.map((s) => (
+              <div key={s.label}>
+                <p className="font-imobiliaria text-2xl font-extrabold sm:text-3xl">{s.value}</p>
+                <p className="mt-0.5 text-xs text-white/60">{s.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* DIFERENCIAIS (Básico+) */}
-      <section className="border-y border-slate-100 bg-slate-50">
+      <section className="border-b border-slate-100 bg-slate-50">
         <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-5 py-6 sm:grid-cols-3">
           {demo.diferenciais.map((d) => (
             <div key={d.title} className="flex items-center gap-3 text-sm">
-              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg" style={{ backgroundColor: `${a}1a`, color: a }}>
+              <span className="grid h-11 w-11 shrink-0 place-items-center rounded-lg" style={{ backgroundColor: `${a}1a`, color: a }}>
                 <Icon name={d.icon} className="h-5 w-5" />
               </span>
               <span>
@@ -131,7 +138,7 @@ export default function Imobiliaria({
       <section id="imoveis" className="mx-auto max-w-6xl px-5 py-16">
         <Reveal>
           <div className="text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">Imóveis em destaque</h2>
+            <h2 className="font-imobiliaria text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Imóveis em destaque</h2>
             <p className="mt-2 text-slate-600">Veja as opções e agende uma visita pelo WhatsApp.</p>
           </div>
         </Reveal>
@@ -153,7 +160,7 @@ export default function Imobiliaria({
           {demo.properties.map((p, i) => {
             const specs = [
               p.beds > 0 ? { icon: "BedDouble", label: `${p.beds} ${p.beds > 1 ? "quartos" : "quarto"}` } : null,
-              p.baths > 0 ? { icon: "Bath", label: `${p.baths} ${p.baths > 1 ? "banh." : "banh."}` } : null,
+              p.baths > 0 ? { icon: "Bath", label: `${p.baths} banh.` } : null,
               { icon: "Maximize", label: p.area },
               p.parking > 0 ? { icon: "Car", label: `${p.parking} ${p.parking > 1 ? "vagas" : "vaga"}` } : null,
             ].filter(Boolean) as { icon: string; label: string }[];
@@ -168,7 +175,7 @@ export default function Imobiliaria({
                     </span>
                   </div>
                   <div className="flex flex-1 flex-col p-5">
-                    <p className="text-lg font-extrabold" style={{ color: a }}>{p.price}</p>
+                    <p className="font-imobiliaria text-xl font-extrabold" style={{ color: a }}>{p.price}</p>
                     <p className="mt-0.5 font-semibold text-slate-900">{p.title}</p>
                     <p className="flex items-center gap-1 text-sm text-slate-500">
                       <Icon name="MapPin" className="h-3.5 w-3.5" />
@@ -204,12 +211,8 @@ export default function Imobiliaria({
       <section className="border-y border-slate-100 bg-slate-50 py-16">
         <Reveal>
           <div className="mx-auto max-w-3xl px-5 text-center">
-            <h2 className="text-3xl font-extrabold tracking-tight text-slate-900">Sobre a {demo.business}</h2>
+            <h2 className="font-imobiliaria text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Sobre a {demo.business}</h2>
             <p className="mt-4 text-lg leading-relaxed text-slate-600">{demo.sobre}</p>
-            <div className="mt-6 flex items-center justify-center gap-3 text-sm text-slate-500">
-              <Stars />
-              <span>+1.000 famílias atendidas</span>
-            </div>
           </div>
         </Reveal>
       </section>
@@ -219,13 +222,13 @@ export default function Imobiliaria({
         <section className="mx-auto max-w-6xl px-5 py-16">
           <Reveal>
             <div className="grid items-center gap-8 overflow-hidden rounded-3xl text-white md:grid-cols-[1.1fr_1fr]" style={{ background: `linear-gradient(135deg, ${a}, #0a2540)` }}>
-              <div className="p-8 sm:p-10">
+              <div className="p-8 sm:p-12">
                 <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">Oportunidade da semana</span>
-                <h2 className="mt-3 text-3xl font-extrabold">{demo.properties[1]?.title || "Imóvel em destaque"}</h2>
+                <h2 className="mt-3 font-imobiliaria text-3xl font-extrabold">{demo.properties[1]?.title || "Imóvel em destaque"}</h2>
                 <p className="mt-3 max-w-md text-white/80">
                   Condições especiais de entrada e financiamento direto. Agende sua visita antes que saia.
                 </p>
-                <p className="mt-5 text-3xl font-extrabold">{demo.properties[1]?.price}</p>
+                <p className="mt-5 font-imobiliaria text-4xl font-extrabold">{demo.properties[1]?.price}</p>
                 <a
                   href={wa(`Olá! Quero saber da oportunidade "${demo.properties[1]?.title}" da ${demo.business}.`)}
                   target="_blank"
@@ -237,7 +240,7 @@ export default function Imobiliaria({
                   Agendar visita
                 </a>
               </div>
-              <div className="group relative h-full min-h-[220px]">
+              <div className="group relative h-full min-h-[240px]">
                 <DemoImage src={photo(2, 760, 620)} alt="Oportunidade" icon={demo.icon} accent={a} className="absolute inset-0 h-full w-full" />
               </div>
             </div>
@@ -250,7 +253,7 @@ export default function Imobiliaria({
         <section className="border-y border-slate-100 bg-slate-50 py-16">
           <div className="mx-auto max-w-5xl px-5">
             <Reveal>
-              <h2 className="text-center text-3xl font-extrabold tracking-tight text-slate-900">Fale com um corretor</h2>
+              <h2 className="text-center font-imobiliaria text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Fale com um corretor</h2>
             </Reveal>
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
               {demo.corretores.map((c, i) => (
@@ -283,7 +286,7 @@ export default function Imobiliaria({
       {has("profissional") && (
         <section className="mx-auto max-w-6xl px-5 py-16">
           <Reveal>
-            <h2 className="text-center text-3xl font-extrabold tracking-tight text-slate-900">Quem comprou, recomenda</h2>
+            <h2 className="text-center font-imobiliaria text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Quem comprou, recomenda</h2>
           </Reveal>
           <div className="mt-10">
             <DepoGrid items={demo.depoimentos} accent={a} />
@@ -291,34 +294,33 @@ export default function Imobiliaria({
         </section>
       )}
 
-      {/* NÚMEROS (Premium) */}
-      {has("premium") && <StatsBand items={demo.stats} accent={a} />}
-
       {/* FAQ (Premium) */}
       {has("premium") && (
-        <section className="mx-auto max-w-3xl px-5 py-16">
-          <Reveal>
-            <h2 className="text-center text-3xl font-extrabold tracking-tight text-slate-900">Perguntas frequentes</h2>
-          </Reveal>
-          <div className="mt-8">
-            <FaqList items={demo.faq} />
+        <section className="border-t border-slate-100 bg-slate-50 py-16">
+          <div className="mx-auto max-w-3xl px-5">
+            <Reveal>
+              <h2 className="text-center font-imobiliaria text-3xl font-extrabold tracking-tight text-slate-900 sm:text-4xl">Perguntas frequentes</h2>
+            </Reveal>
+            <div className="mt-8">
+              <FaqList items={demo.faq} />
+            </div>
           </div>
         </section>
       )}
 
       {/* CONTATO (Básico+) */}
-      <section className="border-t border-slate-100 bg-slate-50 py-16">
+      <section className="border-t border-slate-100 bg-white py-16">
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 md:grid-cols-2">
           <Reveal>
             <div>
-              <h2 className="text-2xl font-extrabold tracking-tight text-slate-900">Onde nos encontrar</h2>
-              <ul className="mt-5 space-y-3 text-sm text-slate-700">
+              <h2 className="font-imobiliaria text-2xl font-extrabold tracking-tight text-slate-900">Onde nos encontrar</h2>
+              <ul className="mt-6 space-y-4 text-sm text-slate-700">
                 <li className="flex items-center gap-2.5">
-                  <Icon name="MapPin" className="h-4 w-4" style={{ color: a }} />
+                  <Icon name="MapPin" className="h-5 w-5" style={{ color: a }} />
                   {demo.contact.address}
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Icon name="Clock" className="h-4 w-4" style={{ color: a }} />
+                  <Icon name="Clock" className="h-5 w-5" style={{ color: a }} />
                   {demo.contact.hours}
                 </li>
               </ul>
@@ -326,7 +328,7 @@ export default function Imobiliaria({
                 href={waTalk}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5"
+                className="mt-8 inline-flex items-center gap-2 rounded-lg px-7 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5"
                 style={{ backgroundColor: a }}
               >
                 <WhatsAppIcon className="h-4 w-4" />
@@ -337,7 +339,7 @@ export default function Imobiliaria({
           <Reveal delay={120}>
             <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl" style={{ background: `linear-gradient(150deg, ${a}1f, #f1f5f9)` }}>
               <span className="absolute inset-0 grid place-items-center" style={{ color: a }}>
-                <Icon name="MapPin" className="h-10 w-10" />
+                <Icon name="MapPin" className="h-10 w-10" strokeWidth={1.5} />
               </span>
             </div>
           </Reveal>

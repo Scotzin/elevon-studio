@@ -8,8 +8,9 @@ import type { RestauranteDemo } from "@/lib/previaDemos";
 import type { HasFn, PhotoFn } from "../types";
 
 /* ==========================================================================
-   LAYOUT: RESTAURANTE  (quente, creme, apetitoso)
-   Núcleo: cardápio por seções, faixa de delivery, combo destaque.
+   LAYOUT: RESTAURANTE  — centrado, quente e apetitoso
+   Hero central com foto larga e selos de delivery flutuando; cardápio
+   impresso (serifado). Cor terracota, tipografia Playfair Display.
    ========================================================================== */
 export default function Restaurante({
   demo,
@@ -27,15 +28,15 @@ export default function Restaurante({
   const deliveryInfo = [
     { icon: "Clock", label: "Entrega em", value: demo.delivery.time },
     { icon: "Truck", label: "Frete", value: demo.delivery.fee },
-    { icon: "ShoppingBag", label: "Mínimo", value: demo.delivery.min },
+    { icon: "ShoppingBag", label: "Pedido mínimo", value: demo.delivery.min },
   ];
 
   return (
-    <div className="bg-[#fffaf5] font-sans text-stone-800">
+    <div className="bg-[#fdf6ec] font-sans text-stone-800">
       {/* HEADER */}
-      <header className="border-b border-stone-200 bg-[#fffaf5]/90 backdrop-blur">
+      <header className="border-b border-stone-200/70 bg-[#fdf6ec]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <span className="flex items-center gap-2 font-serif text-2xl font-bold text-stone-900">
+          <span className="flex items-center gap-2 font-restaurante text-2xl font-bold text-stone-900">
             <Icon name="UtensilsCrossed" className="h-5 w-5" style={{ color: a }} />
             {demo.business}
           </span>
@@ -57,118 +58,127 @@ export default function Restaurante({
         </div>
       </header>
 
-      {/* HERO */}
+      {/* HERO — central com foto larga + selos de delivery flutuando -------- */}
       <section
         className="relative overflow-hidden"
-        style={{ background: `radial-gradient(70% 80% at 15% 10%, ${a}1a, transparent 60%), #fffaf5` }}
+        style={{ background: `radial-gradient(90% 60% at 50% 0%, ${a}14, transparent 70%), #fdf6ec` }}
       >
-        <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-2 md:py-24">
+        <div className="mx-auto max-w-4xl px-5 pt-16 text-center sm:pt-20">
           <Reveal>
-            <div>
-              <span
-                className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold"
-                style={{ backgroundColor: `${a}1a`, color: a }}
+            <span
+              className="inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
+              style={{ borderColor: `${a}44`, color: a }}
+            >
+              <Icon name="Flame" className="h-3.5 w-3.5" />
+              {demo.hero.eyebrow}
+            </span>
+            <h1 className="mx-auto mt-6 max-w-3xl font-restaurante text-5xl font-bold leading-[1.02] text-stone-900 sm:text-6xl lg:text-7xl">
+              {demo.hero.title}
+            </h1>
+            <p className="mx-auto mt-5 max-w-xl text-lg text-stone-600">{demo.hero.subtitle}</p>
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href={waOrder}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5"
+                style={{ backgroundColor: a }}
               >
-                <Icon name="Flame" className="h-3.5 w-3.5" />
-                {demo.hero.eyebrow}
+                <WhatsAppIcon className="h-4 w-4" />
+                {demo.ctaHero}
+              </a>
+              <a
+                href="#cardapio"
+                className="inline-flex items-center rounded-full border border-stone-300 bg-white/70 px-7 py-3.5 text-sm font-semibold text-stone-700 transition hover:bg-white"
+              >
+                Ver cardápio
+              </a>
+            </div>
+            <div className="mt-6 flex items-center justify-center gap-3 text-sm text-stone-500">
+              <Stars />
+              <span>
+                <strong className="text-stone-700">4.8</strong> · +10 mil pedidos entregues
               </span>
-              <h1 className="mt-5 font-serif text-4xl font-bold leading-[1.05] text-stone-900 sm:text-5xl lg:text-6xl">
-                {demo.hero.title}
-              </h1>
-              <p className="mt-5 max-w-md text-lg text-stone-600">{demo.hero.subtitle}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href={waOrder}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3.5 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5"
-                  style={{ backgroundColor: a }}
-                >
-                  <WhatsAppIcon className="h-4 w-4" />
-                  {demo.ctaHero}
-                </a>
-                <a
-                  href="#cardapio"
-                  className="inline-flex items-center rounded-full border border-stone-300 px-6 py-3.5 text-sm font-semibold text-stone-700 transition hover:bg-white"
-                >
-                  Ver cardápio
-                </a>
-              </div>
-              <div className="mt-8 flex items-center gap-3 text-sm text-stone-500">
-                <Stars />
-                <span>
-                  <strong className="text-stone-700">4.8</strong> · +10 mil pedidos entregues
-                </span>
-              </div>
             </div>
           </Reveal>
+        </div>
+
+        {/* Foto larga com selos de delivery sobrepostos */}
+        <div className="mx-auto mt-12 max-w-5xl px-5 pb-24">
           <Reveal delay={120}>
             <div className="group relative">
               <DemoImage
-                src={photo(1, 900, 760)}
+                src={photo(1, 1400, 720)}
                 alt={`Demonstração de site para ${demo.nicho}`}
                 icon={demo.icon}
                 accent={a}
                 label="imagem ilustrativa"
-                className="aspect-[6/5] w-full rounded-[2rem] shadow-2xl"
+                className="aspect-[16/8] w-full rounded-[2rem] shadow-2xl ring-1 ring-black/5"
               />
+              {/* Selos de delivery (Básico+) */}
+              <div className="absolute inset-x-4 -bottom-10 grid grid-cols-1 gap-3 sm:inset-x-10 sm:grid-cols-3">
+                {deliveryInfo.map((d, i) => (
+                  <div
+                    key={d.label}
+                    className="flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-black/5"
+                    style={{ transform: i === 1 ? "translateY(-6px)" : undefined }}
+                  >
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full" style={{ backgroundColor: `${a}1a`, color: a }}>
+                      <Icon name={d.icon} className="h-5 w-5" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block text-[11px] uppercase tracking-wide text-stone-400">{d.label}</span>
+                      <strong className="block text-sm leading-tight text-stone-900">{d.value}</strong>
+                    </span>
+                  </div>
+                ))}
+              </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* FAIXA DE DELIVERY (Básico+) */}
-      <section className="border-y border-stone-200 bg-white">
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-4 px-5 py-5 sm:grid-cols-3">
-          {deliveryInfo.map((d) => (
-            <div key={d.label} className="flex items-center justify-center gap-3 text-sm">
-              <span className="grid h-10 w-10 place-items-center rounded-full" style={{ backgroundColor: `${a}1a`, color: a }}>
-                <Icon name={d.icon} className="h-5 w-5" />
-              </span>
-              <span>
-                <span className="text-stone-500">{d.label} </span>
-                <strong className="text-stone-900">{d.value}</strong>
-              </span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* DIFERENCIAIS (Básico+) */}
-      <section className="mx-auto max-w-6xl px-5 py-14">
-        <div className="grid gap-5 sm:grid-cols-3">
+      {/* DIFERENCIAIS (Básico+) — linha quente com ícones ------------------- */}
+      <section className="mx-auto max-w-6xl px-5 py-16">
+        <div className="grid gap-6 sm:grid-cols-3">
           {demo.diferenciais.map((d, i) => (
             <Reveal key={d.title} delay={i * 90}>
-              <div className="h-full rounded-2xl border border-stone-200 bg-white p-6 shadow-sm">
-                <span className="grid h-12 w-12 place-items-center rounded-xl" style={{ backgroundColor: `${a}1a`, color: a }}>
+              <div className="flex items-start gap-4">
+                <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl" style={{ backgroundColor: `${a}14`, color: a }}>
                   <Icon name={d.icon} className="h-6 w-6" />
                 </span>
-                <h3 className="mt-4 font-serif text-lg font-bold text-stone-900">{d.title}</h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-stone-600">{d.text}</p>
+                <div>
+                  <h3 className="font-restaurante text-lg font-bold text-stone-900">{d.title}</h3>
+                  <p className="mt-1 text-sm leading-relaxed text-stone-600">{d.text}</p>
+                </div>
               </div>
             </Reveal>
           ))}
         </div>
       </section>
 
-      {/* CARDÁPIO (Básico+) */}
-      <section id="cardapio" className="border-y border-stone-200 bg-white py-16">
-        <div className="mx-auto max-w-6xl px-5">
+      {/* CARDÁPIO (Básico+) — carta impressa -------------------------------- */}
+      <section id="cardapio" className="relative border-y border-stone-200 py-20" style={{ background: `radial-gradient(80% 60% at 50% 0%, ${a}0d, transparent 70%), #fffdf9` }}>
+        <div className="mx-auto max-w-5xl px-5">
           <Reveal>
             <div className="text-center">
-              <h2 className="font-serif text-4xl font-bold text-stone-900">Nosso cardápio</h2>
-              <p className="mt-2 text-stone-600">Escolha seu prato e peça pelo WhatsApp — chega quentinho.</p>
+              <span className="text-xs font-semibold uppercase tracking-[0.3em]" style={{ color: a }}>
+                À la carte
+              </span>
+              <h2 className="mt-3 font-restaurante text-4xl font-bold text-stone-900 sm:text-5xl">Nosso cardápio</h2>
+              <p className="mt-3 text-stone-600">Escolha seu prato e peça pelo WhatsApp — chega quentinho.</p>
             </div>
           </Reveal>
-          <div className="mt-10 grid gap-x-12 gap-y-10 md:grid-cols-2">
+          <div className="mt-12 grid gap-x-14 gap-y-12 md:grid-cols-2">
             {demo.menu.map((cat, ci) => (
               <Reveal key={cat.category} delay={(ci % 2) * 80}>
                 <div>
-                  <h3 className="flex items-center gap-2 border-b-2 pb-2 font-serif text-xl font-bold text-stone-900" style={{ borderColor: `${a}55` }}>
-                    <Icon name={cat.icon} className="h-5 w-5" style={{ color: a }} />
+                  <h3 className="flex items-center gap-2.5 font-restaurante text-2xl font-bold italic text-stone-900">
+                    <Icon name={cat.icon} className="h-5 w-5 not-italic" style={{ color: a }} />
                     {cat.category}
                   </h3>
-                  <ul className="mt-4 space-y-4">
+                  <span className="mt-2 block h-px w-full" style={{ background: `linear-gradient(90deg, ${a}66, transparent)` }} />
+                  <ul className="mt-5 space-y-5">
                     {cat.items.map((it) => (
                       <li key={it.name}>
                         <a
@@ -186,11 +196,11 @@ export default function Restaurante({
                             )}
                           </span>
                           <span className="mx-1 flex-1 border-b border-dotted border-stone-300" />
-                          <span className="shrink-0 font-bold" style={{ color: a }}>
+                          <span className="shrink-0 font-restaurante text-lg font-bold" style={{ color: a }}>
                             {it.price}
                           </span>
                         </a>
-                        <p className="mt-0.5 text-sm text-stone-500">{it.desc}</p>
+                        <p className="mt-1 text-sm text-stone-500">{it.desc}</p>
                       </li>
                     ))}
                   </ul>
@@ -202,9 +212,10 @@ export default function Restaurante({
       </section>
 
       {/* SOBRE (Básico+) */}
-      <section className="mx-auto max-w-3xl px-5 py-16 text-center">
+      <section className="mx-auto max-w-3xl px-5 py-20 text-center">
         <Reveal>
-          <h2 className="font-serif text-3xl font-bold text-stone-900">Sobre a {demo.business}</h2>
+          <Icon name="UtensilsCrossed" className="mx-auto h-8 w-8" style={{ color: a }} strokeWidth={1.5} />
+          <h2 className="mt-4 font-restaurante text-3xl font-bold text-stone-900 sm:text-4xl">Sobre a {demo.business}</h2>
           <p className="mt-4 text-lg leading-relaxed text-stone-600">{demo.sobre}</p>
         </Reveal>
       </section>
@@ -213,24 +224,27 @@ export default function Restaurante({
       {has("premium") && (
         <section className="mx-auto max-w-6xl px-5 pb-4">
           <Reveal>
-            <div className="grid items-center gap-8 overflow-hidden rounded-3xl text-white md:grid-cols-2" style={{ backgroundColor: a }}>
-              <div className="p-8 sm:p-10">
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">Promoção do dia</span>
-                <h2 className="mt-3 font-serif text-3xl font-bold">{demo.destaque.name}</h2>
+            <div className="grid items-center gap-8 overflow-hidden rounded-[2rem] text-white shadow-xl md:grid-cols-2" style={{ backgroundColor: a }}>
+              <div className="p-8 sm:p-12">
+                <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em]">
+                  <Icon name="Flame" className="h-3.5 w-3.5" />
+                  Promoção do dia
+                </span>
+                <h2 className="mt-4 font-restaurante text-4xl font-bold">{demo.destaque.name}</h2>
                 <p className="mt-3 max-w-md text-white/85">{demo.destaque.desc}</p>
-                <p className="mt-5 font-serif text-4xl font-bold">{demo.destaque.price}</p>
+                <p className="mt-5 font-restaurante text-5xl font-bold">{demo.destaque.price}</p>
                 <a
                   href={wa(`Olá! Quero o ${demo.destaque.name} (${demo.destaque.price}) da ${demo.business}.`)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3.5 text-sm font-bold transition hover:-translate-y-0.5"
+                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold transition hover:-translate-y-0.5"
                   style={{ color: a }}
                 >
                   <WhatsAppIcon className="h-4 w-4" />
                   Pedir combo
                 </a>
               </div>
-              <div className="group relative h-full min-h-[220px]">
+              <div className="group relative h-full min-h-[240px]">
                 <DemoImage src={photo(2, 760, 620)} alt={demo.destaque.name} icon={demo.icon} accent={a} className="absolute inset-0 h-full w-full" />
               </div>
             </div>
@@ -240,10 +254,12 @@ export default function Restaurante({
 
       {/* GALERIA DE PRATOS (Profissional+) */}
       {has("profissional") && (
-        <section className="mx-auto max-w-6xl px-5 py-16">
+        <section className="mx-auto max-w-6xl px-5 py-20">
           <Reveal>
-            <h2 className="text-center font-serif text-3xl font-bold text-stone-900">Direto da cozinha</h2>
-            <p className="mt-2 text-center text-stone-600">No seu site, este espaço fica com as fotos dos seus pratos.</p>
+            <div className="text-center">
+              <h2 className="font-restaurante text-3xl font-bold text-stone-900 sm:text-4xl">Direto da cozinha</h2>
+              <p className="mt-3 text-stone-600">No seu site, este espaço fica com as fotos dos seus pratos.</p>
+            </div>
           </Reveal>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {Array.from({ length: 4 }).map((_, i) => (
@@ -254,7 +270,7 @@ export default function Restaurante({
                   icon={demo.icon}
                   accent={a}
                   label={i === 0 ? "sua foto aqui" : undefined}
-                  className="group aspect-square rounded-xl"
+                  className="group aspect-square rounded-2xl"
                 />
               </Reveal>
             ))}
@@ -264,10 +280,10 @@ export default function Restaurante({
 
       {/* DEPOIMENTOS (Profissional+) */}
       {has("profissional") && (
-        <section className="border-y border-stone-200 bg-white py-16">
+        <section className="border-y border-stone-200 bg-white py-20">
           <div className="mx-auto max-w-6xl px-5">
             <Reveal>
-              <h2 className="text-center font-serif text-3xl font-bold text-stone-900">Quem pede, volta</h2>
+              <h2 className="text-center font-restaurante text-3xl font-bold text-stone-900 sm:text-4xl">Quem pede, volta</h2>
             </Reveal>
             <div className="mt-10">
               <DepoGrid items={demo.depoimentos} accent={a} />
@@ -281,9 +297,9 @@ export default function Restaurante({
 
       {/* FAQ (Premium) */}
       {has("premium") && (
-        <section className="mx-auto max-w-3xl px-5 py-16">
+        <section className="mx-auto max-w-3xl px-5 py-20">
           <Reveal>
-            <h2 className="text-center font-serif text-3xl font-bold text-stone-900">Perguntas frequentes</h2>
+            <h2 className="text-center font-restaurante text-3xl font-bold text-stone-900 sm:text-4xl">Perguntas frequentes</h2>
           </Reveal>
           <div className="mt-8">
             <FaqList items={demo.faq} />
@@ -292,18 +308,18 @@ export default function Restaurante({
       )}
 
       {/* CONTATO (Básico+) */}
-      <section className="border-t border-stone-200 bg-white py-16">
+      <section className="border-t border-stone-200 bg-white py-20">
         <div className="mx-auto grid max-w-6xl items-center gap-8 px-5 md:grid-cols-2">
           <Reveal>
             <div>
-              <h2 className="font-serif text-2xl font-bold text-stone-900">Onde nos encontrar</h2>
-              <ul className="mt-5 space-y-3 text-sm text-stone-700">
+              <h2 className="font-restaurante text-3xl font-bold text-stone-900">Onde nos encontrar</h2>
+              <ul className="mt-6 space-y-4 text-sm text-stone-700">
                 <li className="flex items-center gap-2.5">
-                  <Icon name="MapPin" className="h-4 w-4" style={{ color: a }} />
+                  <Icon name="MapPin" className="h-5 w-5" style={{ color: a }} />
                   {demo.contact.address}
                 </li>
                 <li className="flex items-center gap-2.5">
-                  <Icon name="Clock" className="h-4 w-4" style={{ color: a }} />
+                  <Icon name="Clock" className="h-5 w-5" style={{ color: a }} />
                   {demo.contact.hours}
                 </li>
               </ul>
@@ -311,7 +327,7 @@ export default function Restaurante({
                 href={waOrder}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-bold text-white transition hover:-translate-y-0.5"
+                className="mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5"
                 style={{ backgroundColor: a }}
               >
                 <WhatsAppIcon className="h-4 w-4" />
@@ -320,9 +336,9 @@ export default function Restaurante({
             </div>
           </Reveal>
           <Reveal delay={120}>
-            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl" style={{ background: `linear-gradient(150deg, ${a}1f, #f5f5f4)` }}>
+            <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[2rem]" style={{ background: `linear-gradient(150deg, ${a}1f, #f5f5f4)` }}>
               <span className="absolute inset-0 grid place-items-center" style={{ color: a }}>
-                <Icon name="MapPin" className="h-10 w-10" />
+                <Icon name="MapPin" className="h-10 w-10" strokeWidth={1.5} />
               </span>
             </div>
           </Reveal>
