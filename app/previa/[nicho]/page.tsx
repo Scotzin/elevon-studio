@@ -7,6 +7,7 @@ import { WhatsAppIcon } from "@/components/ui";
 import { waLink, siteConfig } from "@/lib/site";
 import { previaDemos, PHOTOS, type PreviaDemo } from "@/lib/previaDemos";
 import { fontByLayout } from "@/components/previa/fonts";
+import PreviaCustomizer from "@/components/previa/PreviaCustomizer";
 import type { Plan } from "@/components/previa/types";
 
 import Barbearia from "@/components/previa/layouts/Barbearia";
@@ -28,16 +29,34 @@ import Servicos from "@/components/previa/layouts/Servicos";
 
 const PLANS = { basico: 1, profissional: 2, premium: 3 } as const;
 
-const clean = (v?: string) => (v || "").trim().replace(/\s+/g, " ").slice(0, 60);
+const clean = (v?: string, max = 60) => (v || "").trim().replace(/\s+/g, " ").slice(0, max);
 
-/* Personaliza a demo com o nome/cidade do prospect (vindos da URL ?nome=&cidade=),
-   para a prévia mostrar o negócio DELE. Mantém o tipo discriminado (layout). */
-function applyPersona(demo: PreviaDemo, nome: string, cidade: string): PreviaDemo {
-  if (!nome && !cidade) return demo;
+/* Só aceita cor hex válida (#rgb / #rrggbb / #rrggbbaa) — evita injeção de CSS. */
+function cleanCor(v?: string): string {
+  const s = (v || "").trim();
+  return /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/.test(s) ? s : "";
+}
+
+/* Só aceita URL http(s) — evita javascript:/data: no src da logo. */
+function cleanUrl(v?: string): string {
+  const s = (v || "").trim().slice(0, 500);
+  return /^https?:\/\/[^\s]+$/i.test(s) ? s : "";
+}
+
+type Persona = { nome: string; cidade: string; cor: string; logo: string; slogan: string };
+
+/* Personaliza a demo com os dados do prospect (vindos da URL, gerados pelo
+   personalizador), para a prévia mostrar o negócio DELE. Mantém o tipo
+   discriminado (layout). */
+function applyPersona(demo: PreviaDemo, p: Persona): PreviaDemo {
+  if (!p.nome && !p.cidade && !p.cor && !p.logo && !p.slogan) return demo;
   return {
     ...demo,
-    business: nome || demo.business,
-    contact: { ...demo.contact, address: cidade || demo.contact.address },
+    business: p.nome || demo.business,
+    accent: p.cor || demo.accent,
+    logoUrl: p.logo || demo.logoUrl,
+    hero: { ...demo.hero, subtitle: p.slogan || demo.hero.subtitle },
+    contact: { ...demo.contact, address: p.cidade || demo.contact.address },
   } as PreviaDemo;
 }
 
@@ -86,14 +105,21 @@ export default function PreviaNicho({
   searchParams,
 }: {
   params: { nicho: string };
-  searchParams: { plano?: string; nome?: string; cidade?: string };
+  searchParams: { plano?: string; nome?: string; cidade?: string; cor?: string; logo?: string; slogan?: string };
 }) {
   const demoBase = previaDemos[params.nicho];
   if (!demoBase) notFound();
 
-  const nome = clean(searchParams.nome);
-  const cidade = clean(searchParams.cidade);
-  const demo = applyPersona(demoBase, nome, cidade);
+  const persona: Persona = {
+    nome: clean(searchParams.nome),
+    cidade: clean(searchParams.cidade),
+    cor: cleanCor(searchParams.cor),
+    logo: cleanUrl(searchParams.logo),
+    slogan: clean(searchParams.slogan, 160),
+  };
+  const nome = persona.nome;
+  const cidade = persona.cidade;
+  const demo = applyPersona(demoBase, persona);
 
   const raw = (searchParams.plano || "profissional").toLowerCase();
   const plan: Plan = (["basico", "profissional", "premium"].includes(raw)
@@ -116,10 +142,13 @@ export default function PreviaNicho({
   );
   const waBusiness = waLink(`Olá! Vi o site da ${demo.business} e quero falar.`);
 
-  // Preserva ?nome/?cidade ao alternar o plano na barra da Elevon.
+  // Preserva a personalização ao alternar o plano na barra da Elevon.
   const extra =
-    (nome ? `&nome=${encodeURIComponent(nome)}` : "") +
-    (cidade ? `&cidade=${encodeURIComponent(cidade)}` : "");
+    (persona.nome ? `&nome=${encodeURIComponent(persona.nome)}` : "") +
+    (persona.cidade ? `&cidade=${encodeURIComponent(persona.cidade)}` : "") +
+    (persona.cor ? `&cor=${encodeURIComponent(persona.cor)}` : "") +
+    (persona.logo ? `&logo=${encodeURIComponent(persona.logo)}` : "") +
+    (persona.slogan ? `&slogan=${encodeURIComponent(persona.slogan)}` : "");
 
   const layoutProps = { has, photo };
   const nichoFont = fontByLayout[demo.layout] || "";
@@ -198,6 +227,14 @@ export default function PreviaNicho({
         <WhatsAppIcon className="h-6 w-6" />
         <span className="hidden text-sm sm:inline">Fale conosco</span>
       </a>
+
+      {/* Personalizador da Elevon (gera a prévia com os dados do prospect) */}
+      <PreviaCustomizer
+        nicho={params.nicho}
+        plano={plan}
+        defaultAccent={demoBase.accent}
+        current={persona}
+      />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import Icon from "../../Icon";
 import Reveal from "../../Reveal";
 import { WhatsAppIcon } from "../../ui";
-import { Stars, DepoGrid, FaqList, StatsBand } from "../parts";
+import { BrandLogo, Stars, DepoGrid, FaqList, StatsBand } from "../parts";
 import { waLink } from "@/lib/site";
 import type { ServicosDemo } from "@/lib/previaDemos";
 import type { HasFn, PhotoFn } from "../types";
@@ -29,12 +29,14 @@ export default function Servicos({
       {/* HEADER */}
       <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <span className="flex items-center gap-2 font-servicos text-xl font-extrabold tracking-tight text-slate-900">
-            <span className="grid h-8 w-8 place-items-center rounded-lg text-white" style={{ backgroundColor: a }}>
-              <Icon name="Wrench" className="h-4 w-4" />
+          <BrandLogo logoUrl={demo.logoUrl} business={demo.business}>
+            <span className="flex items-center gap-2 font-servicos text-xl font-extrabold tracking-tight text-slate-900">
+              <span className="grid h-8 w-8 place-items-center rounded-lg text-white" style={{ backgroundColor: a }}>
+                <Icon name="Wrench" className="h-4 w-4" />
+              </span>
+              {demo.business}
             </span>
-            {demo.business}
-          </span>
+          </BrandLogo>
           <nav className="hidden items-center gap-7 text-sm text-slate-600 md:flex">
             <span className="cursor-default transition hover:text-slate-900">Serviços</span>
             {has("profissional") && <span className="cursor-default transition hover:text-slate-900">Como funciona</span>}

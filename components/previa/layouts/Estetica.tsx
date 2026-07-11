@@ -3,7 +3,7 @@ import Reveal from "../../Reveal";
 import DemoImage from "../DemoImage";
 import AgendaWidget from "../AgendaWidget";
 import { WhatsAppIcon } from "../../ui";
-import { Stars, DepoGrid, FaqList, StatsBand } from "../parts";
+import { BrandLogo, Stars, DepoGrid, FaqList, StatsBand } from "../parts";
 import { waLink } from "@/lib/site";
 import type { EsteticaDemo } from "@/lib/previaDemos";
 import type { HasFn, PhotoFn } from "../types";
@@ -32,10 +32,12 @@ export default function Estetica({
       {/* HEADER */}
       <header className="border-b border-pink-100/70 bg-[#fffafc]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <span className="flex items-center gap-2 font-estetica text-3xl font-semibold tracking-tight text-zinc-900">
-            <Icon name="Flower2" className="h-5 w-5" style={{ color: a }} />
-            {demo.business}
-          </span>
+          <BrandLogo logoUrl={demo.logoUrl} business={demo.business}>
+            <span className="flex items-center gap-2 font-estetica text-3xl font-semibold tracking-tight text-zinc-900">
+              <Icon name="Flower2" className="h-5 w-5" style={{ color: a }} />
+              {demo.business}
+            </span>
+          </BrandLogo>
           <nav className="hidden items-center gap-7 text-sm text-zinc-500 md:flex">
             <span className="cursor-default transition hover:text-zinc-900">Tratamentos</span>
             {has("profissional") && <span className="cursor-default transition hover:text-zinc-900">Agendar</span>}

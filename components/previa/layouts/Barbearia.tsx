@@ -3,7 +3,7 @@ import Reveal from "../../Reveal";
 import DemoImage from "../DemoImage";
 import AgendaWidget from "../AgendaWidget";
 import { WhatsAppIcon } from "../../ui";
-import { DepoGrid, FaqList } from "../parts";
+import { BrandLogo, DepoGrid, FaqList } from "../parts";
 import { waLink } from "@/lib/site";
 import type { BarbeariaDemo } from "@/lib/previaDemos";
 import type { HasFn, PhotoFn } from "../types";
@@ -45,10 +45,12 @@ export default function Barbearia({
         {/* Header transparente */}
         <header className="relative z-10">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-6">
-            <span className="flex items-center gap-2.5 font-barbearia text-2xl font-bold uppercase tracking-[0.35em] text-white">
-              <Icon name="Scissors" className="h-5 w-5" style={{ color: a }} />
-              Navalha
-            </span>
+            <BrandLogo logoUrl={demo.logoUrl} business={demo.business}>
+              <span className="flex items-center gap-2.5 font-barbearia text-xl font-bold uppercase tracking-[0.2em] text-white">
+                <Icon name="Scissors" className="h-5 w-5" style={{ color: a }} />
+                {demo.business}
+              </span>
+            </BrandLogo>
             <nav className="hidden items-center gap-9 text-xs font-medium uppercase tracking-[0.2em] text-zinc-300 md:flex">
               <span className="cursor-default transition hover:text-white">Serviços</span>
               {has("profissional") && <span className="cursor-default transition hover:text-white">Barbeiros</span>}

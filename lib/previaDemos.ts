@@ -24,6 +24,7 @@ type BaseDemo = {
   nicho: string; // rótulo usado na mensagem do WhatsApp
   icon: string; // ícone do nicho (placeholder nas fotos)
   accent: string; // cor de destaque (hex)
+  logoUrl?: string; // logo do prospect (URL) — vem do personalizador (?logo=)
   ctaShort: string; // texto curto do botão (header/cards)
   ctaHero: string; // texto do botão principal do hero
   hero: { eyebrow: string; title: string; subtitle: string };

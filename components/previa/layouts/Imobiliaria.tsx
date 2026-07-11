@@ -2,7 +2,7 @@ import Icon from "../../Icon";
 import Reveal from "../../Reveal";
 import DemoImage from "../DemoImage";
 import { WhatsAppIcon } from "../../ui";
-import { DepoGrid, FaqList } from "../parts";
+import { BrandLogo, DepoGrid, FaqList } from "../parts";
 import { waLink } from "@/lib/site";
 import type { ImobiliariaDemo } from "@/lib/previaDemos";
 import type { HasFn, PhotoFn } from "../types";
@@ -41,10 +41,12 @@ export default function Imobiliaria({
         {/* Header transparente */}
         <header className="relative z-10">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5">
-            <span className="flex items-center gap-2 font-imobiliaria text-2xl font-extrabold tracking-tight text-white">
-              <Icon name="Building2" className="h-6 w-6" style={{ color: "#fff" }} />
-              {demo.business}
-            </span>
+            <BrandLogo logoUrl={demo.logoUrl} business={demo.business}>
+              <span className="flex items-center gap-2 font-imobiliaria text-2xl font-extrabold tracking-tight text-white">
+                <Icon name="Building2" className="h-6 w-6" style={{ color: "#fff" }} />
+                {demo.business}
+              </span>
+            </BrandLogo>
             <nav className="hidden items-center gap-7 text-sm text-white/80 md:flex">
               <span className="cursor-default transition hover:text-white">Imóveis</span>
               {has("profissional") && <span className="cursor-default transition hover:text-white">Corretores</span>}

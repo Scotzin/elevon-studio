@@ -2,7 +2,7 @@ import Icon from "../../Icon";
 import Reveal from "../../Reveal";
 import DemoImage from "../DemoImage";
 import { WhatsAppIcon } from "../../ui";
-import { Stars, DepoGrid, FaqList, StatsBand } from "../parts";
+import { BrandLogo, Stars, DepoGrid, FaqList, StatsBand } from "../parts";
 import { waLink } from "@/lib/site";
 import type { RestauranteDemo } from "@/lib/previaDemos";
 import type { HasFn, PhotoFn } from "../types";
@@ -36,10 +36,12 @@ export default function Restaurante({
       {/* HEADER */}
       <header className="border-b border-stone-200/70 bg-[#fdf6ec]/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <span className="flex items-center gap-2 font-restaurante text-2xl font-bold text-stone-900">
-            <Icon name="UtensilsCrossed" className="h-5 w-5" style={{ color: a }} />
-            {demo.business}
-          </span>
+          <BrandLogo logoUrl={demo.logoUrl} business={demo.business}>
+            <span className="flex items-center gap-2 font-restaurante text-2xl font-bold text-stone-900">
+              <Icon name="UtensilsCrossed" className="h-5 w-5" style={{ color: a }} />
+              {demo.business}
+            </span>
+          </BrandLogo>
           <nav className="hidden items-center gap-7 text-sm text-stone-600 md:flex">
             <span className="cursor-default transition hover:text-stone-900">Cardápio</span>
             {has("premium") && <span className="cursor-default transition hover:text-stone-900">Combos</span>}

@@ -2,7 +2,7 @@ import Icon from "../../Icon";
 import Reveal from "../../Reveal";
 import DemoImage from "../DemoImage";
 import { WhatsAppIcon } from "../../ui";
-import { DepoGrid, FaqList, StatsBand } from "../parts";
+import { BrandLogo, DepoGrid, FaqList, StatsBand } from "../parts";
 import { waLink } from "@/lib/site";
 import type { LojaDemo } from "@/lib/previaDemos";
 import type { HasFn, PhotoFn } from "../types";
@@ -30,7 +30,9 @@ export default function Loja({
       {/* HEADER */}
       <header className="border-b border-zinc-200 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <span className="font-loja text-2xl tracking-tight text-zinc-900">{demo.business}</span>
+          <BrandLogo logoUrl={demo.logoUrl} business={demo.business}>
+            <span className="font-loja text-2xl tracking-tight text-zinc-900">{demo.business}</span>
+          </BrandLogo>
           <nav className="hidden items-center gap-8 text-xs font-medium uppercase tracking-[0.15em] text-zinc-500 md:flex">
             <span className="cursor-default transition hover:text-zinc-900">Loja</span>
             {has("profissional") && <span className="cursor-default transition hover:text-zinc-900">Categorias</span>}

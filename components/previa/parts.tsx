@@ -11,6 +11,23 @@ import type { Depoimento, Faq, Stat } from "@/lib/previaDemos";
    de cada nicho fica nos próprios layouts — aqui ficam só os pedaços neutros.
    ========================================================================== */
 
+/* --- Marca no header: logo (URL do prospect) OU o nome estilizado -------- */
+export function BrandLogo({
+  logoUrl,
+  business,
+  children,
+}: {
+  logoUrl?: string;
+  business: string;
+  children: ReactNode;
+}) {
+  if (logoUrl) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return <img src={logoUrl} alt={business} className="h-8 w-auto max-w-[170px] object-contain sm:h-9" />;
+  }
+  return <>{children}</>;
+}
+
 /* --- Estrelinhas de avaliação ------------------------------------------- */
 export function Stars({ className = "h-4 w-4" }: { className?: string }) {
   return (
