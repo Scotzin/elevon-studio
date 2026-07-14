@@ -5,7 +5,7 @@ import { WhatsAppIcon } from "../../ui";
 import { BrandLogo, Stars, DepoGrid, FaqList, StatsBand } from "../parts";
 import { waLink } from "@/lib/site";
 import type { RestauranteDemo } from "@/lib/previaDemos";
-import type { HasFn, PhotoFn } from "../types";
+import type { LayoutBaseProps } from "../types";
 
 /* ==========================================================================
    LAYOUT: RESTAURANTE  — centrado, quente e apetitoso
@@ -16,11 +16,8 @@ export default function Restaurante({
   demo,
   has,
   photo,
-}: {
-  demo: RestauranteDemo;
-  has: HasFn;
-  photo: PhotoFn;
-}) {
+  tier,
+}: { demo: RestauranteDemo } & LayoutBaseProps) {
   const a = demo.accent;
   const wa = (m: string) => waLink(m);
   const waOrder = wa(`Olá! Quero fazer um pedido na ${demo.business}.`);
@@ -67,6 +64,17 @@ export default function Restaurante({
       >
         <div className="mx-auto max-w-4xl px-5 pt-16 text-center sm:pt-20">
           <Reveal>
+            {tier.premiumTag && (
+              <div className="mb-4">
+                <span
+                  className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-white"
+                  style={{ backgroundColor: a }}
+                >
+                  <Icon name="Sparkles" className="h-3.5 w-3.5" />
+                  {tier.premiumTag}
+                </span>
+              </div>
+            )}
             <span
               className="inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-xs font-semibold uppercase tracking-wider"
               style={{ borderColor: `${a}44`, color: a }}
@@ -89,19 +97,23 @@ export default function Restaurante({
                 <WhatsAppIcon className="h-4 w-4" />
                 {demo.ctaHero}
               </a>
-              <a
-                href="#cardapio"
-                className="inline-flex items-center rounded-full border border-stone-300 bg-white/70 px-7 py-3.5 text-sm font-semibold text-stone-700 transition hover:bg-white"
-              >
-                Ver cardápio
-              </a>
+              {has("profissional") && (
+                <a
+                  href="#cardapio"
+                  className="inline-flex items-center rounded-full border border-stone-300 bg-white/70 px-7 py-3.5 text-sm font-semibold text-stone-700 transition hover:bg-white"
+                >
+                  Ver cardápio
+                </a>
+              )}
             </div>
-            <div className="mt-6 flex items-center justify-center gap-3 text-sm text-stone-500">
-              <Stars />
-              <span>
-                <strong className="text-stone-700">4.8</strong> · +10 mil pedidos entregues
-              </span>
-            </div>
+            {has("profissional") && (
+              <div className="mt-6 flex items-center justify-center gap-3 text-sm text-stone-500">
+                <Stars />
+                <span>
+                  <strong className="text-stone-700">4.8</strong> · +10 mil pedidos entregues
+                </span>
+              </div>
+            )}
           </Reveal>
         </div>
 

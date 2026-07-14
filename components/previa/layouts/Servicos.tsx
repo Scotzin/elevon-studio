@@ -4,7 +4,7 @@ import { WhatsAppIcon } from "../../ui";
 import { BrandLogo, Stars, DepoGrid, FaqList, StatsBand } from "../parts";
 import { waLink } from "@/lib/site";
 import type { ServicosDemo } from "@/lib/previaDemos";
-import type { HasFn, PhotoFn } from "../types";
+import type { LayoutBaseProps } from "../types";
 
 /* ==========================================================================
    LAYOUT: PRESTADOR DE SERVIÇOS  — confiança e captação
@@ -15,11 +15,8 @@ export default function Servicos({
   demo,
   has,
   photo,
-}: {
-  demo: ServicosDemo;
-  has: HasFn;
-  photo: PhotoFn;
-}) {
+  tier,
+}: { demo: ServicosDemo } & LayoutBaseProps) {
   const a = demo.accent;
   const wa = (m: string) => waLink(m);
   const waQuote = wa(`Olá! Quero pedir um orçamento com a ${demo.business}.`);
@@ -63,6 +60,12 @@ export default function Servicos({
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-[1.1fr_1fr] md:py-24">
           <Reveal>
             <div>
+              {tier.premiumTag && (
+                <span className="mb-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-white" style={{ backgroundColor: a }}>
+                  <Icon name="Sparkles" className="h-3.5 w-3.5" />
+                  {tier.premiumTag}
+                </span>
+              )}
               <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold" style={{ backgroundColor: `${a}1a`, color: a }}>
                 <Icon name="BadgeCheck" className="h-3.5 w-3.5" />
                 {demo.hero.eyebrow}
@@ -83,10 +86,24 @@ export default function Servicos({
                   </div>
                 ))}
               </div>
+              {/* Básico — CTA simples (sem o form de orçamento) */}
+              {!has("profissional") && (
+                <a
+                  href={waQuote}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 inline-flex items-center gap-2 rounded-lg px-7 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5"
+                  style={{ backgroundColor: a }}
+                >
+                  <WhatsAppIcon className="h-4 w-4" />
+                  {demo.ctaHero}
+                </a>
+              )}
             </div>
           </Reveal>
 
-          {/* Card de orçamento */}
+          {has("profissional") ? (
+          /* Card de orçamento (Profissional+) */
           <Reveal delay={120}>
             <div className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl">
               <div className="px-6 py-5 text-white" style={{ background: `linear-gradient(135deg, ${a}, ${a}cc)` }}>
@@ -129,6 +146,20 @@ export default function Servicos({
               </div>
             </div>
           </Reveal>
+          ) : (
+            /* Básico — apoio visual simples (sem o form) */
+            <div className="flex items-center justify-center">
+              <div className="w-full max-w-sm rounded-3xl border border-slate-200 bg-slate-50 p-8 text-center">
+                <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl text-white" style={{ backgroundColor: a }}>
+                  <Icon name="Wrench" className="h-7 w-7" />
+                </span>
+                <p className="mt-4 font-servicos text-lg font-bold text-slate-900">Orçamento gratuito</p>
+                <p className="mt-1 text-sm text-slate-500">
+                  Conte o que precisa pelo WhatsApp e receba um preço justo, sem compromisso.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </section>
 

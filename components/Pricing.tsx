@@ -10,7 +10,7 @@ export default function Pricing() {
         <SectionHeading
           eyebrow="Planos e preços"
           title="Escolha o plano ideal para o seu negócio"
-          subtitle="Três opções para começar com o pé direito no digital. Todos incluem publicação e manutenção mensal para manter o seu site sempre no ar."
+          subtitle="Três níveis de site, do essencial ao alto padrão. Cada plano tem um valor de criação e uma mensalidade que mantém o site no ar, com hospedagem, suporte e pequenas alterações."
         />
 
         {/* GRID DE PLANOS */}
@@ -47,8 +47,8 @@ export default function Pricing() {
                     {plan.setup}
                   </p>
                   <div className="mt-4 flex items-baseline gap-1.5 border-t border-slate-200 pt-4 dark:border-white/10">
-                    <span className="text-lg font-bold text-accent">+ {plan.monthly}</span>
-                    <span className="text-xs text-slate-500 dark:text-slate-400">manutenção</span>
+                    <span className="text-lg font-bold text-accent">{plan.monthly}</span>
+                    <span className="text-xs text-slate-500 dark:text-slate-400">de mensalidade</span>
                   </div>
                 </div>
 

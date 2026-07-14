@@ -10,8 +10,8 @@ export default function Models() {
       <Container>
         <SectionHeading
           eyebrow="Modelos por nicho"
-          title="Um modelo pensado para o seu tipo de negócio"
-          subtitle="Cada nicho tem uma base profissional que personalizamos com as suas cores, textos, fotos e informações. Veja alguns dos segmentos que atendemos."
+          title="Cada segmento com a sua própria cara"
+          subtitle="Não é o mesmo template trocando de cor: cada nicho tem direção de arte, estrutura e linguagem próprias. Abra a prévia em Básico, Profissional ou Premium e veja a evolução de cada nível."
         />
 
         {/* GRID DE NICHOS */}
@@ -52,8 +52,34 @@ export default function Models() {
                     {model.tagline}
                   </p>
 
-                  {/* Botões do card */}
-                  <div className="mt-6 flex flex-col gap-2.5 pt-1">
+                  {/* Prévia navegável nos 3 planos (ou WhatsApp se ainda não houver) */}
+                  <div className="mt-6 pt-1">
+                    {model.preview ? (
+                      <>
+                        <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+                          <Icon name="Eye" className="h-3.5 w-3.5" />
+                          Ver prévia por plano
+                        </p>
+                        <div className="grid grid-cols-3 gap-2">
+                          {[
+                            { key: "basico", label: "Básico" },
+                            { key: "profissional", label: "Profissional" },
+                            { key: "premium", label: "Premium" },
+                          ].map((p) => (
+                            <a
+                              key={p.key}
+                              href={`${model.preview}?plano=${p.key}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="rounded-lg border border-slate-200 px-2 py-2 text-center text-xs font-semibold text-slate-700 transition hover:-translate-y-0.5 hover:border-accent hover:text-accent dark:border-white/10 dark:text-slate-200 dark:hover:border-accent"
+                            >
+                              {p.label}
+                            </a>
+                          ))}
+                        </div>
+                      </>
+                    ) : null}
+
                     <Button
                       href={waLink(
                         `Olá! Tenho interesse em um site para ${model.name}. Podem me passar mais detalhes?`
@@ -61,28 +87,10 @@ export default function Models() {
                       external
                       variant="primary"
                       size="md"
-                      className="w-full"
+                      className="mt-3 w-full"
                     >
                       <WhatsAppIcon className="h-4 w-4" />
                       Quero um site assim
-                    </Button>
-
-                    {/*
-                      "Ver prévia": se houver link em lib/site.ts (campo preview),
-                      abre a prévia online; se não, abre o WhatsApp pedindo uma demonstração.
-                    */}
-                    <Button
-                      href={
-                        model.preview ||
-                        waLink(`Olá! Posso ver uma prévia do modelo de site para ${model.name}?`)
-                      }
-                      external
-                      variant="outline"
-                      size="md"
-                      className="w-full"
-                    >
-                      Ver prévia
-                      <Icon name="ArrowRight" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                     </Button>
                   </div>
                 </div>

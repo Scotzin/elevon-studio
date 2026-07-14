@@ -6,7 +6,7 @@ import { WhatsAppIcon } from "../../ui";
 import { BrandLogo, Stars, DepoGrid, FaqList, StatsBand } from "../parts";
 import { waLink } from "@/lib/site";
 import type { EsteticaDemo } from "@/lib/previaDemos";
-import type { HasFn, PhotoFn } from "../types";
+import type { LayoutBaseProps } from "../types";
 
 /* ==========================================================================
    LAYOUT: CLÍNICA DE ESTÉTICA  — spa sereno
@@ -17,11 +17,8 @@ export default function Estetica({
   demo,
   has,
   photo,
-}: {
-  demo: EsteticaDemo;
-  has: HasFn;
-  photo: PhotoFn;
-}) {
+  tier,
+}: { demo: EsteticaDemo } & LayoutBaseProps) {
   const a = demo.accent;
   const wa = (m: string) => waLink(m);
   const waBook = wa(`Olá! Quero agendar uma avaliação na ${demo.business}.`);
@@ -66,6 +63,15 @@ export default function Estetica({
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-16 md:grid-cols-2 md:py-20">
           <Reveal>
             <div>
+              {tier.premiumTag && (
+                <span
+                  className="mb-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-white"
+                  style={{ backgroundColor: a }}
+                >
+                  <Icon name="Sparkles" className="h-3.5 w-3.5" />
+                  {tier.premiumTag}
+                </span>
+              )}
               <span className="inline-flex items-center gap-1.5 rounded-full bg-white/70 px-4 py-1.5 text-xs font-medium tracking-wide ring-1 ring-pink-100" style={{ color: a }}>
                 <Icon name="Sparkles" className="h-3.5 w-3.5" />
                 {demo.hero.eyebrow}
@@ -85,16 +91,20 @@ export default function Estetica({
                   <WhatsAppIcon className="h-4 w-4" />
                   {demo.ctaHero}
                 </a>
-                <a href="#tratamentos" className="inline-flex items-center rounded-full border border-pink-200 bg-white/60 px-7 py-3.5 text-sm font-semibold text-zinc-700 transition hover:bg-white">
-                  Ver tratamentos
-                </a>
+                {has("profissional") && (
+                  <a href="#tratamentos" className="inline-flex items-center rounded-full border border-pink-200 bg-white/60 px-7 py-3.5 text-sm font-semibold text-zinc-700 transition hover:bg-white">
+                    Ver tratamentos
+                  </a>
+                )}
               </div>
-              <div className="mt-8 flex items-center gap-3 text-sm text-zinc-500">
-                <Stars />
-                <span>
-                  <strong className="text-zinc-700">4.9</strong> · +3.000 clientes atendidas
-                </span>
-              </div>
+              {has("profissional") && (
+                <div className="mt-8 flex items-center gap-3 text-sm text-zinc-500">
+                  <Stars />
+                  <span>
+                    <strong className="text-zinc-700">4.9</strong> · +3.000 clientes atendidas
+                  </span>
+                </div>
+              )}
             </div>
           </Reveal>
           <Reveal delay={120}>
@@ -108,16 +118,18 @@ export default function Estetica({
                 label="imagem ilustrativa"
                 className="group aspect-[3/4] w-full rounded-[999px_999px_2.5rem_2.5rem] shadow-2xl ring-8 ring-white/60"
               />
-              {/* cartão flutuante "avaliação gratuita" */}
-              <div className="absolute -bottom-5 -left-4 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-pink-100">
-                <span className="grid h-10 w-10 place-items-center rounded-full" style={{ backgroundColor: `${a}1a`, color: a }}>
-                  <Icon name="Heart" className="h-5 w-5" />
-                </span>
-                <span className="text-sm leading-tight">
-                  <strong className="block text-zinc-900">Avaliação gratuita</strong>
-                  <span className="text-zinc-500">sua 1ª visita</span>
-                </span>
-              </div>
+              {/* cartão flutuante "avaliação gratuita" (Profissional+) */}
+              {has("profissional") && (
+                <div className="absolute -bottom-5 -left-4 flex items-center gap-3 rounded-2xl bg-white px-4 py-3 shadow-xl ring-1 ring-pink-100">
+                  <span className="grid h-10 w-10 place-items-center rounded-full" style={{ backgroundColor: `${a}1a`, color: a }}>
+                    <Icon name="Heart" className="h-5 w-5" />
+                  </span>
+                  <span className="text-sm leading-tight">
+                    <strong className="block text-zinc-900">Avaliação gratuita</strong>
+                    <span className="text-zinc-500">sua 1ª visita</span>
+                  </span>
+                </div>
+              )}
             </div>
           </Reveal>
         </div>

@@ -6,7 +6,7 @@ import { WhatsAppIcon } from "../../ui";
 import { BrandLogo, DepoGrid, FaqList } from "../parts";
 import { waLink } from "@/lib/site";
 import type { BarbeariaDemo } from "@/lib/previaDemos";
-import type { HasFn, PhotoFn } from "../types";
+import type { LayoutBaseProps } from "../types";
 
 /* ==========================================================================
    LAYOUT: BARBEARIA  — editorial cinematográfico
@@ -17,11 +17,8 @@ export default function Barbearia({
   demo,
   has,
   photo,
-}: {
-  demo: BarbeariaDemo;
-  has: HasFn;
-  photo: PhotoFn;
-}) {
+  tier,
+}: { demo: BarbeariaDemo } & LayoutBaseProps) {
   const a = demo.accent;
   const wa = (m: string) => waLink(m);
   const waBook = wa(`Olá! Quero agendar um horário na ${demo.business}.`);
@@ -74,8 +71,17 @@ export default function Barbearia({
         <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-end px-5 pb-20 pt-16">
           <Reveal>
             <div className="max-w-2xl">
+              {tier.premiumTag && (
+                <span
+                  className="mb-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-950"
+                  style={{ backgroundColor: a }}
+                >
+                  <Icon name="Sparkles" className="h-3.5 w-3.5" />
+                  {tier.premiumTag}
+                </span>
+              )}
               <span
-                className="text-xs font-semibold uppercase tracking-[0.4em]"
+                className="block text-xs font-semibold uppercase tracking-[0.4em]"
                 style={{ color: a }}
               >
                 {demo.hero.eyebrow}
@@ -96,15 +102,17 @@ export default function Barbearia({
                   <WhatsAppIcon className="h-4 w-4" />
                   {demo.ctaHero}
                 </a>
-                <div className="flex items-center gap-2 text-sm text-zinc-400">
-                  <span className="font-barbearia text-2xl font-bold text-white">4.9</span>
-                  <span className="inline-flex gap-0.5" style={{ color: a }}>
-                    {[0, 1, 2, 3, 4].map((i) => (
-                      <Icon key={i} name="Star" className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
-                    ))}
-                  </span>
-                  <span>· +5.000 clientes</span>
-                </div>
+                {has("profissional") && (
+                  <div className="flex items-center gap-2 text-sm text-zinc-400">
+                    <span className="font-barbearia text-2xl font-bold text-white">4.9</span>
+                    <span className="inline-flex gap-0.5" style={{ color: a }}>
+                      {[0, 1, 2, 3, 4].map((i) => (
+                        <Icon key={i} name="Star" className="h-3.5 w-3.5 fill-current" strokeWidth={0} />
+                      ))}
+                    </span>
+                    <span>· +5.000 clientes</span>
+                  </div>
+                )}
               </div>
             </div>
           </Reveal>

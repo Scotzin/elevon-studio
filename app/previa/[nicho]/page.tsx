@@ -8,6 +8,7 @@ import { waLink, siteConfig } from "@/lib/site";
 import { previaDemos, PHOTOS, type PreviaDemo } from "@/lib/previaDemos";
 import { fontByLayout } from "@/components/previa/fonts";
 import PreviaCustomizer from "@/components/previa/PreviaCustomizer";
+import { tierOf } from "@/lib/previaTiers";
 import type { Plan } from "@/components/previa/types";
 
 import Barbearia from "@/components/previa/layouts/Barbearia";
@@ -150,7 +151,8 @@ export default function PreviaNicho({
     (persona.logo ? `&logo=${encodeURIComponent(persona.logo)}` : "") +
     (persona.slogan ? `&slogan=${encodeURIComponent(persona.slogan)}` : "");
 
-  const layoutProps = { has, photo };
+  const tier = tierOf(plan);
+  const layoutProps = { has, photo, plan, tier };
   const nichoFont = fontByLayout[demo.layout] || "";
 
   return (

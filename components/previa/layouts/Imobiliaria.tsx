@@ -5,7 +5,7 @@ import { WhatsAppIcon } from "../../ui";
 import { BrandLogo, DepoGrid, FaqList } from "../parts";
 import { waLink } from "@/lib/site";
 import type { ImobiliariaDemo } from "@/lib/previaDemos";
-import type { HasFn, PhotoFn } from "../types";
+import type { LayoutBaseProps } from "../types";
 
 /* ==========================================================================
    LAYOUT: IMOBILIÁRIA  — portal de busca
@@ -16,11 +16,8 @@ export default function Imobiliaria({
   demo,
   has,
   photo,
-}: {
-  demo: ImobiliariaDemo;
-  has: HasFn;
-  photo: PhotoFn;
-}) {
+  tier,
+}: { demo: ImobiliariaDemo } & LayoutBaseProps) {
   const a = demo.accent;
   const wa = (m: string) => waLink(m);
   const waTalk = wa(`Olá! Quero falar com um corretor da ${demo.business}.`);
@@ -66,9 +63,17 @@ export default function Imobiliaria({
 
         <div className="relative z-10 mx-auto max-w-3xl px-5 pb-8 pt-14 text-center sm:pt-20">
           <Reveal>
-            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20">
-              <Icon name="MapPin" className="h-3.5 w-3.5" />
-              {demo.hero.eyebrow}
+            {tier.premiumTag && (
+              <span className="mb-4 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-[0.15em] text-white" style={{ backgroundColor: a }}>
+                <Icon name="Sparkles" className="h-3.5 w-3.5" />
+                {tier.premiumTag}
+              </span>
+            )}
+            <span className="block">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/20">
+                <Icon name="MapPin" className="h-3.5 w-3.5" />
+                {demo.hero.eyebrow}
+              </span>
             </span>
             <h1 className="mx-auto mt-5 max-w-2xl font-imobiliaria text-4xl font-extrabold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
               {demo.hero.title}
@@ -76,47 +81,65 @@ export default function Imobiliaria({
             <p className="mx-auto mt-4 max-w-lg text-lg text-white/75">{demo.hero.subtitle}</p>
           </Reveal>
 
-          {/* Card de busca */}
-          <Reveal delay={120}>
-            <div className="mx-auto mt-8 max-w-2xl rounded-2xl bg-white p-3 text-left shadow-2xl">
-              <div className="flex flex-wrap gap-1.5">
-                {demo.filters.map((f, i) => (
-                  <span
-                    key={f}
-                    className="rounded-full px-3.5 py-1.5 text-xs font-semibold"
-                    style={i === 0 ? { backgroundColor: a, color: "#fff" } : { backgroundColor: "#f1f5f9", color: "#475569" }}
-                  >
-                    {f}
+          {has("profissional") ? (
+            /* Card de busca (Profissional+) */
+            <Reveal delay={120}>
+              <div className="mx-auto mt-8 max-w-2xl rounded-2xl bg-white p-3 text-left shadow-2xl">
+                <div className="flex flex-wrap gap-1.5">
+                  {demo.filters.map((f, i) => (
+                    <span
+                      key={f}
+                      className="rounded-full px-3.5 py-1.5 text-xs font-semibold"
+                      style={i === 0 ? { backgroundColor: a, color: "#fff" } : { backgroundColor: "#f1f5f9", color: "#475569" }}
+                    >
+                      {f}
+                    </span>
+                  ))}
+                </div>
+                <a
+                  href={waTalk}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2.5 flex items-center justify-between gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-400 transition hover:border-slate-300"
+                >
+                  Em qual bairro você procura?
+                  <span className="inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold text-white" style={{ backgroundColor: a }}>
+                    <Icon name="Search" className="h-4 w-4" />
+                    Buscar
                   </span>
-                ))}
+                </a>
               </div>
+            </Reveal>
+          ) : (
+            /* Básico — CTA simples */
+            <div className="mt-8 flex justify-center">
               <a
                 href={waTalk}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2.5 flex items-center justify-between gap-3 rounded-xl border border-slate-200 px-4 py-3 text-sm text-slate-400 transition hover:border-slate-300"
+                className="inline-flex items-center gap-2 rounded-lg px-7 py-3.5 text-sm font-bold text-white transition hover:-translate-y-0.5"
+                style={{ backgroundColor: a }}
               >
-                Em qual bairro você procura?
-                <span className="inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold text-white" style={{ backgroundColor: a }}>
-                  <Icon name="Search" className="h-4 w-4" />
-                  Buscar
-                </span>
+                <WhatsAppIcon className="h-4 w-4" />
+                {demo.ctaHero}
               </a>
             </div>
-          </Reveal>
+          )}
         </div>
 
-        {/* Faixa de números integrada ao hero */}
-        <div className="relative z-10 border-t border-white/10 bg-white/5 backdrop-blur">
-          <div className="mx-auto grid max-w-4xl grid-cols-3 divide-x divide-white/10 px-5 py-5 text-center text-white">
-            {demo.stats.map((s) => (
-              <div key={s.label}>
-                <p className="font-imobiliaria text-2xl font-extrabold sm:text-3xl">{s.value}</p>
-                <p className="mt-0.5 text-xs text-white/60">{s.label}</p>
-              </div>
-            ))}
+        {/* Faixa de números integrada ao hero (Profissional+) */}
+        {has("profissional") && (
+          <div className="relative z-10 border-t border-white/10 bg-white/5 backdrop-blur">
+            <div className="mx-auto grid max-w-4xl grid-cols-3 divide-x divide-white/10 px-5 py-5 text-center text-white">
+              {demo.stats.map((s) => (
+                <div key={s.label}>
+                  <p className="font-imobiliaria text-2xl font-extrabold sm:text-3xl">{s.value}</p>
+                  <p className="mt-0.5 text-xs text-white/60">{s.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </section>
 
       {/* DIFERENCIAIS (Básico+) */}

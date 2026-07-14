@@ -5,7 +5,7 @@ import { WhatsAppIcon } from "../../ui";
 import { BrandLogo, DepoGrid, FaqList, StatsBand } from "../parts";
 import { waLink } from "@/lib/site";
 import type { LojaDemo } from "@/lib/previaDemos";
-import type { HasFn, PhotoFn } from "../types";
+import type { LayoutBaseProps } from "../types";
 
 /* ==========================================================================
    LAYOUT: LOJA DE ROUPAS  — editorial de moda
@@ -16,11 +16,8 @@ export default function Loja({
   demo,
   has,
   photo,
-}: {
-  demo: LojaDemo;
-  has: HasFn;
-  photo: PhotoFn;
-}) {
+  tier,
+}: { demo: LojaDemo } & LayoutBaseProps) {
   const a = demo.accent;
   const wa = (m: string) => waLink(m);
   const waShop = wa(`Olá! Quero comprar na ${demo.business}.`);
@@ -58,6 +55,15 @@ export default function Loja({
         <div className="flex flex-col justify-center px-6 py-16 sm:px-10 md:py-24 lg:px-16">
           <Reveal>
             <div className="max-w-md">
+              {tier.premiumTag && (
+                <span
+                  className="mb-5 inline-flex items-center gap-1.5 px-3 py-1 text-[11px] font-bold uppercase tracking-[0.2em] text-white"
+                  style={{ backgroundColor: a }}
+                >
+                  <Icon name="Sparkles" className="h-3.5 w-3.5" />
+                  {tier.premiumTag}
+                </span>
+              )}
               <span className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.3em]" style={{ color: a }}>
                 <span className="h-px w-8" style={{ backgroundColor: a }} />
                 {demo.hero.eyebrow}
@@ -77,18 +83,22 @@ export default function Loja({
                   <WhatsAppIcon className="h-4 w-4" />
                   {demo.ctaHero}
                 </a>
-                <a href="#produtos" className="group inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-zinc-900">
-                  Ver coleção
-                  <span className="block h-px w-6 transition-all group-hover:w-10" style={{ backgroundColor: a }} />
-                </a>
+                {has("profissional") && (
+                  <a href="#produtos" className="group inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest text-zinc-900">
+                    Ver coleção
+                    <span className="block h-px w-6 transition-all group-hover:w-10" style={{ backgroundColor: a }} />
+                  </a>
+                )}
               </div>
-              <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[11px] uppercase tracking-widest text-zinc-400">
-                <span>+2.000 clientes</span>
-                <span>·</span>
-                <span>Envio p/ todo o Brasil</span>
-                <span>·</span>
-                <span>Troca fácil</span>
-              </div>
+              {has("profissional") && (
+                <div className="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-[11px] uppercase tracking-widest text-zinc-400">
+                  <span>+2.000 clientes</span>
+                  <span>·</span>
+                  <span>Envio p/ todo o Brasil</span>
+                  <span>·</span>
+                  <span>Troca fácil</span>
+                </div>
+              )}
             </div>
           </Reveal>
         </div>
