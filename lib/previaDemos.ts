@@ -45,9 +45,19 @@ export type BarbeariaDemo = BaseDemo & {
   clube: { title: string; text: string; price: string; perks: string[] }; // Premium
 };
 
-/* ---- RESTAURANTE: cardápio por seções + delivery + combo destaque ------- */
+/* Contatos por finalidade — cada seção pode puxar um WhatsApp diferente
+   (ex.: pedidos num número, reservas noutro, eventos noutro). Só dígitos.
+   Quando o campo fica vazio, a seção usa o número principal da marca. */
+export type Contacts = {
+  pedidos?: string;
+  reservas?: string;
+  eventos?: string;
+};
+
+/* ---- RESTAURANTE: cardápio + quem somos + reservas + salão de festa ------ */
 export type RestauranteDemo = BaseDemo & {
   layout: "restaurante";
+  contacts?: Contacts;
   delivery: { time: string; fee: string; min: string };
   menu: {
     category: string;
@@ -55,6 +65,12 @@ export type RestauranteDemo = BaseDemo & {
     items: { name: string; desc: string; price: string; tag?: string }[];
   }[];
   destaque: { name: string; desc: string; price: string }; // combo do dia
+  // Seção "quem somos" (Profissional+): história + números da casa.
+  quemSomos: { title: string; text: string; numeros: { value: string; label: string }[] };
+  // Reservas de mesa (Profissional+) — puxa o WhatsApp de reservas.
+  reservas: { title: string; text: string; horarios: string };
+  // Salão de festa / eventos (Premium) — puxa o WhatsApp de eventos.
+  eventos: { title: string; text: string; capacidade: string; perks: string[] };
 };
 
 /* ---- LOJA DE ROUPAS: vitrine de produtos + cupom + frete (e-commerce) --- */
@@ -237,6 +253,28 @@ export const previaDemos: Record<string, PreviaDemo> = {
       name: "Combo Família",
       desc: "Pizza grande + lasanha + sobremesa + refrigerante 2L. Perfeito para a noite em família.",
       price: "R$ 119",
+    },
+    // Cada seção pode falar com um WhatsApp diferente. Vazio = número da marca.
+    contacts: { pedidos: "", reservas: "", eventos: "" },
+    quemSomos: {
+      title: "Uma cozinha de família desde 1998",
+      text: "A Cantina Bella nasceu de receitas passadas de geração em geração. Massas frescas feitas todos os dias, molhos que cozinham por horas e aquele tempero que transforma o almoço em memória. Um ambiente acolhedor para reunir quem você ama à mesa.",
+      numeros: [
+        { value: "25 anos", label: "de tradição" },
+        { value: "+10 mil", label: "pedidos por ano" },
+        { value: "4.8★", label: "avaliação dos clientes" },
+      ],
+    },
+    reservas: {
+      title: "Reserve a sua mesa",
+      text: "Garanta o seu lugar sem espera — almoço, jantar ou aquela comemoração especial. Nossa equipe confirma a disponibilidade na hora pelo WhatsApp.",
+      horarios: "Reservas de terça a domingo, das 11h às 22h",
+    },
+    eventos: {
+      title: "Salão de festas para o seu evento",
+      text: "Aniversários, confraternizações e eventos corporativos com cardápio sob medida, ambiente reservado e equipe dedicada. Cuidamos de tudo para você só aproveitar.",
+      capacidade: "Até 80 pessoas",
+      perks: ["Cardápio personalizado", "Ambiente reservado", "Equipe e garçom dedicados", "Decoração combinada"],
     },
     depoimentos: [
       { nome: "Carla F.", texto: "Comida maravilhosa e entrega rápida. Virou nosso restaurante favorito." },

@@ -42,13 +42,15 @@ export const siteConfig = {
    2) GERADOR DE LINK DO WHATSAPP
    -------------------------------------------------------------------------- */
 // Monta automaticamente o link do WhatsApp com uma mensagem pronta.
-// Não precisa editar esta função - só o número lá em cima.
+// `number` é opcional: quando informado (ex.: WhatsApp específico de uma seção
+// como reservas ou eventos), o link vai para ele; senão usa o número da marca.
 export function waLink(
-  message = "Olá, tenho interesse em criar um site profissional."
+  message = "Olá, tenho interesse em criar um site profissional.",
+  number?: string
 ) {
-  return `https://wa.me/${siteConfig.whatsappNumber}?text=${encodeURIComponent(
-    message
-  )}`;
+  const digits = (number || "").replace(/\D/g, "");
+  const to = digits.length >= 10 ? digits : siteConfig.whatsappNumber;
+  return `https://wa.me/${to}?text=${encodeURIComponent(message)}`;
 }
 
 /* --------------------------------------------------------------------------
