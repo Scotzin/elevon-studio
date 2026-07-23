@@ -16,8 +16,7 @@ const members = [
     role: "CEO · Desenvolvimento e Produto Digital",
     accessLevel: "CEO / Admin",
   },
-  { name: "Wiliam", email: "wiliam@elevon.studio", role: "Comercial e Relacionamento", accessLevel: "Sócio / Comercial" },
-  { name: "Pedro César", email: "cesar@elevon.studio", role: "Marketing", accessLevel: "Sócio / Marketing" },
+  { name: "Wiliam Ramos", email: "wiliam@elevon.studio", role: "Comercial e Relacionamento", accessLevel: "Sócio / Comercial" },
 ];
 
 // Gastos iniciais (valores em R$ — edite depois pelo painel). Só são criados

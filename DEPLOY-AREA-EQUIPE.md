@@ -46,4 +46,4 @@ git push origin main
 ## Acesso
 - Site: `/` (marketing, igual antes)
 - Login da equipe: `/login`  →  painel em `/painel`
-- Contas: `enzo@`, `wiliam@`, `andre@`, `cesar@` + `elevon.studio`
+- Contas: `enzo@`, `wiliam@`, `andre@` + `elevon.studio`

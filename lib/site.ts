@@ -216,16 +216,10 @@ export const team = [
     icon: "Code2",
   },
   {
-    name: "Wiliam",
+    name: "Wiliam Ramos",
     role: "Comercial e Relacionamento",
     text: "Responsável pela prospecção de clientes, parcerias, reuniões comerciais e identificação de novas oportunidades.",
     icon: "Briefcase",
-  },
-  {
-    name: "Pedro César",
-    role: "Marketing",
-    text: "Responsável pelo marketing, conteúdo, materiais comerciais e pelo fortalecimento da comunicação e da presença digital da Elevon Studio.",
-    icon: "Target",
   },
 ];
 
