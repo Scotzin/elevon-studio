@@ -10,8 +10,8 @@ export default function Models() {
       <Container>
         <SectionHeading
           eyebrow="Modelos por nicho"
-          title="Cada segmento com a sua própria cara"
-          subtitle="Não é o mesmo template trocando de cor: cada nicho tem direção de arte, estrutura e linguagem próprias. Abra a prévia em Básico, Profissional ou Premium e veja a evolução de cada nível."
+          title="Veja como o seu negócio pode se destacar no digital."
+          subtitle="Escolha um segmento e compare as versões Básica, Profissional e Premium. Cada nível apresenta uma evolução diferente de estrutura, personalização e experiência."
         />
 
         {/* GRID DE NICHOS */}
@@ -58,7 +58,7 @@ export default function Models() {
                       <>
                         <p className="mb-2 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
                           <Icon name="Eye" className="h-3.5 w-3.5" />
-                          Ver prévia por plano
+                          Escolha uma versão para visualizar
                         </p>
                         <div className="grid grid-cols-3 gap-2">
                           {[
@@ -102,10 +102,11 @@ export default function Models() {
         {/* CHAMADA: NÃO ENCONTROU SEU NICHO? */}
         <Reveal>
           <div className="mt-14 overflow-hidden rounded-3xl border border-deep-100 bg-deep-50/70 p-8 text-center md:p-12 dark:border-white/10 dark:bg-deep-900/40">
-            <h3 className="text-2xl font-bold text-deep-950 dark:text-white">Não encontrou o seu nicho?</h3>
+            <h3 className="text-2xl font-bold text-deep-950 dark:text-white">Seu segmento não apareceu aqui?</h3>
             <p className="mx-auto mt-3 max-w-xl text-pretty text-slate-600 dark:text-slate-300">
-              Sem problema. Chame a nossa equipe no WhatsApp e diga qual tipo de
-              site você precisa. Criamos uma opção personalizada para o seu negócio.
+              Esses são apenas alguns exemplos. Conte para a nossa equipe sobre o
+              seu negócio e criamos uma proposta com identidade, estrutura e
+              funcionalidades pensadas para você.
             </p>
             <div className="mt-7 flex justify-center">
               <Button
@@ -117,7 +118,7 @@ export default function Models() {
                 size="lg"
               >
                 <WhatsAppIcon className="h-5 w-5" />
-                Pedir site personalizado
+                Falar sobre meu projeto
               </Button>
             </div>
           </div>

@@ -2,7 +2,7 @@ import { Container, Button, WhatsAppIcon } from "./ui";
 import Icon from "./Icon";
 import Reveal from "./Reveal";
 import SiteMockup from "./SiteMockup";
-import { heroHighlights, waLink } from "@/lib/site";
+import { waLink } from "@/lib/site";
 
 export default function Hero() {
   return (
@@ -40,22 +40,20 @@ export default function Hero() {
 
           <Reveal delay={80}>
             <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.1] tracking-tight text-deep-950 dark:text-white sm:text-5xl lg:text-[3.4rem]">
-              Sites profissionais para o seu negócio{" "}
-              <span className="text-accent">vender mais pelo WhatsApp.</span>
+              Seu negócio merece um site{" "}
+              <span className="text-accent">à altura do que você entrega.</span>
             </h1>
           </Reveal>
 
           <Reveal delay={160}>
             <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-600 dark:text-slate-300 sm:text-lg">
-              Criamos sites modernos, rápidos e personalizados para diversos
-              nichos, ajudando empresas, profissionais e negócios locais a
-              transmitirem mais confiança, atraírem mais clientes e venderem
-              melhor pelo WhatsApp.
+              Criamos sites personalizados que valorizam sua marca, passam
+              confiança e transformam visitantes em novas oportunidades.
             </p>
           </Reveal>
 
           <Reveal delay={240}>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-9 flex flex-col gap-3 sm:mt-10 sm:flex-row">
               <Button
                 href={waLink("Olá, quero criar meu site profissional. Pode me ajudar?")}
                 external
@@ -63,27 +61,12 @@ export default function Hero() {
                 size="lg"
               >
                 <WhatsAppIcon className="h-5 w-5" />
-                Quero meu site
+                Quero criar meu site
               </Button>
               <Button href="#modelos" variant="outline" size="lg">
-                Ver modelos disponíveis
+                Explorar modelos
                 <Icon name="ArrowRight" className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Button>
-            </div>
-          </Reveal>
-
-          {/* MINI CARDS DE DESTAQUE */}
-          <Reveal delay={320}>
-            <div className="mt-10 flex flex-wrap gap-2.5">
-              {heroHighlights.map((item) => (
-                <div
-                  key={item.label}
-                  className="flex items-center gap-2 rounded-full border border-slate-200 bg-white/70 px-3.5 py-2 text-sm font-medium text-slate-700 shadow-soft backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-slate-200"
-                >
-                  <Icon name={item.icon} className="h-4 w-4 text-accent" />
-                  {item.label}
-                </div>
-              ))}
             </div>
           </Reveal>
         </div>

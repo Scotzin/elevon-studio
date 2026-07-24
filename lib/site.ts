@@ -66,18 +66,7 @@ export const navLinks = [
 ];
 
 /* --------------------------------------------------------------------------
-   4) MINI CARDS DO HERO (primeira dobra)
-   -------------------------------------------------------------------------- */
-export const heroHighlights = [
-  { icon: "Sparkles", label: "Site moderno" },
-  { icon: "MessageCircle", label: "Botão para WhatsApp" },
-  { icon: "Smartphone", label: "100% responsivo" },
-  { icon: "ShieldCheck", label: "Hospedagem e suporte" },
-  { icon: "LayoutGrid", label: "Personalização por nicho" },
-];
-
-/* --------------------------------------------------------------------------
-   5) SEÇÃO DE AUTORIDADE / CONFIANÇA
+   4) SEÇÃO DE AUTORIDADE / CONFIANÇA
    -------------------------------------------------------------------------- */
 // Frases curtas que aparecem como faixa de confiança.
 export const trustPhrases = [
